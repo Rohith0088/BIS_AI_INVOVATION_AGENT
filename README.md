@@ -81,6 +81,17 @@ Open `http://127.0.0.1:3000/`.
 
 The server initializes the `bis_sahayak` database tables for users, standards, and chat messages. Ensure MySQL is running and the database credentials are valid.
 
+## Deploy on Render
+
+Set the Render service **Root Directory** to `BIS-Sahayak-main`, with:
+
+```text
+Build Command: npm install && npm run build
+Start Command: npm run start
+```
+
+Add the variables from `BIS-Sahayak-main/.env.example` in Render's Environment settings. `DB_HOST=localhost` will not work on Render because it points to the Render container, not your local computer. Use a reachable managed MySQL host and allow Render's outbound connection. Never upload a real `.env` file or commit credentials.
+
 ## Build and Validate
 
 ```powershell
