@@ -1,0 +1,30 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# JavaScript dependencies and builds
+node_modules/
+**/node_modules/
+dist/
+build/
+coverage/
+
+# Python environments and caches
+.venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated local indexes and caches
+*.faiss
+*.pkl
+*.sqlite
+*.db
+
+# Logs and local editor files
+*.log
+.DS_Store
+.vscode/

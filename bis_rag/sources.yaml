@@ -1,0 +1,147 @@
+sources:
+  - id: bis_know_your_standard
+    authority: BIS
+    type: html_portal
+    title: Know Your Standard
+    url: https://www.bis.gov.in/know-your-standard/?lang=en
+    service_url: https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails
+    priority: 1
+    refresh_days: 7
+    notes: Crawl public metadata and linked records. Use authorized portal access for restricted standard documents.
+  - id: bis_product_certification_overview
+    authority: BIS
+    type: html
+    title: Product Certification Overview
+    url: https://www.bis.gov.in/product-certification/product-certification-overview/?lang=en
+    priority: 1
+    refresh_days: 7
+  - id: bis_compulsory_products
+    authority: BIS
+    type: html
+    title: Products under Compulsory Certification
+    url: https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en
+    priority: 1
+    refresh_days: 3
+  - id: bis_certification_process
+    authority: BIS
+    type: html
+    title: Product Certification Process
+    url: https://www.bis.gov.in/product-certification/product-certification-process/?lang=en
+    priority: 1
+    refresh_days: 7
+  - id: bis_product_guidelines
+    authority: BIS
+    type: html
+    title: Product-specific Guidelines and Manuals
+    url: https://www.bis.gov.in/product-certification/product-specific-guidelines/?lang=en
+    priority: 1
+    refresh_days: 7
+  - id: bis_product_manual_archive
+    authority: BIS
+    type: html
+    title: Product Manual Archive
+    url: https://www.bis.gov.in/product-manual-archive/?lang=en
+    priority: 1
+    refresh_days: 14
+  - id: bis_fees
+    authority: BIS
+    type: html
+    title: Product Certification Fees
+    url: https://www.bis.gov.in/product-certification/product-certification-fee/?lang=en
+    priority: 1
+    refresh_days: 3
+  - id: bis_testing_charges
+    authority: BIS
+    type: html
+    title: Testing Facilities and Testing Charges
+    url: https://www.bis.gov.in/laboratorys/testing-facility-and-testing-charges/?lang=en
+    priority: 1
+    refresh_days: 3
+  - id: bis_laboratories
+    authority: BIS
+    type: html
+    title: Laboratory Services Overview
+    url: https://www.bis.gov.in/laboratorys/laboratory-services-overview/?lang=en
+    priority: 1
+    refresh_days: 7
+  - id: bis_lab_faq
+    authority: BIS
+    type: html
+    title: Laboratory FAQ
+    url: https://www.bis.gov.in/laboratorys/laboratory-services-overview/laboratory-faq/?lang=en
+    priority: 1
+    refresh_days: 14
+  - id: bis_cert_faq
+    authority: BIS
+    type: html
+    title: Product Certification FAQ
+    url: https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en
+    priority: 1
+    refresh_days: 14
+  - id: bis_online_information
+    authority: BIS
+    type: html
+    title: Product Certification Online Information
+    url: https://www.bis.gov.in/product-certification/online-information/?lang=en
+    priority: 1
+    refresh_days: 7
+  - id: bis_fmcs_licensees
+    authority: BIS
+    type: html
+    title: Foreign Manufacturers Certification Scheme Licensees
+    url: https://www.bis.gov.in/fmcs/licensee/?lang=en
+    priority: 1
+    refresh_days: 3
+  - id: bis_act_rules
+    authority: BIS
+    type: html
+    title: BIS Act, Rules and Regulations
+    url: https://www.bis.gov.in/the-bureau/bis-act-rules-and-regulations/?lang=en
+    priority: 1
+    refresh_days: 30
+  - id: bis_terms
+    authority: BIS
+    type: html
+    title: BIS Terms and Conditions
+    url: https://www.bis.gov.in/terms-condition/?lang=en
+    priority: 1
+    refresh_days: 30
+  - id: bis_kys_manual
+    authority: BIS
+    type: pdf
+    title: Know Your Standard User Manual
+    url: https://www.bis.gov.in/wp-content/uploads/2022/08/20220524_KYSP_Writeup-2-compressed.pdf
+    priority: 2
+    refresh_days: 90
+  - id: india_code_bis_act
+    authority: Government of India
+    type: html
+    title: India Code
+    url: https://www.indiacode.nic.in/
+    priority: 2
+    refresh_days: 30
+    notes: Use for cross-checking the current BIS Act and subordinate legislation.
+  - id: egazette
+    authority: Government of India
+    type: html
+    title: e-Gazette of India
+    url: https://egazette.nic.in/
+    priority: 2
+    refresh_days: 7
+    notes: Use for notifications and legal instruments; search by BIS, product, IS number, and notification number.
+  - id: nabl_labs
+    authority: NABL
+    type: html
+    title: NABL Accredited Conformity Assessment Bodies
+    url: https://nabl-india.org/
+    priority: 3
+    refresh_days: 14
+    notes: Complementary accreditation evidence; BIS recognition remains the controlling source for BIS testing eligibility.
+  - id: ogd_india
+    authority: Government of India
+    type: html
+    title: Open Government Data Platform India
+    url: https://www.data.gov.in/
+    priority: 3
+    refresh_days: 30
+    notes: Search publisher/department for Bureau of Indian Standards. Do not claim a BIS dataset exists until the catalog returns one.

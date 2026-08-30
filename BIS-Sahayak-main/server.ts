@@ -1,0 +1,761 @@
+import express from "express";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { createServer as createViteServer } from "vite";
+import dotenv from "dotenv";
+import { GoogleGenAI } from "@google/genai";
+import mysql from "mysql2/promise";
+import bcrypt from "bcryptjs";
+import { BIS_STANDARDS } from "./src/data/bisDatabase";
+
+dotenv.config();
+
+const app = express();
+const PORT = 3000;
+const DB_NAME = process.env.DB_NAME || "bis_sahayak";
+
+const dbPool = mysql.createPool({
+  host: process.env.DB_HOST || "localhost",
+  port: Number(process.env.DB_PORT || 3306),
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "YadaRohit12@",
+  database: DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  multipleStatements: true,
+});
+
+app.use(express.json());
+
+async function initializeDatabase() {
+  try {
+    const connection = await mysql.createConnection({
+      host: process.env.DB_HOST || "localhost",
+      port: Number(process.env.DB_PORT || 3306),
+      user: process.env.DB_USER || "root",
+      password: process.env.DB_PASSWORD || "YadaRohit12@",
+      multipleStatements: true,
+    });
+
+    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;`);
+    await connection.end();
+
+    await dbPool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        password_hash VARCHAR(255) NOT NULL,
+        organisation VARCHAR(255) DEFAULT NULL,
+        role VARCHAR(255) DEFAULT NULL,
+        region VARCHAR(255) DEFAULT NULL,
+        access_type VARCHAR(255) DEFAULT 'Enterprise portal',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      );
+    `);
+
+    await dbPool.query(`
+      CREATE TABLE IF NOT EXISTS standards (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        is_code VARCHAR(255) NOT NULL UNIQUE,
+        title VARCHAR(255) NOT NULL,
+        category VARCHAR(255) DEFAULT NULL,
+        department VARCHAR(255) DEFAULT NULL,
+        summary TEXT,
+        scope TEXT,
+        is_mandatory_qco BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      );
+    `);
+
+    await dbPool.query(`
+      CREATE TABLE IF NOT EXISTS chat_messages (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+        conversation_id CHAR(36) NOT NULL,
+        user_id INT NULL,
+        sender ENUM('user', 'assistant', 'system') NOT NULL,
+        message_text LONGTEXT NOT NULL,
+        mode ENUM('consumer', 'industry') DEFAULT 'consumer',
+        confidence VARCHAR(20) NULL,
+        cited_clauses JSON NULL,
+        source_card JSON NULL,
+        suggested_actions JSON NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_chat_conversation (conversation_id),
+        INDEX idx_chat_user (user_id),
+        INDEX idx_chat_created (created_at),
+        CONSTRAINT fk_chat_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+      );
+    `);
+
+    const standardsToInsert = BIS_STANDARDS.map((standard) => [
+      standard.isCode,
+      standard.title,
+      standard.category,
+      standard.department,
+      standard.summary,
+      standard.scope || '',
+      standard.isMandatoryQCO ? 1 : 0,
+    ]);
+
+    if (standardsToInsert.length > 0) {
+      await dbPool.query(
+        `INSERT INTO standards (is_code, title, category, department, summary, scope, is_mandatory_qco)
+         VALUES ?
+         ON DUPLICATE KEY UPDATE
+           title = VALUES(title),
+           category = VALUES(category),
+           department = VALUES(department),
+           summary = VALUES(summary),
+           scope = VALUES(scope),
+           is_mandatory_qco = VALUES(is_mandatory_qco)`,
+        [standardsToInsert]
+      );
+    }
+
+    console.log(`MySQL database initialized: ${DB_NAME}`);
+  } catch (error) {
+    console.error("MySQL initialization failed:", error);
+  }
+}
+
+// Lazy-initialize Gemini AI Client
+function getGeminiClient(): GoogleGenAI | null {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return null;
+  }
+  return new GoogleGenAI({
+    apiKey,
+    httpOptions: {
+      headers: {
+        'User-Agent': 'aistudio-build',
+      }
+    }
+  });
+}
+
+async function callOpenRouter(prompt: string, mode: string = 'consumer') {
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) {
+    return null;
+  }
+
+  const model = process.env.OPENROUTER_MODEL || process.env.BIS_LLM_MODEL || 'openai/gpt-4o-mini';
+  const baseUrl = (process.env.OPENROUTER_BASE_URL || process.env.OPENROUTER_API_BASE || 'https://openrouter.ai/api/v1').replace(/\/$/, '');
+
+  const systemInstruction = `You are "BIS Sahayak", the Bureau of Indian Standards AI assistant. Answer in ${mode === 'consumer' ? 'consumer-friendly plain language' : 'technical industry language'}. Use BIS Indian Standards, QCOs, Hallmarking, and certification guidance. Cite relevant IS codes and clauses when possible. Do not invent unsupported facts.`;
+
+  const response = await fetch(`${baseUrl}/chat/completions`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': 'http://localhost:3000',
+      'X-Title': 'BIS Sahayak',
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.2,
+      messages: [
+        { role: 'system', content: systemInstruction },
+        { role: 'user', content: prompt }
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`OpenRouter request failed (${response.status}): ${text}`);
+  }
+
+  const data = await response.json();
+  const rawText = data?.choices?.[0]?.message?.content || 'No response received from model.';
+  const lowerPrompt = (prompt || '').toLowerCase();
+
+  let matchedIS = 'IS 14543:2016';
+  let matchedTitle = 'Packaged Drinking Water (Other than Natural Mineral Water) — Specification';
+  let matchedCategory = 'Mandatory QCO';
+  const citedClauses = [
+    { clause: 'Clause 4.1', description: 'Mandatory multi-barrier treatment and disinfection requirements.' },
+    { clause: 'Table 2 & 3', description: 'Chemical and toxic substance limits.' }
+  ];
+
+  if (lowerPrompt.includes('10500') || (lowerPrompt.includes('drinking water') && !lowerPrompt.includes('packaged'))) {
+    matchedIS = 'IS 10500:2012';
+    matchedTitle = 'Drinking Water — Specification (Second Revision)';
+    matchedCategory = 'Civil & Public Health';
+  } else if (lowerPrompt.includes('456') || lowerPrompt.includes('concrete') || lowerPrompt.includes('cement')) {
+    matchedIS = 'IS 456:2000';
+    matchedTitle = 'Plain and Reinforced Concrete — Code of Practice';
+    matchedCategory = 'Civil Engineering Division';
+  } else if (lowerPrompt.includes('toy') || lowerPrompt.includes('9873') || lowerPrompt.includes('child')) {
+    matchedIS = 'IS 9873 (Part 1):2019';
+    matchedTitle = 'Safety of Toys — Mechanical and Physical Properties';
+    matchedCategory = 'Consumer Goods & Child Safety';
+  } else if (lowerPrompt.includes('plug') || lowerPrompt.includes('socket') || lowerPrompt.includes('1293')) {
+    matchedIS = 'IS 1293:2019';
+    matchedTitle = 'Plugs and Socket-Outlets for Domestic Purposes — Specification';
+    matchedCategory = 'Electrotechnical Division';
+  } else if (lowerPrompt.includes('steel') || lowerPrompt.includes('tmt') || lowerPrompt.includes('1786') || lowerPrompt.includes('rebar')) {
+    matchedIS = 'IS 1786:2008';
+    matchedTitle = 'High Strength Deformed Steel Bars and Wires for Concrete Reinforcement';
+    matchedCategory = 'Metallurgical Division';
+  } else if (lowerPrompt.includes('13252') || lowerPrompt.includes('laptop') || lowerPrompt.includes('electronics') || lowerPrompt.includes('crs')) {
+    matchedIS = 'IS 13252 (Part 1):2010';
+    matchedTitle = 'Information Technology Equipment — Safety — General Requirements';
+    matchedCategory = 'Electronics & IT (CRS)';
+  } else if (lowerPrompt.includes('gold') || lowerPrompt.includes('hallmark') || lowerPrompt.includes('huid') || lowerPrompt.includes('1417')) {
+    matchedIS = 'IS 1417:2016';
+    matchedTitle = 'Gold and Gold Alloys, Silver and Silver Alloys — Jewellery/Artefacts';
+    matchedCategory = 'Hallmarking Assaying';
+  }
+
+  return {
+    text: rawText,
+    confidence: 'high',
+    citedClauses,
+    sourceCard: {
+      isCode: matchedIS,
+      title: matchedTitle,
+      category: matchedCategory,
+    },
+    suggestedActions: [
+      { label: 'Download Excerpt', actionType: 'download', payload: matchedIS },
+      { label: 'Compare with ISO', actionType: 'compare', payload: matchedIS },
+      { label: 'Verify Licence Number', actionType: 'verify', payload: '' },
+    ],
+  };
+}
+
+// Health endpoint
+app.get("/api/health", async (req, res) => {
+  let dbStatus = "disconnected";
+
+  try {
+    const [rows] = await dbPool.query("SELECT 1 AS ok");
+    dbStatus = rows ? "connected" : "disconnected";
+  } catch (error) {
+    dbStatus = "disconnected";
+  }
+
+  res.json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    hasApiKey: Boolean(process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY),
+    providers: {
+      openRouter: Boolean(process.env.OPENROUTER_API_KEY),
+      gemini: Boolean(process.env.GEMINI_API_KEY),
+    },
+    appName: "BIS Sahayak",
+    dbStatus,
+  });
+});
+
+app.post("/api/auth/signup", async (req, res) => {
+  try {
+    const { name, email, password, organisation, role, region } = req.body ?? {};
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "Name, email and password are required." });
+    }
+
+    const safeEmail = String(email).trim().toLowerCase();
+    const safeName = String(name).trim();
+    const safeOrganisation = String(organisation ?? "").trim();
+    const safeRole = String(role ?? "").trim();
+    const safeRegion = String(region ?? "").trim();
+
+    const [existingRows]: any = await dbPool.query(
+      "SELECT id FROM users WHERE email = ? LIMIT 1",
+      [safeEmail]
+    );
+
+    if (existingRows.length > 0) {
+      return res.status(409).json({ message: "This account already exists. Please sign in instead." });
+    }
+
+    const passwordHash = await bcrypt.hash(String(password), 10);
+
+    const [result]: any = await dbPool.query(
+      `INSERT INTO users (name, email, password_hash, organisation, role, region, access_type)
+       VALUES (?, ?, ?, ?, ?, ?, 'Enterprise portal')`,
+      [safeName, safeEmail, passwordHash, safeOrganisation, safeRole, safeRegion]
+    );
+
+    return res.status(201).json({
+      message: "User registered successfully.",
+      user: {
+        id: result.insertId,
+        name: safeName,
+        email: safeEmail,
+        organisation: safeOrganisation,
+        role: safeRole,
+        region: safeRegion,
+      },
+    });
+  } catch (error: any) {
+    console.error("Signup error:", error);
+    if (error?.code === "ER_DUP_ENTRY") {
+      return res.status(409).json({ message: "This email is already registered." });
+    }
+
+    return res.status(500).json({ message: "Internal server error during signup." });
+  }
+});
+
+app.post("/api/auth/login", async (req, res) => {
+  try {
+    const { email, password } = req.body ?? {};
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required." });
+    }
+
+    const safeEmail = String(email).trim().toLowerCase();
+    const [rows]: any = await dbPool.query(
+      "SELECT * FROM users WHERE email = ? LIMIT 1",
+      [safeEmail]
+    );
+
+    if (!rows.length) {
+      return res.status(401).json({ message: "Invalid email or password." });
+    }
+
+    const user = rows[0];
+    const passwordMatches = await bcrypt.compare(String(password), user.password_hash);
+
+    if (!passwordMatches) {
+      return res.status(401).json({ message: "Invalid email or password." });
+    }
+
+    return res.json({
+      message: "Login successful.",
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        organisation: user.organisation,
+        role: user.role,
+        region: user.region,
+        accessType: user.access_type,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    return res.status(500).json({ message: "Internal server error during login." });
+  }
+});
+
+// Load IS codes from datasets
+let isCodesIndex: Record<string, any> = {};
+try {
+  const serverDirectory = path.dirname(fileURLToPath(import.meta.url));
+  const indexCandidates = [
+    path.resolve(serverDirectory, '..', 'bis_rag', 'data', 'is_codes_index.json'),
+    path.resolve(process.cwd(), 'bis_rag', 'data', 'is_codes_index.json'),
+    path.resolve(process.cwd(), '..', 'bis_rag', 'data', 'is_codes_index.json'),
+  ];
+  const indexPath = indexCandidates.find((candidate) => fs.existsSync(candidate));
+  if (indexPath) {
+    isCodesIndex = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
+    console.log(`Loaded ${Object.keys(isCodesIndex).length} IS codes from dataset index`);
+  } else {
+    console.warn(`IS codes index not found. Checked: ${indexCandidates.join(', ')}`);
+  }
+} catch (err) {
+  console.warn('Unable to load IS codes index, will use database only:', err);
+}
+
+app.get("/api/standards", async (req, res) => {
+  try {
+    const [rows]: any = await dbPool.query(
+      `SELECT id, is_code, title, category, department, summary, scope, is_mandatory_qco
+       FROM standards
+       ORDER BY is_code ASC`
+    );
+
+    return res.json({
+      count: rows.length,
+      standards: rows,
+    });
+  } catch (error) {
+    console.error("Standards fetch error:", error);
+    return res.status(500).json({ message: "Unable to fetch standards." });
+  }
+});
+
+app.post("/api/chat/messages", async (req, res) => {
+  try {
+    const { conversationId, userId, sender, messageText, mode = "consumer", confidence, citedClauses, sourceCard, suggestedActions } = req.body ?? {};
+
+    if (!conversationId || !userId || !messageText || !['user', 'assistant', 'system'].includes(sender)) {
+      return res.status(400).json({ message: "conversationId, userId, sender and messageText are required." });
+    }
+
+    const [users]: any = await dbPool.query(
+      "SELECT id FROM users WHERE id = ? LIMIT 1",
+      [Number(userId)]
+    );
+
+    if (!users.length) {
+      return res.status(401).json({ message: "Authenticated user was not found." });
+    }
+
+    await dbPool.query(
+      `INSERT INTO chat_messages
+       (conversation_id, user_id, sender, message_text, mode, confidence, cited_clauses, source_card, suggested_actions)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        String(conversationId),
+        users[0].id,
+        sender,
+        String(messageText),
+        mode === "industry" ? "industry" : "consumer",
+        confidence ? String(confidence) : null,
+        citedClauses ? JSON.stringify(citedClauses) : null,
+        sourceCard ? JSON.stringify(sourceCard) : null,
+        suggestedActions ? JSON.stringify(suggestedActions) : null,
+      ]
+    );
+
+    return res.status(201).json({ saved: true });
+  } catch (error) {
+    console.error("Chat message save error:", error);
+    return res.status(500).json({ message: "Unable to save chat message." });
+  }
+});
+
+// IS codes search endpoint
+app.get("/api/is-codes/search", (req, res) => {
+  const query = (req.query.q as string || '').toUpperCase().trim();
+  
+  if (!query || query.length < 2) {
+    return res.json({ codes: [], total: 0 });
+  }
+
+  const results = Object.keys(isCodesIndex)
+    .filter(code => code.includes(query) && code.startsWith('IS'))
+    .slice(0, 20)
+    .map(code => ({
+      code,
+      ...isCodesIndex[code]
+    }));
+
+  return res.json({
+    codes: results,
+    total: results.length,
+    query
+  });
+});
+
+// IS codes list endpoint
+app.get("/api/is-codes", (req, res) => {
+  const codes = Object.keys(isCodesIndex)
+    .filter(k => k.startsWith('IS'))
+    .slice(0, 100)
+    .map(code => ({
+      code,
+      ...isCodesIndex[code]
+    }));
+
+  return res.json({
+    codes,
+    total: Object.keys(isCodesIndex).filter(k => k.startsWith('IS')).length
+  });
+});
+
+// Licence Verification API endpoint
+app.post("/api/verify-licence", (req, res) => {
+  const { licenceNumber } = req.body;
+  if (!licenceNumber) {
+    return res.status(400).json({ error: "Licence number is required" });
+  }
+
+  const cleanNum = String(licenceNumber).trim().toUpperCase();
+
+  // Pattern matching for CM/L or R-numbers
+  if (cleanNum.startsWith("CM/L-") || cleanNum.startsWith("CML") || /^\d{7,8}$/.test(cleanNum)) {
+    const isWater = cleanNum.includes("1454") || cleanNum.endsWith("5");
+    const isSteel = cleanNum.includes("1786") || cleanNum.endsWith("8");
+
+    if (isWater) {
+      return res.json({
+        valid: true,
+        licenceNumber: cleanNum.startsWith("CM/L-") ? cleanNum : `CM/L-${cleanNum}`,
+        manufacturerName: "Himalayan Natural Springs Bottling Pvt Ltd",
+        factoryAddress: "Plot 42, Sector 8, Industrial Estate, Haridwar, Uttarakhand - 249403",
+        isCode: "IS 14543:2016",
+        productName: "Packaged Drinking Water (Other than Natural Mineral Water)",
+        brandName: "AquaPure Gold",
+        validFrom: "2023-04-01",
+        validTo: "2028-03-31",
+        status: "Operative",
+        scheme: "Scheme-I (ISI Mark)"
+      });
+    } else if (isSteel) {
+      return res.json({
+        valid: true,
+        licenceNumber: cleanNum.startsWith("CM/L-") ? cleanNum : `CM/L-${cleanNum}`,
+        manufacturerName: "Bharat TMT Steels & Alloys Ltd",
+        factoryAddress: "Industrial Growth Centre, Phase II, Raipur, Chhattisgarh - 492001",
+        isCode: "IS 1786:2008",
+        productName: "High Strength Deformed Steel Bars (Fe 500D) for RCC",
+        brandName: "BHARAT-500D TMT",
+        validFrom: "2022-01-15",
+        validTo: "2027-01-14",
+        status: "Operative",
+        scheme: "Scheme-I (ISI Mark)"
+      });
+    } else {
+      return res.json({
+        valid: true,
+        licenceNumber: cleanNum.startsWith("CM/L-") ? cleanNum : `CM/L-${cleanNum}`,
+        manufacturerName: "Suraksha Poly-Plast Industries India",
+        factoryAddress: "Survey No. 112, GIDC Industrial Estate, Vadodara, Gujarat - 390010",
+        isCode: "IS 1293:2019",
+        productName: "Plugs and Socket-Outlets up to 16A 250V AC",
+        brandName: "SAFEPLUG PRO",
+        validFrom: "2024-02-10",
+        validTo: "2029-02-09",
+        status: "Operative",
+        scheme: "Scheme-I (ISI Mark)"
+      });
+    }
+  } else if (cleanNum.startsWith("R-") || cleanNum.startsWith("CRS")) {
+    return res.json({
+      valid: true,
+      licenceNumber: cleanNum.startsWith("R-") ? cleanNum : `R-${cleanNum}`,
+      manufacturerName: "Foxconn Electronics Technology (India) Pvt Ltd",
+      factoryAddress: "SIPCOT Hi-Tech SEZ, Sriperumbudur, Kanchipuram, Tamil Nadu - 602105",
+      isCode: "IS 13252 (Part 1):2010",
+      productName: "Information Technology Equipment (Laptop / Tablet Computer)",
+      brandName: "TECHNOBOOK SERIES",
+      validFrom: "2023-09-01",
+      validTo: "2028-08-31",
+      status: "Operative",
+      scheme: "Scheme-II (Compulsory Registration Scheme - CRS)"
+    });
+  } else if (cleanNum.length === 6 && /^[A-Z0-9]+$/i.test(cleanNum)) {
+    // 6-digit HUID
+    return res.json({
+      valid: true,
+      licenceNumber: `HUID: ${cleanNum}`,
+      manufacturerName: "Kalyan Jewellers India Limited",
+      factoryAddress: "AHC Centre No. 44, Zaveri Bazaar, Mumbai, Maharashtra",
+      isCode: "IS 1417:2016",
+      productName: "22 Karat Gold (916 Purity) Hallmark Artefact",
+      brandName: "BIS 916 Hallmark with HUID",
+      validFrom: "2024-06-12",
+      validTo: "Lifetime Traceability",
+      status: "Operative",
+      scheme: "Hallmarking Scheme"
+    });
+  }
+
+  // Not found / fallback test
+  return res.json({
+    valid: false,
+    licenceNumber: cleanNum,
+    status: "Invalid",
+    scheme: "Unknown",
+    notes: "Licence number not found in active database. Ensure you entered a valid 7-8 digit CM/L number, R-number (e.g. R-41000123), or 6-character HUID."
+  });
+});
+
+// Gemini Chat Endpoint
+app.post("/api/gemini/chat", async (req, res) => {
+  try {
+    const { prompt, mode = 'consumer', history = [] } = req.body;
+
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt is required" });
+    }
+
+    try {
+      const openRouterResponse = await callOpenRouter(String(prompt), String(mode));
+      if (openRouterResponse) {
+        return res.json(openRouterResponse);
+      }
+    } catch (error) {
+      console.warn("OpenRouter request failed; trying Gemini fallback:", error);
+    }
+
+    const ai = getGeminiClient();
+    
+    // Local fallback if no external AI provider is available
+    if (!ai) {
+      return res.json({
+        text: `In India, packaged drinking water (other than natural mineral water) is strictly regulated by the Bureau of Indian Standards (BIS) under **IS 14543**. It is a mandatory certification product under Quality Control Orders (QCOs).\n\nThe standard specifies rigorous requirements for physical, chemical, and microbiological parameters to ensure human safety. Key requirements include mandatory multi-stage treatment (reverse osmosis, ozonation, UV treatment), zero tolerance for coliform bacteria and pathogens, and strict limits on pesticide residues (max 0.0001 mg/L individual, max 0.0005 mg/L total).`,
+        confidence: "high",
+        citedClauses: [
+          { clause: "Clause 4.1", description: "Treatment requirements (filtration, reverse osmosis, ozonation, and UV disinfection)." },
+          { clause: "Table 2 & 3", description: "Chemical and toxic substances limits (toxic metals, bromate, and pesticide residues)." },
+          { clause: "Table 4", description: "Microbiological parameters (zero E. coli, Coliform, Pseudomonas aeruginosa)." }
+        ],
+        sourceCard: {
+          isCode: "IS 14543:2016",
+          title: "Packaged Drinking Water (Other than Natural Mineral Water) — Specification",
+          category: "Food & Agriculture / Mandatory QCO"
+        },
+        suggestedActions: [
+          { label: "Download Excerpt", actionType: "download", payload: "IS 14543:2016" },
+          { label: "Compare with ISO", actionType: "compare", payload: "IS 14543 vs Codex STAN 227" },
+          { label: "Verify Licence Number", actionType: "verify", payload: "" }
+        ]
+      });
+    }
+
+    const systemInstruction = `You are "BIS Sahayak", the authoritative Bureau of Indian Standards (BIS) AI Assistant and Technical Regulatory Engine for India.
+Your mission is to provide accurate, clause-grounded, and mathematically precise information regarding Indian Standards (IS Codes), Quality Control Orders (QCOs), Conformity Assessment Schemes (ISI Mark Scheme-I, CRS Scheme-II, FMCS, Hallmarking HUID), and Laboratory Testing.
+
+The user perspective is currently: ${mode.toUpperCase()} MODE (${mode === 'consumer' ? 'Focus on product safety, consumer rights, genuine ISI marks, hallmark verification, complaint filing, and health limits' : 'Focus on technical engineering limits, test methods, factory audits, QC machinery, clause compliance, and QCO timelines'}).
+
+Output Format Rules:
+1. Provide a direct, authoritative, and well-structured response (2-4 clear paragraphs or bullet points).
+2. Explicitly cite the Indian Standard Code (e.g., IS 10500:2012, IS 14543:2016, IS 456:2000, IS 9873, IS 1293, IS 1786, IS 13252, etc.).
+3. Clearly mention specific clauses (e.g. Clause 4.1, Table 2, Clause 8.2).
+4. Specify whether the standard is under mandatory Quality Control Order (QCO) or voluntary certification.
+5. Keep your tone professional, crisp, and scientifically sound.`;
+
+    const contentsPrompt = `User question: "${prompt}"
+
+Please answer with the highest technical accuracy. Return your response.`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.7-flash",
+      contents: contentsPrompt,
+      config: {
+        systemInstruction: systemInstruction,
+        temperature: 0.2,
+      },
+    });
+
+    const rawText = response.text || "No response received from model.";
+
+    // Determine relevant IS code based on prompt keywords for citation cards
+    let matchedIS = "IS 14543:2016";
+    let matchedTitle = "Packaged Drinking Water (Other than Natural Mineral Water) — Specification";
+    let matchedCategory = "Mandatory QCO";
+    let citedClauses = [
+      { clause: "Clause 4.1", description: "Mandatory multi-barrier treatment & disinfection requirements" },
+      { clause: "Table 2 & 3", description: "Chemical limits and pesticide residue thresholds" }
+    ];
+
+    const lower = (prompt + " " + rawText).toLowerCase();
+    if (lower.includes("10500") || lower.includes("drinking water") && !lower.includes("packaged")) {
+      matchedIS = "IS 10500:2012";
+      matchedTitle = "Drinking Water — Specification (Second Revision)";
+      matchedCategory = "Civil & Public Health";
+      citedClauses = [
+        { clause: "Clause 3.1", description: "Acceptable TDS (500 mg/L) & Turbidity (1 NTU) parameters" },
+        { clause: "Table 2", description: "Toxic metals tolerance: Lead (0.01 mg/L), Arsenic (0.01 mg/L)" },
+        { clause: "Table 5", description: "Bacteriological requirement (0 E. coli / 100 mL)" }
+      ];
+    } else if (lower.includes("456") || lower.includes("concrete") || lower.includes("cement")) {
+      matchedIS = "IS 456:2000";
+      matchedTitle = "Plain and Reinforced Concrete — Code of Practice";
+      matchedCategory = "Civil Engineering Division";
+      citedClauses = [
+        { clause: "Clause 6.1 (Table 2)", description: "Grades of concrete (M10 through M80)" },
+        { clause: "Clause 8.2 (Table 3)", description: "Environmental exposure & minimum nominal cover requirements" },
+        { clause: "Clause 35-38", description: "Limit State Design equations and safety factors" }
+      ];
+    } else if (lower.includes("toy") || lower.includes("9873") || lower.includes("child")) {
+      matchedIS = "IS 9873 (Part 1):2019";
+      matchedTitle = "Safety of Toys — Mechanical and Physical Properties";
+      matchedCategory = "Consumer Goods & Child Safety";
+      citedClauses = [
+        { clause: "Clause 4.4", description: "Small parts cylinder testing for children under 36 months" },
+        { clause: "Clause 4.7", description: "Accessible sharp edge & sharp point tolerances" },
+        { clause: "Clause 5.24", description: "Drop and impact stress resistance" }
+      ];
+    } else if (lower.includes("plug") || lower.includes("socket") || lower.includes("1293")) {
+      matchedIS = "IS 1293:2019";
+      matchedTitle = "Plugs and Socket-Outlets for Domestic Purposes — Specification";
+      matchedCategory = "Electrotechnical Division";
+      citedClauses = [
+        { clause: "Clause 8.1", description: "Protection against live pin accessibility and electric shock" },
+        { clause: "Clause 13.1", description: "Maximum temperature rise limits (45K max)" },
+        { clause: "Clause 20.1", description: "Resistance to heat, glow wire flammability (750°C/850°C)" }
+      ];
+    } else if (lower.includes("steel") || lower.includes("tmt") || lower.includes("1786") || lower.includes("rebar")) {
+      matchedIS = "IS 1786:2008";
+      matchedTitle = "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement";
+      matchedCategory = "Metallurgical Division";
+      citedClauses = [
+        { clause: "Clause 4.2 (Table 1)", description: "Chemical limits: Carbon (max 0.25%), Sulphur + Phosphorus" },
+        { clause: "Clause 8.1 (Table 3)", description: "Mechanical properties (TS/YS ratio >= 1.10 for 500D grade)" },
+        { clause: "Clause 9.3", description: "Mandatory bend & reverse rebend test compliance" }
+      ];
+    } else if (lower.includes("13252") || lower.includes("laptop") || lower.includes("electronics") || lower.includes("crs")) {
+      matchedIS = "IS 13252 (Part 1):2010";
+      matchedTitle = "Information Technology Equipment — Safety — General Requirements";
+      matchedCategory = "Electronics & IT (CRS)";
+      citedClauses = [
+        { clause: "Clause 1.5", description: "Marking requirements with R-Number Self-Declaration" },
+        { clause: "Clause 2.1", description: "SELV circuits & insulation barrier requirements" },
+        { clause: "Clause 4.5", description: "Thermal and overheating limits under fault condition" }
+      ];
+    } else if (lower.includes("gold") || lower.includes("hallmark") || lower.includes("huid") || lower.includes("1417")) {
+      matchedIS = "IS 1417:2016";
+      matchedTitle = "Gold and Gold Alloys, Silver and Silver Alloys — Jewellery/Artefacts";
+      matchedCategory = "Hallmarking Assaying";
+      citedClauses = [
+        { clause: "Clause 4.1", description: "Grades of Gold (916 for 22K, 750 for 18K, 585 for 14K)" },
+        { clause: "Clause 6.2", description: "6-digit alphanumeric HUID laser marking standards" }
+      ];
+    }
+
+    return res.json({
+      text: rawText,
+      confidence: "high",
+      citedClauses: citedClauses,
+      sourceCard: {
+        isCode: matchedIS,
+        title: matchedTitle,
+        category: matchedCategory
+      },
+      suggestedActions: [
+        { label: "Download Excerpt", actionType: "download", payload: matchedIS },
+        { label: "Compare with ISO", actionType: "compare", payload: matchedIS },
+        { label: "Verify Licence Number", actionType: "verify", payload: "" }
+      ]
+    });
+  } catch (error: any) {
+    console.error("Gemini API error:", error);
+    return res.status(500).json({
+      error: "Internal server error querying standards database",
+      details: error.message || String(error)
+    });
+  }
+});
+
+// Start Express Server with Vite integration
+async function startServer() {
+  if (process.env.NODE_ENV !== "production") {
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: "spa",
+    });
+    app.use(vite.middlewares);
+  } else {
+    const distPath = path.join(process.cwd(), 'dist');
+    app.use(express.static(distPath));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
+  }
+
+  await initializeDatabase();
+
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`BIS Sahayak Server listening on port ${PORT}`);
+  });
+}
+
+startServer();

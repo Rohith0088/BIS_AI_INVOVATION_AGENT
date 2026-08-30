@@ -1,0 +1,2222 @@
+{
+  "IS 16415: 2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 16993: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 15895: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1785 (Part 1) : 1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 1785 (Part 2) : 1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 6003:2010": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 6006:2014": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 13620:1993": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 14268:1995": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 277:2003": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 2002:2009": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 2041:2009": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 2830:2012": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 1786:2008": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 648:2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 3024:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 15391:2003": {
+    "source": "scheme_i_register.csv",
+    "year": "2003"
+  },
+  "IS 2062:2011": {
+    "source": "scheme_i_register.csv",
+    "year": "2011"
+  },
+  "IS 513 (Part-1): 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 513(Part-2):2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 1079: 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 1875:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 2879:1998": {
+    "source": "scheme_i_register.csv",
+    "year": "1998"
+  },
+  "IS 3502:2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 5872:1990": {
+    "source": "scheme_i_register.csv",
+    "year": "1990"
+  },
+  "IS 5986: 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 6240:2008": {
+    "source": "scheme_i_register.csv",
+    "year": "2008"
+  },
+  "IS 7283:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 7887:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 10748:2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 11513:2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 15647:2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 7904:2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 14246:2013": {
+    "source": "scheme_i_register.csv",
+    "year": "2013"
+  },
+  "IS 15965:2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 280: 2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 3975:1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS 4454 (Part 1) : 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 4454 (Part 2): 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 4824:2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 11169 (Part 1): 1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 11587:1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 15103: 2002": {
+    "source": "scheme_i_register.csv",
+    "year": "2002"
+  },
+  "IS 15914:2011": {
+    "source": "scheme_i_register.csv",
+    "year": "2011"
+  },
+  "IS 15961:2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 15962:2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 6527:1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 6528:1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 6603:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 5522:2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 6911:2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 15997:2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 1110 : 1990": {
+    "source": "scheme_i_register.csv",
+    "year": "1990"
+  },
+  "IS 3039 : 1988": {
+    "source": "scheme_i_register.csv",
+    "year": "1988"
+  },
+  "IS 3748 : 1990": {
+    "source": "scheme_i_register.csv",
+    "year": "1990"
+  },
+  "IS 5517 : 1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 16732: 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 7494 : 1981": {
+    "source": "scheme_i_register.csv",
+    "year": "1981"
+  },
+  "IS 12146 : 1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 16585 : 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 2831 : 2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 1148: 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 1673: 1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 1812: 1982": {
+    "source": "scheme_i_register.csv",
+    "year": "1982"
+  },
+  "IS 3195: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 3431: 1982": {
+    "source": "scheme_i_register.csv",
+    "year": "1982"
+  },
+  "IS 3885-Part-1: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 3885-Part- 2: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 4397: 1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS 4398: 1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 7557: 1982": {
+    "source": "scheme_i_register.csv",
+    "year": "1982"
+  },
+  "IS 8052: 2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 8951: 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 8952: 1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 9476: 1980": {
+    "source": "scheme_i_register.csv",
+    "year": "1980"
+  },
+  "IS 9962: 1981": {
+    "source": "scheme_i_register.csv",
+    "year": "1981"
+  },
+  "IS 14331:1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 12594: 1988": {
+    "source": "scheme_i_register.csv",
+    "year": "1988"
+  },
+  "IS 14650:1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS 2090:1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 6529:1996": {
+    "source": "scheme_i_register.csv",
+    "year": "1996"
+  },
+  "IS 10631:1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 10632 (Part 2):1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 10632 (Part 3):1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 11169 (Part 2): 1989": {
+    "source": "scheme_i_register.csv",
+    "year": "1989"
+  },
+  "IS 5651:1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 9516:1980": {
+    "source": "scheme_i_register.csv",
+    "year": "1980"
+  },
+  "IS 11952:1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 12045:1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 14652:1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS 1566:1982": {
+    "source": "scheme_i_register.csv",
+    "year": "1982"
+  },
+  "IS 1170: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 11946:1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 11947:1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 4454 (Part 4): 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 1993 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 12591:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 3298: 1981": {
+    "source": "scheme_i_register.csv",
+    "year": "1981"
+  },
+  "IS 9442: 1980": {
+    "source": "scheme_i_register.csv",
+    "year": "1980"
+  },
+  "IS 9485: 1980": {
+    "source": "scheme_i_register.csv",
+    "year": "1980"
+  },
+  "IS 10794: 1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 12262:1988": {
+    "source": "scheme_i_register.csv",
+    "year": "1988"
+  },
+  "IS 1470: 2013": {
+    "source": "scheme_i_register.csv",
+    "year": "2013"
+  },
+  "IS 15911:2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 1171: 2011": {
+    "source": "scheme_i_register.csv",
+    "year": "2011"
+  },
+  "IS 4432: 1988": {
+    "source": "scheme_i_register.csv",
+    "year": "1988"
+  },
+  "IS 5518: 1996": {
+    "source": "scheme_i_register.csv",
+    "year": "1996"
+  },
+  "IS 12145: 1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 13387: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 14698:1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS/ISO 11951 : 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 3930: 1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 13352: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 16644: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 17404 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 18316: 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 18384: 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 18385: 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 18513: 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 1469: 1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 1466: 1985": {
+    "source": "scheme_i_register.csv",
+    "year": "1985"
+  },
+  "IS 8329 : 2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 9523:2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 1161:2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 1239 (Part 1):2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 4270:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 252:2013": {
+    "source": "scheme_i_register.csv",
+    "year": "2013"
+  },
+  "IS 10116 : 2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 5158: 1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 16113:2013": {
+    "source": "scheme_i_register.csv",
+    "year": "2013"
+  },
+  "IS 12084: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 297:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 7129:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 170:2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 11744:1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 11657:1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 2080:2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 3205:1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 12928:1990": {
+    "source": "scheme_i_register.csv",
+    "year": "1990"
+  },
+  "IS 4505:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 14709:1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS 11356:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 16481:2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 12795:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 7686:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 4566:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 2012:2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 17450 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 12124 : 1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 1391 (Part-1): 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 1391 (Part-2): 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 8148:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 11329:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 10617:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1293 : 2005": {
+    "source": "scheme_i_register.csv",
+    "year": "2005"
+  },
+  "IS 15884:2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 4246: 2002": {
+    "source": "scheme_i_register.csv",
+    "year": "2002"
+  },
+  "IS 14900: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 2347:2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 1554(Part 1) : 1988": {
+    "source": "scheme_i_register.csv",
+    "year": "1988"
+  },
+  "IS 1554(Part 2) : 1988": {
+    "source": "scheme_i_register.csv",
+    "year": "1988"
+  },
+  "IS 7098 (Part 1) : 1988": {
+    "source": "scheme_i_register.csv",
+    "year": "1988"
+  },
+  "IS 7098 (Part 2) : 2011": {
+    "source": "scheme_i_register.csv",
+    "year": "2011"
+  },
+  "IS 7098 (Part 3) : 1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 14255 : 1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 9968 (Part 2) : 2002": {
+    "source": "scheme_i_register.csv",
+    "year": "2002"
+  },
+  "IS 8784 : 1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 9857 : 1990": {
+    "source": "scheme_i_register.csv",
+    "year": "1990"
+  },
+  "IS 14494 : 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 2593 : 1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 5950 : 1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 17048 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 9573(Part 1):2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 9573(Part 2):2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 9873 (Part 1) : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 15644: 2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 2835 : 1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 2553 (Part 1):2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 2553 (Part 2):2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 14887:2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 16208:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 14968:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 14252:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 13095:1991": {
+    "source": "scheme_i_register.csv",
+    "year": "1991"
+  },
+  "IS/ISO 6742-2:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 14490:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 2052 : 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 5557: 2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 5557 (Part 2): 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 5676: 1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 6664: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 10702: 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 12254: 1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 13893: 1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 13995: 1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 16645: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 16994: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1989 (Part 1): 1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 1989 (Part.2): 1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 3735: 1996": {
+    "source": "scheme_i_register.csv",
+    "year": "1996"
+  },
+  "IS 3736: 1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 3976: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 11226: 1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 14544: 1998": {
+    "source": "scheme_i_register.csv",
+    "year": "1998"
+  },
+  "IS 15844(Part-1): 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 15844(Part-2): 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 15844(Part 3): 2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 17012: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 17037: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 17043 (Part-1): 2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 17043 (Part-2): 2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 15298 (Part 2): 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 15298 ( Part 3) : 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 15298 (Part 4) : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 4296 (Part 1):2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 4296 (Part 2):2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 4296 (Part 3):2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 4151: 2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 17550 (Part 1): 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 7872: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1536: 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 3989: 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 15905: 2011": {
+    "source": "scheme_i_register.csv",
+    "year": "2011"
+  },
+  "IS 15769:2008": {
+    "source": "scheme_i_register.csv",
+    "year": "2008"
+  },
+  "IS 16240 : 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 1943:1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 2566:1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 12650:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 15138:2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 16186:2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 16372:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 15351 : 2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 15909 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 16653 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 16654: 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 14715 (Part 1): 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 14715 (Part 2): 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 15869 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 16391 : 2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 16393 : 2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 16362 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 16352 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 16090:2013": {
+    "source": "scheme_i_register.csv",
+    "year": "2013"
+  },
+  "IS 16392:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 17371:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17372:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17373:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17374:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17483 (Part 1): 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17483 (Part 2): 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17880 :2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 15741 : 2007": {
+    "source": "scheme_i_register.csv",
+    "year": "2007"
+  },
+  "IS 16890 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 16874 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 15748 : 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 15742 : 2007": {
+    "source": "scheme_i_register.csv",
+    "year": "2007"
+  },
+  "IS 15809 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 16655 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 16725 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 16726 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 17051 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 17286 : 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 15768 : 2008": {
+    "source": "scheme_i_register.csv",
+    "year": "2008"
+  },
+  "IS/ISO 9994:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS/ISO 22702:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 17803: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 814 : 2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 6419 : 1996": {
+    "source": "scheme_i_register.csv",
+    "year": "1996"
+  },
+  "IS 17790 : 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17526 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 17569: 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 3513 (Part 1) : 1989": {
+    "source": "scheme_i_register.csv",
+    "year": "1989"
+  },
+  "IS 3513 (Part 2) : 1989": {
+    "source": "scheme_i_register.csv",
+    "year": "1989"
+  },
+  "IS 3513 (Part 3) : 1989": {
+    "source": "scheme_i_register.csv",
+    "year": "1989"
+  },
+  "IS 1363 (Part 1) :2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 1363 (Part 2) :2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1363 (Part 3) :2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1364 (Part 1) :2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1364 (Part 2) :2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 10238:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 12427 : 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 3757 : 1985": {
+    "source": "scheme_i_register.csv",
+    "year": "1985"
+  },
+  "IS 204 (Part 2): 1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 204 (Part 1): 1991": {
+    "source": "scheme_i_register.csv",
+    "year": "1991"
+  },
+  "IS 15834 : 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 2681 : 1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 281 : 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 7534: 1985": {
+    "source": "scheme_i_register.csv",
+    "year": "1985"
+  },
+  "IS 15833 : 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 6623 : 2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 14756 : 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 1660:2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 13983:1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 18427:2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 14407:2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 17153:2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 15683 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 16018:2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 374:2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 1659:2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 12823:2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 3087:2005": {
+    "source": "scheme_i_register.csv",
+    "year": "2005"
+  },
+  "IS 12406:2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 3097:2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 1726:1991": {
+    "source": "scheme_i_register.csv",
+    "year": "1991"
+  },
+  "IS 1729:2002": {
+    "source": "scheme_i_register.csv",
+    "year": "2002"
+  },
+  "IS 1879:2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 13349:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 210:2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 17293:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17505(Part 1): 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 303 : 1989": {
+    "source": "scheme_i_register.csv",
+    "year": "1989"
+  },
+  "IS 2202 (Part 1) : 1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS 710 : 2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 5509 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 1328 : 1996": {
+    "source": "scheme_i_register.csv",
+    "year": "1996"
+  },
+  "IS 2191 (Part 2): 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 2191 (Part 1): 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 2202 (Part 2): 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 4990 : 2011": {
+    "source": "scheme_i_register.csv",
+    "year": "2011"
+  },
+  "IS 10701 : 2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 15155 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 16651 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 6392 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 7092 (Part 1):1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 7092 (Part 2):1987": {
+    "source": "scheme_i_register.csv",
+    "year": "1987"
+  },
+  "IS 5484:1997": {
+    "source": "scheme_i_register.csv",
+    "year": "1997"
+  },
+  "IS 733:1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 736:1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 737:2008": {
+    "source": "scheme_i_register.csv",
+    "year": "2008"
+  },
+  "IS 739:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 5082:1998": {
+    "source": "scheme_i_register.csv",
+    "year": "1998"
+  },
+  "IS 16011:2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 17682:2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 1285:2002": {
+    "source": "scheme_i_register.csv",
+    "year": "2002"
+  },
+  "IS 21:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 1254:2007": {
+    "source": "scheme_i_register.csv",
+    "year": "2007"
+  },
+  "IS 7902:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 1475 (Part 1) : 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 5405 : 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 17509 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 17514 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 17349 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17354 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17630 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 16718 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 16513 : 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 16202 : 2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 17070 : 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 15907 : 2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 16089 : 2013": {
+    "source": "scheme_i_register.csv",
+    "year": "2013"
+  },
+  "IS 16190 : 2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 16390 : 2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 16627 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 17355 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17356 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17357 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17358 (Part 1) : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17358 (Part 2) : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17513 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17728 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 17729 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 17730 (Part 1) : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 17730 (Part 2) : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 17731 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 12444:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 613:2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 1897:2008": {
+    "source": "scheme_i_register.csv",
+    "year": "2008"
+  },
+  "IS 4171:1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 1545: 1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 2501: 1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 14810: 2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 10773:1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 4412:1981": {
+    "source": "scheme_i_register.csv",
+    "year": "1981"
+  },
+  "IS 13997:2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 1783 (Part 1) :2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 1783 (Part 2) :2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 2552:1989": {
+    "source": "scheme_i_register.csv",
+    "year": "1989"
+  },
+  "IS 3575:1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 916:2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 10325:2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 6343:1982": {
+    "source": "scheme_i_register.csv",
+    "year": "1982"
+  },
+  "IS 14912:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 3564:1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 6315:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 208:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17681:2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 2745:1983": {
+    "source": "scheme_i_register.csv",
+    "year": "1983"
+  },
+  "IS 2925:1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 9562:1980": {
+    "source": "scheme_i_register.csv",
+    "year": "1980"
+  },
+  "IS 2266 : 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 2365 : 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1855:2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 1856:2005": {
+    "source": "scheme_i_register.csv",
+    "year": "2005"
+  },
+  "IS 4521:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 278:2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 16014:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 1269(Part 1) : 1997": {
+    "source": "scheme_i_register.csv",
+    "year": "1997"
+  },
+  "IS 1269(Part 2) : 1997": {
+    "source": "scheme_i_register.csv",
+    "year": "1997"
+  },
+  "IS 9755 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 11652 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 16709 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 16703 : 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 17399 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 550 (Part 1) : 2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 5244 : 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 17566 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 12817:2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 1341:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 205:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 206:2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 362:1991": {
+    "source": "scheme_i_register.csv",
+    "year": "1991"
+  },
+  "IS 3818:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 3843:1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 453:1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 18297:2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 2414:2005": {
+    "source": "scheme_i_register.csv",
+    "year": "2005"
+  },
+  "IS 2415 :2015": {
+    "source": "scheme_i_register.csv",
+    "year": "2015"
+  },
+  "IS 7466 :1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 878 :2008": {
+    "source": "scheme_i_register.csv",
+    "year": "2008"
+  },
+  "IS 915:2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 1381 (Part 1):2003": {
+    "source": "scheme_i_register.csv",
+    "year": "2003"
+  },
+  "IS 1117:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 2619:2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 14772: 2020": {
+    "source": "scheme_i_register.csv",
+    "year": "2020"
+  },
+  "IS 14927 (Part 2): 2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 1258: 2005": {
+    "source": "scheme_i_register.csv",
+    "year": "2005"
+  },
+  "IS 15787: 2008": {
+    "source": "scheme_i_register.csv",
+    "year": "2008"
+  },
+  "IS 13774:2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 15652:2006": {
+    "source": "scheme_i_register.csv",
+    "year": "2006"
+  },
+  "IS 16012: 2012": {
+    "source": "scheme_i_register.csv",
+    "year": "2012"
+  },
+  "IS 17042 (Part-1): 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 3315:2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 302 (Part 2/Sec 9): 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 302 (Part 2/Sec 31): 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 302 (Part 2/Sec 23): 2009": {
+    "source": "scheme_i_register.csv",
+    "year": "2009"
+  },
+  "IS 302 (Part 2/ Sec 80): 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 302 (Part 2/Sec 75): 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 302 (Part 2/Sec 7): 2010": {
+    "source": "scheme_i_register.csv",
+    "year": "2010"
+  },
+  "IS 459:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 1592:2003": {
+    "source": "scheme_i_register.csv",
+    "year": "2003"
+  },
+  "IS 2096:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 2098:1997": {
+    "source": "scheme_i_register.csv",
+    "year": "1997"
+  },
+  "IS 6908:1991": {
+    "source": "scheme_i_register.csv",
+    "year": "1991"
+  },
+  "IS 13000:1990": {
+    "source": "scheme_i_register.csv",
+    "year": "1990"
+  },
+  "IS 9627:1980": {
+    "source": "scheme_i_register.csv",
+    "year": "1980"
+  },
+  "IS 13008:1990": {
+    "source": "scheme_i_register.csv",
+    "year": "1990"
+  },
+  "IS 14862:2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 14871:2000": {
+    "source": "scheme_i_register.csv",
+    "year": "2000"
+  },
+  "IS 2373:1981": {
+    "source": "scheme_i_register.csv",
+    "year": "1981"
+  },
+  "IS 779: 1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 2692: 1989": {
+    "source": "scheme_i_register.csv",
+    "year": "1989"
+  },
+  "IS 2095 (Part 1):2011": {
+    "source": "scheme_i_register.csv",
+    "year": "2011"
+  },
+  "IS 17400:2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 2095 (Part 2): 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 2095 (Part 3):2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 302 (Part 2/Sec 21): 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 302 (Part 2/Sec 35): 2017": {
+    "source": "scheme_i_register.csv",
+    "year": "2017"
+  },
+  "IS 368: 2014": {
+    "source": "scheme_i_register.csv",
+    "year": "2014"
+  },
+  "IS 2082: 2018": {
+    "source": "scheme_i_register.csv",
+    "year": "2018"
+  },
+  "IS 17150: 2019": {
+    "source": "scheme_i_register.csv",
+    "year": "2019"
+  },
+  "IS 2494 (Part 1): 1994": {
+    "source": "scheme_i_register.csv",
+    "year": "1994"
+  },
+  "IS 2494 (Part 2): 1993": {
+    "source": "scheme_i_register.csv",
+    "year": "1993"
+  },
+  "IS 14261: 1995": {
+    "source": "scheme_i_register.csv",
+    "year": "1995"
+  },
+  "IS 17954:2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 18507 : 2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 18508 : 2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 18509 : 2023": {
+    "source": "scheme_i_register.csv",
+    "year": "2023"
+  },
+  "IS 4123:1982": {
+    "source": "scheme_i_register.csv",
+    "year": "1982"
+  },
+  "IS 4508:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 4509:1992": {
+    "source": "scheme_i_register.csv",
+    "year": "1992"
+  },
+  "IS 6149:1984": {
+    "source": "scheme_i_register.csv",
+    "year": "1984"
+  },
+  "IS 2028:2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 2029:1998": {
+    "source": "scheme_i_register.csv",
+    "year": "1998"
+  },
+  "IS 4003 (Part 2): 1986": {
+    "source": "scheme_i_register.csv",
+    "year": "1986"
+  },
+  "IS 3650:1981": {
+    "source": "scheme_i_register.csv",
+    "year": "1981"
+  },
+  "IS 15041:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 1084:2005": {
+    "source": "scheme_i_register.csv",
+    "year": "2005"
+  },
+  "IS 11066:2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 14928:2001": {
+    "source": "scheme_i_register.csv",
+    "year": "2001"
+  },
+  "IS 14929: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 1804:2004": {
+    "source": "scheme_i_register.csv",
+    "year": "2004"
+  },
+  "IS 4572:2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 5175:2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 8674 : 2013": {
+    "source": "scheme_i_register.csv",
+    "year": "2013"
+  },
+  "IS 17609 : 2021": {
+    "source": "scheme_i_register.csv",
+    "year": "2021"
+  },
+  "IS 16544: 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 16542: 2016": {
+    "source": "scheme_i_register.csv",
+    "year": "2016"
+  },
+  "IS 302-2-76:1999": {
+    "source": "scheme_i_register.csv",
+    "year": "1999"
+  },
+  "IS 2083:2024": {
+    "source": "scheme_i_register.csv",
+    "year": "2024"
+  },
+  "IS 17875: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17876: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17631: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17632: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17633: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17634: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17635: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 17636: 2022": {
+    "source": "scheme_i_register.csv",
+    "year": "2022"
+  },
+  "IS 10322 (Part 5/Section 2): 2012": {
+    "source": "scheme_ii_register.csv",
+    "year": "2012"
+  },
+  "IS 10322 (Part 5/Section 3): 2012": {
+    "source": "scheme_ii_register.csv",
+    "year": "2012"
+  },
+  "IS 10322 (Part 5/Section 5): 2013": {
+    "source": "scheme_ii_register.csv",
+    "year": "2013"
+  },
+  "IS 10322 (Part 5/Section 6): 2013": {
+    "source": "scheme_ii_register.csv",
+    "year": "2013"
+  },
+  "IS 10322 (Part 5/Section 7): 2013": {
+    "source": "scheme_ii_register.csv",
+    "year": "2013"
+  },
+  "IS 10322 (Part 5/Section 8): 2013": {
+    "source": "scheme_ii_register.csv",
+    "year": "2013"
+  },
+  "IS 16242 (Part 1):2014": {
+    "source": "scheme_ii_register.csv",
+    "year": "2014"
+  },
+  "IS 302 (Part 1): 2008": {
+    "source": "scheme_ii_register.csv",
+    "year": "2008"
+  },
+  "IS 16103 (Part 1): 2012": {
+    "source": "scheme_ii_register.csv",
+    "year": "2012"
+  },
+  "IS 10322 (Part 5)Section 9: 2017": {
+    "source": "scheme_ii_register.csv",
+    "year": "2017"
+  },
+  "IS 60669-2-1: 2008": {
+    "source": "scheme_ii_register.csv",
+    "year": "2008"
+  },
+  "IS 18112:2022": {
+    "source": "scheme_ii_register.csv",
+    "year": "2022"
+  },
+  "IS 798:2020": {
+    "source": "scheme_ii_register.csv",
+    "year": "2020"
+  },
+  "IS 17439:2020": {
+    "source": "scheme_ii_register.csv",
+    "year": "2020"
+  },
+  "IS 17412:2020": {
+    "source": "scheme_ii_register.csv",
+    "year": "2020"
+  },
+  "IS 12171:2019": {
+    "source": "scheme_ii_register.csv",
+    "year": "2019"
+  },
+  "IS 10613:2023": {
+    "source": "scheme_iv_register.csv",
+    "year": "2023"
+  },
+  "IS 1417:2016": {
+    "source": "bis_all_products_unified.csv",
+    "year": "2016"
+  },
+  "IS 2112:2014": {
+    "source": "bis_all_products_unified.csv",
+    "year": "2014"
+  },
+  "_bis_all_products_unified_product_id": {
+    "column": "product_id",
+    "source": "bis_all_products_unified.csv"
+  },
+  "_bis_all_products_unified_category": {
+    "column": "category",
+    "source": "bis_all_products_unified.csv"
+  },
+  "_bis_all_products_unified_product_or_material": {
+    "column": "product_or_material",
+    "source": "bis_all_products_unified.csv"
+  },
+  "_bis_all_products_unified_indian_standard_title": {
+    "column": "indian_standard_title",
+    "source": "bis_all_products_unified.csv"
+  },
+  "_bis_all_products_unified_product_level_certification_process": {
+    "column": "product_level_certification_process",
+    "source": "bis_all_products_unified.csv"
+  },
+  "_bis_extra_consumer_industry_source_title": {
+    "column": "source_title",
+    "source": "bis_extra_consumer_industry.csv"
+  },
+  "_bis_scheme_i_ii_register_category": {
+    "column": "category",
+    "source": "bis_scheme_i_ii_register.csv"
+  },
+  "_bis_scheme_i_ii_register_product_or_material": {
+    "column": "product_or_material",
+    "source": "bis_scheme_i_ii_register.csv"
+  },
+  "_bis_scheme_i_ii_register_source_title": {
+    "column": "source_title",
+    "source": "bis_scheme_i_ii_register.csv"
+  },
+  "_bis_website_chunks_title": {
+    "column": "title",
+    "source": "bis_website_chunks.csv"
+  },
+  "_bis_website_pages_title": {
+    "column": "title",
+    "source": "bis_website_pages.csv"
+  },
+  "_bis_website_tables_title": {
+    "column": "title",
+    "source": "bis_website_tables.csv"
+  },
+  "_certification_process_detailed_step_title": {
+    "column": "step_title",
+    "source": "certification_process_detailed.csv"
+  },
+  "_certification_process_detailed_official_source_title": {
+    "column": "official_source_title",
+    "source": "certification_process_detailed.csv"
+  },
+  "_consumer_focused_source_title": {
+    "column": "source_title",
+    "source": "consumer_focused.csv"
+  },
+  "_industry_focused_source_title": {
+    "column": "source_title",
+    "source": "industry_focused.csv"
+  },
+  "_official_sources_source_title": {
+    "column": "source_title",
+    "source": "official_sources.csv"
+  },
+  "_scheme_ii_register_category": {
+    "column": "category",
+    "source": "scheme_ii_register.csv"
+  },
+  "_scheme_ii_register_product_or_material": {
+    "column": "product_or_material",
+    "source": "scheme_ii_register.csv"
+  },
+  "_scheme_ii_register_source_title": {
+    "column": "source_title",
+    "source": "scheme_ii_register.csv"
+  },
+  "_scheme_iv_register_category": {
+    "column": "category",
+    "source": "scheme_iv_register.csv"
+  },
+  "_scheme_iv_register_product_or_material": {
+    "column": "product_or_material",
+    "source": "scheme_iv_register.csv"
+  },
+  "_scheme_iv_register_source_title": {
+    "column": "source_title",
+    "source": "scheme_iv_register.csv"
+  },
+  "_scheme_i_register_category": {
+    "column": "category",
+    "source": "scheme_i_register.csv"
+  },
+  "_scheme_i_register_product_or_material": {
+    "column": "product_or_material",
+    "source": "scheme_i_register.csv"
+  },
+  "_scheme_i_register_source_title": {
+    "column": "source_title",
+    "source": "scheme_i_register.csv"
+  },
+  "_scheme_x_register_title_of_standard": {
+    "column": "title_of_standard",
+    "source": "scheme_x_register.csv"
+  },
+  "_scheme_x_register_product_or_material": {
+    "column": "product_or_material",
+    "source": "scheme_x_register.csv"
+  },
+  "_scheme_x_register_source_title": {
+    "column": "source_title",
+    "source": "scheme_x_register.csv"
+  },
+  "_source_registry_source_title": {
+    "column": "source_title",
+    "source": "source_registry.csv"
+  },
+  "Source: bis.gov.in/product-certification/products-under-compulsory-certification/scheme-i-mark-scheme/  |  Extracted 28 Aug 2026  |  Covers Sr. No. 1-92 (Cement through Steel & Iron Products, partial). The live table continues to 600+ IS numbers across more categories — see 'Source & Coverage Notes' tab.": {
+    "source": "SIH26107_BIS_RAG_Knowledge_Base.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "Source: https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en  |  Extracted 28 Aug 2026. Use as high-confidence, citable RAG chunks (chunk per Q&A, tag document_type=faq, source_url as above).": {
+    "source": "SIH26107_BIS_RAG_Knowledge_Base.xlsx",
+    "sheet": "Product Certification FAQ"
+  },
+  "IS 16415:2015": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 16993:2018": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 15895:2018": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 17945:2022": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 1785 (Part 1):1983": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  },
+  "IS 1785 (Part 2):1983": {
+    "source": "SIH26107_Scheme-I_IS_Numbers.xlsx",
+    "sheet": "Scheme-I Compulsory IS List"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "BIS Sahayak",
+  "description": "Bureau of Indian Standards AI Technical Assistant and Standards Portal featuring IS code search, clause verification, lab locator, and certification guides.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

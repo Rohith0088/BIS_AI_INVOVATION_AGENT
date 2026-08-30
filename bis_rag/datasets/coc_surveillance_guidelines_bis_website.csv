@@ -1,0 +1,304 @@
+﻿chunk_id,document_id,source_file,page_number,text
+coc_surveillance_guidelines_bis_website_p1,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,1,"‭BUREAU OF INDIAN STANDARDS‬ ‭(CENTRAL MARKS DEPARTMENT - I)‬
+
+‭Our Ref: CMD-I/2:16:6‬ ‭23 July 2024‬
+
+‭ ubject:‬ ‭Guidelines‬ ‭for‬ ‭surveillance‬ ‭during‬ ‭operation‬ ‭of‬ ‭Certificate‬‭of‬‭Conformity‬‭for‬ S ‭Stampings/‬ ‭Laminations/cores‬ ‭of‬ ‭transformers‬ ‭(with‬ ‭or‬ ‭without‬ ‭winding)‬ ‭under‬ ‭the‬ ‭conformity‬ ‭assessment‬ ‭Scheme‬ ‭–‬ ‭IV‬ ‭of‬ ‭Schedule‬ ‭–‬ ‭II‬ ‭of‬ ‭BIS‬‭(Conformity‬‭Assessment)‬ ‭Regulations, 2018‬
+
+‭1)‬ ‭ his‬ ‭document‬ ‭stipulates‬ ‭the‬ ‭guidelines‬ ‭for‬ ‭surveillance‬ ‭by‬ ‭BIS‬ ‭with‬ ‭respect‬ ‭to‬ T ‭monitoring‬ ‭the‬ ‭operation‬ ‭of‬ ‭Certificates‬ ‭of‬ ‭Conformity‬ ‭(CoC)‬ ‭granted‬ ‭by‬ ‭BIS‬ ‭to‬ ‭manufacturers‬ ‭of‬ ‭Stampings/laminations/‬ ‭cores‬ ‭of‬ ‭transformers‬ ‭(with‬ ‭or‬ ‭without‬ ‭winding).‬
+
+‭2)‬ ‭ hese‬‭guidelines‬‭are‬‭to‬‭be‬‭read‬‭in‬‭conjunction‬‭with‬‭the‬‭BIS‬‭Act,‬‭2016;‬‭BIS‬‭Rules,‬‭2018‬ T ‭and‬‭BIS‬‭(Conformity‬‭Assessment)‬‭Regulations,‬‭2018‬‭and‬‭guidelines‬‭framed‬‭thereunder,‬ ‭as‬ ‭per‬‭Scheme–IV‬‭of‬‭Schedule–II‬‭of‬‭these‬‭regulations‬‭as‬‭well‬‭as‬‭any‬‭Product‬‭Specific‬ ‭Guidelines‬ ‭for‬ ‭grant‬ ‭of‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭for‬ ‭Stampings/‬‭Laminations/cores‬‭of‬ ‭transformers‬ ‭(with‬ ‭or‬ ‭without‬ ‭winding)‬ ‭under‬ ‭Scheme‬ ‭-‬ ‭IV‬ ‭of‬ ‭Schedule‬ ‭-‬ ‭II‬ ‭of‬ ‭BIS‬ ‭(Conformity Assessment) Regulations, 2018.‬
+
+‭3)‬ ‭ he‬ ‭intent‬ ‭of‬ ‭surveillance‬ ‭in‬ ‭case‬ ‭of‬ ‭this‬ ‭product‬ ‭is‬ ‭to‬ ‭check‬ ‭for‬ ‭compliance‬ ‭to‬ ‭the‬ T ‭essential‬‭requirement‬‭for‬‭this‬‭product‬‭mandated‬‭in‬‭the‬‭Steel‬‭and‬‭Steel‬‭Products‬‭(Quality‬ ‭Control)‬ ‭Order,‬ ‭2020‬ ‭i.e.‬ ‭that‬ ‭Stampings/laminations/cores‬ ‭of‬ ‭transformers‬ ‭(with‬ ‭or‬ ‭without‬ ‭winding)‬ ‭shall‬ ‭be‬ ‭made‬ ‭from‬ ‭BIS‬ ‭standard‬ ‭marked‬ ‭Grain‬ ‭Oriented‬‭Electrical‬ ‭Steel‬‭Sheet‬‭and‬‭Strip‬‭conforming‬‭to‬‭IS‬‭3024:2015‬‭or‬‭Cold‬‭rolled‬‭non-oriented‬‭electrical‬ ‭steel‬‭sheet‬‭and‬‭strip‬‭conforming‬‭to‬‭IS‬‭648:2006‬‭or‬‭Fe‬‭based‬‭amorphous‬‭strip‬‭delivered‬ ‭in the semi-processed state conforming to IS 16585:2016.‬
+
+‭4)‬ ‭ he‬ ‭primary‬ ‭mode‬ ‭of‬ ‭surveillance‬ ‭in‬ ‭this‬ ‭case‬ ‭is‬ ‭factory‬ ‭surveillance‬‭i.e.‬‭visits‬‭to‬‭the‬ T ‭manufacturing‬ ‭units‬ ‭which‬ ‭are‬ ‭holding‬ ‭CoC.‬ ‭These‬ ‭surveillance‬ ‭visits‬ ‭may‬ ‭be‬ ‭conducted‬ ‭by‬ ‭the‬ ‭BIS‬ ‭certification‬ ‭officer‬ ‭or‬ ‭technical‬ ‭auditor‬ ‭of‬ ‭empanelled‬ ‭agency‬ ‭through‬ ‭CSMD.‬ ‭However,‬ ‭as‬ ‭far‬ ‭as‬ ‭possible,‬ ‭it‬ ‭is‬ ‭preferable‬ ‭that‬ ‭surveillance‬ ‭visits‬ ‭especially‬ ‭under‬ ‭Scheme-IV‬ ‭are‬ ‭carried‬ ‭out‬ ‭by‬ ‭the‬ ‭BIS‬ ‭certification‬ ‭officer‬ ‭at‬ ‭the‬ ‭concerned BO.‬
+
+‭5)‬ ‭During the surveillance visit, the following actions shall be taken up:‬
+
+ ‭(i)‬ P ‭ hysical‬ ‭verification‬ ‭of‬ ‭availability‬ ‭of‬ ‭ISI‬ ‭marked‬ ‭material‬ ‭and‬ ‭dispatch‬ ‭of‬ ‭stampings/lamination/cores under CoC‬
+
+ ‭(a)‬ ‭During‬ ‭the‬ ‭visit,‬ ‭the‬ ‭labels‬ ‭on‬ ‭the‬ ‭ISI‬ ‭Marked‬ ‭material‬ ‭available‬ ‭shall‬ ‭be‬ ‭physically‬ ‭verified‬ ‭to‬ ‭check‬ ‭that‬ ‭the‬ ‭material‬ ‭has‬‭been‬‭manufactured‬‭by‬‭a‬‭BIS‬ ‭license holder holding a valid licence.‬
+
+ ‭1‬"
+coc_surveillance_guidelines_bis_website_p2,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,2,"‭(b)‬‭In‬ ‭addition,‬ ‭the‬ ‭thickness‬ ‭of‬ ‭the‬ ‭coil‬ ‭of‬ ‭ISI‬ ‭marked‬ ‭electrical‬ ‭steel/material‬‭as‬ ‭well‬‭as‬‭the‬‭thickness‬‭of‬‭the‬‭stampings/laminations‬ ‭made‬‭from‬‭said‬‭ISI‬‭marked‬ ‭material shall be checked to verify the traceability.‬
+
+ ‭(c)‬ ‭In‬ ‭addition,‬‭materials‬‭being‬‭dispatched‬‭shall‬‭be‬‭checked‬‭to‬‭ensure‬‭that‬‭they‬‭are‬ ‭being‬ ‭sent‬ ‭with‬ ‭valid‬ ‭CoC‬ ‭bearing‬ ‭the‬ ‭assigned‬ ‭CoC‬ ‭Number‬ ‭with‬ ‭test‬ ‭certificate.‬
+
+ ‭(ii)‬ ‭Verification of traceability through records‬
+
+ ‭(a)‬ ‭As‬ ‭per‬ ‭product‬ ‭specific‬ ‭guidelines‬ ‭for‬ ‭grant‬ ‭of‬ ‭CoC,‬ ‭Holder‬ ‭of‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭is‬ ‭required‬ ‭to‬ ‭submit‬ ‭to‬ ‭the‬ ‭concerned‬ ‭BO‬ ‭the‬ ‭details‬ ‭of‬ ‭electrical‬ ‭steel‬‭purchased‬‭and‬‭consumed‬‭by‬‭them,‬‭enclosing‬‭the‬‭Mill‬‭Test‬‭Certificates‬‭and‬ ‭also‬ ‭the‬ ‭details‬ ‭of‬ ‭Stampings/‬‭laminations/‬‭cores‬‭of‬‭transformers‬‭manufactured‬ ‭and‬ ‭dispatched‬ ‭by‬ ‭them‬ ‭from‬ ‭this‬ ‭steel,‬‭on‬‭a‬‭quarterly‬‭basis.‬ ‭These‬‭submitted‬ ‭records‬ ‭shall‬ ‭be‬ ‭cross‬ ‭checked‬ ‭with‬ ‭the‬ ‭records‬ ‭available‬ ‭in‬ ‭the‬ ‭factory‬ ‭for‬ ‭conformity.‬
+
+ ‭(b)‬‭The compliance to the defined Inspection and Testing Plan shall be checked.‬
+
+ ‭(c)‬ ‭Details‬ ‭of‬ ‭raw‬ ‭material‬ ‭purchase/consumption‬ ‭and‬‭production/dispatch‬‭records‬ ‭as‬ ‭declared‬ ‭by‬ ‭the‬ ‭CoC‬ ‭holder‬ ‭shall‬ ‭be‬ ‭verified‬ ‭to‬ ‭check‬ ‭that‬ ‭only‬ ‭electrical‬ ‭steel/material‬ ‭manufactured‬ ‭by‬ ‭a‬ ‭BIS‬ ‭license‬ ‭holder‬ ‭holding‬ ‭valid‬ ‭licence‬ ‭is‬ ‭being‬ ‭used‬ ‭to‬ ‭manufacture‬ ‭the‬ ‭product‬ ‭and‬ ‭also‬ ‭that‬ ‭the‬ ‭product‬ ‭is‬ ‭being‬ ‭dispatched under the valid CoC with a test certificate.‬
+
+‭6)‬ ‭ ertification,‬ ‭Surveillance‬ ‭and‬ ‭Monitoring‬ ‭Department‬ ‭(CSMD)‬ ‭shall‬ ‭prepare‬ ‭and‬ C ‭circulate‬‭the‬‭plan‬‭for‬‭domestic‬‭surveillance‬‭in‬‭case‬‭of‬‭this‬‭product.‬‭The‬‭inspection‬‭and‬ ‭surveillance‬ ‭activities‬ ‭of‬ ‭foreign‬ ‭manufacturers‬ ‭shall‬ ‭be‬ ‭planned‬ ‭and‬ ‭prepared‬ ‭by‬ ‭Foreign‬ ‭Manufacturers‬ ‭Certification‬ ‭Department‬ ‭(FMCD)‬ ‭with‬ ‭approval‬ ‭of‬ ‭the‬ ‭competent‬ ‭authority.‬ ‭The‬ ‭factory‬ ‭inspection‬ ‭and‬ ‭surveillance‬ ‭activities‬ ‭of‬ ‭foreign‬ ‭manufacturers‬ ‭(and‬‭domestic‬‭manufacturers,‬‭till‬‭further‬‭orders)‬‭shall‬‭be‬‭undertaken‬‭by‬ ‭certification officers of BIS.‬
+
+‭7)‬ ‭ enerally,‬ ‭one‬ ‭surveillance‬ ‭visit‬ ‭per‬ ‭year‬ ‭may‬ ‭be‬ ‭carried‬ ‭out‬ ‭for‬ ‭each‬ ‭manufacturing‬ G ‭unit‬ ‭holding‬ ‭a‬ ‭certificate‬ ‭of‬ ‭conformity.‬ ‭For‬ ‭any‬ ‭special‬ ‭inspection‬ ‭visit‬ ‭(other‬ ‭than‬ ‭surveillance‬ ‭and‬ ‭complaint‬ ‭investigation),‬ ‭the‬ ‭inspection‬ ‭charges‬ ‭of‬ ‭₹‬ ‭7,000‬ ‭shall‬ ‭be‬ ‭taken in advance.‬
+
+‭8)‬ ‭ ill‬ ‭the‬ ‭time‬ ‭web/mobile‬‭application‬‭based‬‭module‬‭for‬‭surveillance‬‭is‬‭updated‬‭for‬‭this‬ T ‭product,‬‭surveillance‬‭visits‬‭under‬‭Scheme-IV‬‭shall‬‭be‬‭reported‬‭with‬‭requisite‬‭details‬‭in‬ ‭the‬ ‭presently‬ ‭available‬ ‭space‬ ‭fields‬ ‭of‬ ‭web/mobile‬ ‭application.‬ ‭The‬ ‭remaining‬ ‭places‬ ‭may‬‭be‬‭left‬‭blank‬‭or‬‭filled‬‭as‬‭Not‬‭applicable.‬‭At‬‭the‬‭end‬‭of‬‭the‬‭report,‬‭any‬‭other‬‭should‬ ‭be‬‭selected‬‭and‬‭scanned‬‭pages‬‭of‬‭inspection/factory‬‭test‬‭reports‬‭are‬‭to‬‭be‬‭uploaded.‬‭The‬ ‭reporting template for guidance is enclosed as‬‭Annexure - I‬‭.‬
+
+ ‭2‬"
+coc_surveillance_guidelines_bis_website_p3,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,3,"‭9)‬ ‭The surveillance inspection may be deemed unsatisfactory in the following situations‬
+
+ ‭(i)‬ U ‭ se‬ ‭of‬ ‭non‬ ‭ISI‬ ‭marked‬ ‭material‬ ‭to‬ ‭manufacture‬ ‭Stampings/laminations/‬ ‭cores‬ ‭of‬ ‭transformers‬
+
+ ‭(a)‬ ‭If‬ ‭there‬ ‭is‬ ‭sufficient‬ ‭evidence‬ ‭(through‬ ‭physical‬ ‭verification,‬ ‭verification‬ ‭of‬ ‭records‬‭or‬‭combination‬‭thereof)‬‭that‬‭the‬‭CoC‬‭holder‬‭has‬‭used‬‭non‬‭ISI‬‭marked‬ ‭material‬ ‭to‬ ‭manufacture‬ ‭Stampings/laminations/‬ ‭cores‬ ‭of‬‭transformers‬‭and/or‬ ‭supplied this product without the valid CoC with a test certificate.‬
+
+ ‭(b)‬‭In‬‭such‬‭cases,‬‭review‬‭of‬‭performance‬‭of‬‭the‬‭CoC‬‭holder‬‭shall‬‭be‬‭taken‬‭up‬‭and‬ ‭based‬‭on‬‭the‬‭same,‬‭the‬‭CoC‬‭may‬‭be‬‭placed‬‭under‬‭suspension‬‭by‬‭the‬‭Head‬‭BO.‬ ‭Simultaneously,‬ ‭a‬ ‭show-cause‬ ‭notice‬ ‭shall‬ ‭be‬ ‭issued‬ ‭to‬ ‭the‬ ‭CoC‬ ‭holder‬ ‭informing‬ ‭them‬ ‭that‬ ‭BIS‬ ‭intends‬ ‭to‬ ‭pursue‬ ‭legal‬ ‭action‬ ‭against‬ ‭them‬ ‭for‬ ‭violation‬ ‭of‬‭the‬‭QCO‬‭and‬‭giving‬‭them‬‭15‬‭days‬‭time‬‭to‬‭establish‬‭that‬‭they‬‭did‬ ‭not‬‭violate‬‭the‬‭QCO‬‭(personal‬‭hearing‬‭may‬‭be‬‭granted).‬‭(template‬‭for‬‭guidance‬ ‭enclosed‬‭as‬‭Annexure‬‭-‬‭II‬‭)‬‭Revocation‬‭of‬‭suspension‬‭may‬‭be‬‭considered‬‭once‬ ‭the‬ ‭CoC‬ ‭holder‬ ‭is‬ ‭able‬ ‭to‬ ‭establish‬ ‭that‬ ‭they‬ ‭did‬ ‭not‬ ‭violate‬ ‭QCO.‬ ‭If‬ ‭not,‬ ‭suspension may be followed by initiation of cancellation proceedings.‬
+
+ ‭(ii)‬ ‭Noncompliance to SIT and minor discrepancies in records etc.‬
+
+ ‭(a)‬ ‭In‬ ‭case‬ ‭deviation‬ ‭from‬ ‭prescribed‬ ‭SIT‬ ‭or‬ ‭minor‬ ‭discrepancies‬ ‭is‬‭observed‬‭in‬ ‭records‬ ‭but‬‭which‬‭does‬‭not‬‭constitute‬‭sufficient‬‭evidence‬‭that‬‭the‬‭CoC‬‭holder‬ ‭has‬ ‭used‬ ‭non‬ ‭ISI‬ ‭marked‬ ‭material‬ ‭to‬ ‭manufacture‬ ‭Stampings/laminations/‬ ‭cores‬‭of‬‭transformers‬‭and/or‬‭supplied‬‭this‬‭product‬‭without‬‭the‬‭valid‬‭CoC‬‭with‬ ‭a‬‭test‬‭certificate,‬‭the‬‭CoC‬‭holder‬‭shall‬‭be‬‭advised‬‭to‬‭take‬‭corrective‬‭actions‬‭and‬ ‭inform‬ ‭within‬ ‭prescribed‬ ‭time‬ ‭limit‬ ‭(normally‬ ‭not‬ ‭more‬ ‭than‬ ‭15‬ ‭days).‬ ‭(template for guidance enclosed as‬‭Annexure - III‬‭)‬
+
+ ‭(b)‬‭In‬ ‭such‬ ‭cases,‬ ‭if‬ ‭it‬ ‭is‬ ‭observed‬ ‭that‬ ‭the‬ ‭CoC‬ ‭holder‬ ‭has‬ ‭not‬ ‭taken‬ ‭sufficient‬ ‭corrective‬ ‭actions,‬ ‭the‬ ‭case‬ ‭may‬ ‭be‬ ‭processed‬ ‭for‬ ‭imposition‬ ‭of‬ ‭suspension.‬ ‭Before‬ ‭imposition‬ ‭of‬ ‭suspension,‬ ‭a‬ ‭notice‬ ‭shall‬ ‭be‬ ‭issued‬ ‭by‬ ‭the‬ ‭Head‬ ‭BO‬ ‭seeking‬ ‭explanation‬ ‭from‬ ‭CoC‬ ‭holder‬ ‭giving‬ ‭10‬ ‭days‬ ‭time‬ ‭from‬ ‭the‬ ‭date‬ ‭of‬ ‭issuance of the notice. (template for guidance enclosed as‬‭Annexure - IV‬‭)‬
+
+ ‭(A)‬ I‭ n‬ ‭case‬ ‭no‬ ‭reply‬ ‭is‬ ‭received‬ ‭within‬ ‭the‬ ‭stipulated‬ ‭time,‬ ‭the‬ ‭suspension‬ ‭shall be imposed.‬
+
+ ‭(B)‬ I‭ n‬‭case‬‭reply‬‭is‬‭received‬‭within‬‭stipulated‬‭time,‬‭it‬‭shall‬‭be‬‭examined‬‭and‬ ‭reviewed‬‭by‬‭the‬‭Head‬‭BO.‬‭If‬‭the‬‭reply‬‭received‬‭is‬‭satisfactory‬‭informing‬ ‭all‬ ‭the‬ ‭requisite‬ ‭corrective‬ ‭actions‬ ‭have‬ ‭been‬ ‭taken‬ ‭by‬ ‭CoC‬ ‭holder,‬‭the‬ ‭case‬ ‭shall‬ ‭be‬ ‭taken‬ ‭up‬ ‭for‬ ‭verification‬ ‭of‬ ‭corrective‬ ‭actions‬ ‭through‬ ‭immediate surveillance visit preferably within the next 20 days.‬
+
+ ‭3‬"
+coc_surveillance_guidelines_bis_website_p4,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,4,"‭(C)‬ I‭ n‬ ‭case‬ ‭during‬ ‭the‬ ‭first‬ ‭surveillance‬ ‭visit‬ ‭after‬ ‭issuing‬ ‭the‬ ‭notice‬ ‭for‬ ‭suspension,‬ ‭it‬ ‭is‬ ‭observed‬ ‭that‬ ‭the‬ ‭corrective‬ ‭actions‬ ‭have‬ ‭not‬ ‭been‬ ‭implemented‬ ‭by‬ ‭the‬ ‭CoC‬ ‭holder,‬ ‭the‬ ‭case‬ ‭may‬ ‭be‬ ‭processed‬ ‭for‬ ‭imposition of suspension without any further notice.‬
+
+ ‭(D)‬ I‭ n‬‭case‬‭reply‬‭received‬‭is‬‭partial‬‭or‬‭incomplete,‬‭the‬‭case‬‭may‬‭be‬‭processed‬ ‭for imposition of suspension without any further notice.‬
+
+ ‭(c)‬ ‭The‬‭decision‬‭to‬‭impose‬‭suspension‬‭shall‬‭be‬‭communicated‬‭to‬‭the‬‭CoC‬‭holder.‬ ‭(template‬‭for‬‭guidance‬‭enclosed‬‭as‬‭Annexure‬‭-‬‭V‬‭)‬‭Suspension‬‭may‬‭be‬‭revoked‬ ‭after verification of corrective actions undertaken by the manufacturer.‬
+
+‭10)‬ (‭ i)‬‭The‬‭BOs‬‭may‬‭arrange‬‭visit(s)‬‭as‬‭given‬‭below‬‭to‬‭check‬‭compliance‬‭with‬‭suspension‬ ‭orders‬ ‭and‬‭any‬‭possible‬‭violation‬‭of‬‭the‬‭BIS‬‭Act,‬‭2016‬‭and‬‭Rules,‬‭Regulations‬‭framed‬ ‭thereunder:‬
+
+ (‭ a)‬ ‭No‬ ‭response‬ ‭received‬ ‭from‬ ‭the‬ ‭CoC‬ ‭holder‬ ‭within‬ ‭15‬ ‭days‬ ‭from‬ ‭the‬ ‭date‬ ‭of‬ ‭communication of necessary instructions by BIS - Visit within next 15 days.‬
+
+ (‭ b)‬ ‭If‬ ‭there‬ ‭is‬ ‭still‬ ‭no‬ ‭response‬ ‭from‬ ‭the‬ ‭CoC‬‭holder‬‭after‬‭the‬‭visit,‬‭the‬‭case‬‭may‬‭be‬ ‭processed for initiating proceedings for cancellation.‬
+
+ (‭ ii)‬ ‭In‬ ‭case‬ ‭of‬ ‭detection‬ ‭of‬ ‭misuse‬ ‭or‬ ‭any‬ ‭violation‬ ‭of‬ ‭the‬ ‭provisions‬ ‭of‬ ‭the‬ ‭BIS‬‭Act,‬ ‭2016‬ ‭and‬ ‭Rules,‬ ‭Regulations‬‭framed‬‭thereunder,‬‭further‬‭necessary‬‭action‬‭shall‬‭also‬‭be‬ ‭taken as per provisions.‬
+
+‭11)‬ B ‭ efore‬ ‭cancelling‬ ‭a‬ ‭certificate‬ ‭of‬ ‭conformity,‬ ‭a‬ ‭cancellation‬ ‭notice‬ ‭of‬ ‭not‬ ‭less‬ ‭than‬ ‭twenty-one‬ ‭days‬ ‭shall‬ ‭be‬ ‭given‬ ‭(template‬ ‭attached‬ ‭Annexure‬ ‭-‬ ‭VI‬‭).‬ ‭Before‬ ‭issuing‬ ‭cancellation‬ ‭notice,‬ ‭the‬ ‭DDGR‬ ‭shall‬ ‭satisfy‬ ‭herself/himself‬ ‭about‬ ‭completeness‬ ‭of‬ ‭information‬‭and‬‭facts‬‭of‬‭the‬‭case.‬‭Where‬‭DDGR‬‭is‬‭satisfied‬‭that‬‭it‬‭is‬‭necessary‬‭to‬‭issue‬ ‭cancellation‬‭notice,‬‭she/he‬‭shall‬‭record‬‭the‬‭reasons‬‭while‬‭taking‬‭decision‬‭for‬‭issuance‬‭of‬ ‭cancellation notice.‬
+
+ (‭ i)‬ ‭In‬ ‭case‬ ‭no‬ ‭reply‬ ‭is‬ ‭received‬ ‭within‬ ‭stipulated‬ ‭time,‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭may be cancelled.‬
+
+ (‭ ii)‬‭In‬‭case‬‭reply‬‭is‬‭received‬‭within‬‭stipulated‬‭time,‬‭it‬‭shall‬‭be‬‭examined‬‭and‬‭reviewed‬ ‭by‬ ‭the‬ ‭DDGR.‬ ‭Where‬ ‭the‬ ‭DDGR‬ ‭is‬ ‭satisfied‬ ‭that‬ ‭it‬ ‭is‬ ‭necessary‬ ‭to‬ ‭cancel‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity,‬ ‭she/he‬ ‭shall‬ ‭record‬ ‭the‬ ‭reasons‬ ‭while‬ ‭taking‬ ‭decision‬ ‭for‬ ‭cancellation.‬
+
+ (‭ iii)‬ ‭If‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭is‬‭not‬‭cancelled,‬‭the‬‭matter‬‭shall‬‭be‬‭taken‬‭up‬‭for‬ ‭corrective actions and its verification as per applicable paras (9(ii)) of this document.‬
+
+ ‭4‬"
+coc_surveillance_guidelines_bis_website_p5,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,5,"(‭ iv)‬ ‭The‬ ‭competent‬ ‭authority‬ ‭shall‬ ‭take‬ ‭into‬ ‭account‬ ‭merits‬ ‭of‬ ‭the‬ ‭case‬ ‭and‬ ‭facts‬ ‭presented‬‭by‬‭manufacturer‬‭during‬‭personal‬‭hearing‬‭and‬‭shall‬‭pass‬‭speaking‬‭orders‬‭for‬ ‭the final decision taken.‬
+
+(‭ v)‬‭The‬‭decision‬‭to‬‭cancel‬‭the‬‭certificate‬‭of‬‭conformity‬‭shall‬‭be‬‭communicated‬‭to‬‭the‬ ‭manufacturer. (template attached as‬‭Annexure - VII‬‭)‬
+
+ ‭5‬"
+coc_surveillance_guidelines_bis_website_p6,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,6,"‭ nnexure - I‬ A ‭BUREAU OF INDIAN STANDARDS‬ ‭REPORT OF SURVEILLANCE INSPECTION‬ ‭(. .. . . . . . . . . . . . inspection since the grant of CoC/Renewal)‬
+
+‭ oC NO -‬ C ‭IR No.. . . . . . . . ..‬ ‭Valid upto:‬
+
+‭1)‬ (‭ i) CoC Holder:‬ ‭(ii) Product: Stampings/ Laminations/cores of transformers (with or without winding)‬
+
+‭2)‬ ‭Special inspection charges, if applicable‬
+
+3‭ )‬ ‭ ate of inspection‬ D ‭4)‬ ‭Person(s) contacted‬ ‭5)‬ ‭Previous inspection‬ ‭(i) Date‬ ‭(ii) Conducted by‬ ‭(iii) Conclusions and recommendations‬ ‭(iv) Result of last 2 SURVEILLANCE VISITS:‬
+
+6‭ )‬ ‭ ction taken by firm on advice on previous visit / failure of sample:‬ A ‭7)‬ ‭Verify the following: (Deviations if any to be recorded)‬
+
+ (‭ i)‬ ‭Physical‬ ‭verification‬ ‭of‬ ‭availability‬ ‭of‬ ‭ISI‬ ‭marked‬ ‭material‬ ‭and‬ ‭dispatch‬ ‭of‬ ‭stampings/lamination/cores under CoC‬ ‭(a)‬ ‭ISI‬ ‭Marked‬ ‭material‬ ‭available‬ ‭has‬ ‭been‬ ‭manufactured‬ ‭by‬ ‭a‬ ‭BIS‬ ‭license‬ ‭holder‬ ‭holding valid licence. (Yes/No)‬ ‭(b)‬‭Thickness‬‭of‬‭the‬‭coil‬‭of‬‭ISI‬‭marked‬‭electrical‬‭steel/material‬‭as‬‭well‬‭as‬‭thickness‬‭of‬ ‭the‬‭stampings/laminations‬ ‭made‬‭from‬‭said‬‭ISI‬‭marked‬‭material‬‭are‬‭the‬‭same‬‭(Yes/No/‬ ‭N.A.) - In case of N.A., reasons to be stated‬ ‭(c)‬ ‭Product‬ ‭being‬ ‭dispatched‬ ‭being‬ ‭sent‬ ‭with‬ ‭valid‬ ‭CoC‬ ‭bearing‬ ‭the‬ ‭assigned‬ ‭CoC‬ ‭Number. (Yes/No)‬
+
+ (‭ ii)‬‭Verification of traceability of through records‬ ‭(a)‬ ‭Factory‬ ‭Records‬ ‭of‬ ‭the‬ ‭details‬ ‭of‬ ‭electrical‬ ‭steel‬ ‭purchase‬ ‭and‬ ‭consumption,‬ ‭including‬ ‭Mill‬ ‭Test‬ ‭Certificates,‬ ‭and‬ ‭details‬ ‭of‬ ‭Stampings/‬ ‭laminations/‬ ‭cores‬ ‭of‬ ‭transformers‬ ‭manufactured‬ ‭and‬ ‭dispatched‬ ‭matches‬ ‭with‬ ‭quarterly‬ ‭data‬‭submitted‬‭to‬ ‭BIS and indicates use of only ISI Marked material for manufacture (Yes/No)‬ ‭(b)‬ ‭Compliance‬ ‭to‬ ‭Scheme‬ ‭of‬ ‭Inspection‬ ‭and‬ ‭Testing‬ ‭(SIT)‬ ‭requirements‬ ‭and‬ ‭maintenance of Test records satisfactorily : Yes/No‬ ‭(c)‬ ‭The‬ ‭product‬ ‭is‬ ‭being‬ ‭dispatched‬ ‭under‬ ‭the‬ ‭valid‬ ‭CoC‬ ‭with‬ ‭a‬ ‭test‬ ‭certificate‬ ‭indicating the assigned CoC number. (Yes/No)‬
+
+ ‭(iii) Any major change without approval / intimation‬‭: Yes / No‬
+
+ ‭6‬"
+coc_surveillance_guidelines_bis_website_p7,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,7,"‭*In case no is recorded against any of the above, suitable remarks shall be mentioned‬
+
+‭8)‬ ‭Sampling of Product for Independent Test (market sample of ISI Marked material) :‬ ‭(i)‬ ‭Code :‬ ‭(ii)‬ ‭IS No. :‬ ‭(iii)‬ ‭Product / Size / variety :‬ ‭(iv)‬ ‭Batch no. / DOM‬ ‭(v)‬ ‭Laboratory :‬ ‭(vi)‬ ‭Counter sample : Yes / No‬ ‭(vii)‬ ‭Name and Licence number of the manufacturer (BIS licensee Mill)‬
+
+‭Note : Details on test request to be enclosed.‬
+
+‭9)‬ ‭Conclusions and Recommendations Satisfactory / Need improvement / Unsatisfactory‬
+
+ (‭ i) Any action to be taken including suspension‬ ‭(ii) Any other observation/comments for better‬ ‭appraisal of the report‬
+
+ I‭ nspected by:‬ ‭(Name)‬ ‭Designation:‬ ‭Date:‬
+
+ ‭7‬"
+coc_surveillance_guidelines_bis_website_p8,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,8,"‭Annexure - II‬
+
+‭Our Ref: ....... BO/Coc No.‬ ‭Date:‬
+
+‭Subject: Suspension of CoC ………………. for …………… (Product name)‬
+
+‭M/s‬
+
+ ‭Kind Attn: (Name of the CEO/MD)‬ ‭Dear Madam/Sir,‬
+
+‭1)‬ ‭ his‬ ‭has‬ ‭reference‬ ‭to‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭No.‬ ‭.......................‬‭granted‬‭by‬‭BIS‬ T ‭under‬ ‭its‬ ‭conformity‬ ‭assessment‬ ‭Scheme-IV‬ ‭for‬ ‭…………………………‬ ‭(Product‬ ‭name) which is valid up to ……………….‬
+
+‭2)‬ ‭ urther,‬ ‭reference‬ ‭is‬ ‭invited‬ ‭to‬ ‭discrepancies‬ ‭observed‬ ‭during‬ ‭surveillance‬ ‭inspection‬ F ‭visit dated ................... (copy enclosed)‬
+
+‭3)‬ ‭ ue‬ ‭to‬ ‭the‬ ‭..................................................‬ ‭(BO‬ ‭to‬ ‭mention‬ ‭reasons‬ ‭and‬ ‭details‬ ‭of‬ D ‭non-conformities)‬‭and‬‭in‬‭accordance‬‭with‬‭the‬‭provisions‬‭of‬‭clause‬‭(a)‬‭of‬‭sub-paragraph‬ ‭5‬ ‭of‬ ‭paragraph‬ ‭11‬ ‭of‬ ‭Scheme-IV‬ ‭of‬ ‭Schedule-II‬ ‭of‬ ‭the‬ ‭BIS‬‭(Conformity‬‭Assessment)‬ ‭Regulations,‬ ‭2018,‬ ‭it‬ ‭has‬ ‭been‬ ‭decided‬ ‭to‬ ‭put‬ ‭the‬ ‭certificate‬ ‭of‬‭conformity‬‭granted‬‭to‬ ‭you under suspension with immediate effect.‬
+
+‭4)‬ ‭ ou‬ ‭are‬ ‭not‬ ‭permitted‬ ‭to‬ ‭use‬ ‭the‬ ‭above‬ ‭mentioned‬ ‭product‬ ‭with‬ ‭certificate‬ ‭of‬ Y ‭conformity‬ ‭including‬ ‭dispatch‬ ‭of‬ ‭any‬ ‭stock‬ ‭in‬ ‭hand.‬ ‭You‬ ‭are,‬ ‭therefore,‬ ‭advised‬ ‭to‬ ‭ensure‬ ‭stoppage‬ ‭of‬ ‭use‬ ‭of‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭for‬ ‭the‬ ‭product‬ ‭with‬ ‭immediate‬ ‭effect‬‭&‬‭confirm‬‭the‬‭same‬‭immediately‬‭by‬‭suitable‬‭means‬‭like‬‭speed‬‭post/e-mail/online‬ ‭portal.‬‭You‬‭are‬‭also‬‭advised‬‭to‬‭submit‬‭us‬‭the‬‭following‬‭details‬‭as‬‭on‬‭the‬‭date‬‭of‬‭receipt‬ ‭of communication:‬ ‭i) Quantity of material held in stock:‬ ‭ii) (a) Batch/Control Unit (C.U.)/Lot No(s). and date(s) of manufacture;‬ ‭(b) Brand;‬ ‭(c) Size/type/grade/variety;‬ ‭iii) Packing details; and‬ ‭iv) Pending Orders for material, if any with purchasers' names and addresses‬
+
+‭5)‬ ‭You are further required to inform BIS within 15 days of the issuance of this letter‬ ‭i) the details of corrective actions taken along with applicable supporting evidence‬ ‭ii)‬ ‭the‬ ‭quantity‬ ‭available‬ ‭in‬ ‭your‬‭stock‬‭pertaining‬‭to‬‭non-conforming‬‭Batch/C.U./Lot‬ ‭No.‬ ‭, failing which it will be presumed that you do not have such material in stock.‬
+
+ ‭8‬"
+coc_surveillance_guidelines_bis_website_p9,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,9,"‭6)‬ A ‭ s‬‭you‬‭have‬‭been‬‭found‬‭contravening‬‭the‬‭essential‬‭requirements‬‭against‬‭the‬‭certificate‬ ‭of‬ ‭conformity‬ ‭is‬ ‭granted‬ ‭to‬‭you‬‭which‬‭is‬‭also‬‭a‬‭violation‬‭of‬‭the‬‭.....................‬‭(Quality‬ ‭Control)‬‭Order,‬‭20....,‬‭BIS‬‭is‬‭considering‬‭the‬‭matter‬‭to‬‭launch‬‭prosecution‬‭in‬‭the‬‭Court‬ ‭of‬‭Law‬‭for‬‭violation‬‭of‬‭said‬‭Quality‬‭Control‬‭Order.‬‭If‬‭you‬‭desire‬‭to‬‭be‬‭heard‬‭in‬‭person‬ ‭or‬ ‭through‬ ‭a‬ ‭representative‬ ‭authorised‬ ‭by‬ ‭you‬ ‭on‬ ‭your‬ ‭behalf,‬ ‭you‬ ‭may‬ ‭seek‬ ‭an‬ ‭appointment‬ ‭for‬ ‭such‬ ‭a‬ ‭hearing‬ ‭with‬ ‭the‬ ‭undersigned,‬ ‭after‬ ‭submitting‬ ‭your‬ ‭written‬ ‭explanation.‬
+
+ ‭7)‬ K ‭ indly‬‭note‬‭that,‬‭according‬‭to‬‭Paragraph‬‭5‬‭of‬‭Scheme-IV‬‭of‬‭Schedule-II‬‭under‬‭the‬‭BIS‬ ‭(Conformity‬ ‭Assessment)‬ ‭Regulations,‬ ‭2018,‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭fee‬ ‭is‬ ‭payable‬ ‭by‬ ‭you‬ ‭even‬ ‭during‬ ‭the‬ ‭period‬ ‭when‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭is‬ ‭not‬ ‭in‬ ‭operation due to suspension.‬
+
+ ‭8)‬ T ‭ he‬ ‭reply‬ ‭with‬ ‭information‬ ‭sought‬ ‭should‬ ‭be‬ ‭sent‬ ‭immediately‬ ‭by‬ ‭return‬ ‭speed‬ ‭post/e-mail‬‭but‬‭not‬‭later‬‭than‬‭15‬‭days‬‭from‬‭the‬‭issuance‬‭of‬‭this‬‭letter‬‭failing‬‭which‬‭your‬ ‭certificate‬‭of‬‭conformity‬‭will‬‭be‬‭considered‬‭for‬‭cancellation‬‭as‬‭per‬‭Regulation‬‭19‬‭of‬‭the‬ ‭BIS (Conformity Assessment) Regulations, 2018.‬
+
+ ‭9)‬ ‭Kindly acknowledge the receipt and ensure compliance.‬
+
+‭Encl. As above‬ ‭Signature of designated authority‬ ‭(Name of designated authority)‬ ‭Copy to: Quality Control In-charge‬ ‭(Manufacturer Name & Address)‬
+
+ ‭9‬"
+coc_surveillance_guidelines_bis_website_p10,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,10,"‭Annexure - III‬
+
+‭Our Ref: ....... BO/Coc No.‬ ‭Date:‬
+
+‭ ubject:‬ ‭Unsatisfactory‬ ‭performance‬ ‭pertaining‬ ‭to‬ ‭CoC‬ ‭……………….‬ ‭for‬ S ‭…………… (Product name)‬
+
+‭M/s‬ ‭Kind Attn: (Name of the CEO/MD)‬ ‭Dear Madam/Sir,‬
+
+‭1)‬ ‭ his‬ ‭has‬‭reference‬‭to‬‭the‬‭certificate‬‭of‬‭conformity‬‭No.‬‭.......................‬‭granted‬‭by‬‭BIS‬ T ‭under‬ ‭its‬ ‭conformity‬ ‭assessment‬ ‭Scheme-IV‬ ‭for‬ ‭…………………………‬ ‭(Product‬ ‭name) which is valid up to ………………‬
+
+‭2)‬ ‭ ‬ ‭surveillance‬ ‭inspection‬ ‭was‬ ‭carried‬ ‭out‬ ‭at‬ ‭your‬ ‭factory‬ ‭premises‬ ‭on.......................‬ A ‭During‬ ‭the‬ ‭visit,‬ ‭following‬ ‭discrepancies‬ ‭in‬ ‭the‬ ‭operation‬ ‭of‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭were‬ ‭observed‬ ‭and‬ ‭communicated‬ ‭to‬ ‭you‬ ‭(Ref.‬ ‭Discrepancy-cum-Advisory Report issued during the visit, copy enclosed):‬
+
+‭3)‬ ‭ ou‬ ‭are‬ ‭advised‬ ‭to‬ ‭take‬‭appropriate‬‭corrective‬‭actions‬‭to‬‭avoid‬‭such‬‭discrepancies‬‭in‬ Y ‭future‬ ‭and‬ ‭intimate‬ ‭BIS‬ ‭the‬‭details‬‭of‬‭actions‬‭taken‬‭along‬‭with‬‭applicable‬‭supporting‬ ‭evidence within 15 days from the issuance of this letter.‬
+
+‭4)‬ ‭ ou‬ ‭are‬ ‭required‬ ‭to‬ ‭investigate‬ ‭the‬ ‭reasons‬ ‭for‬ ‭non-conformity‬ ‭by‬ ‭reviewing‬ ‭your‬ Y ‭quality‬‭assurance‬‭system‬‭and‬‭to‬‭take‬‭appropriate‬‭corrective‬‭actions‬‭which‬‭are‬‭relevant‬ ‭to‬ ‭the‬ ‭observed‬ ‭non-conformities.‬ ‭Some‬ ‭probable‬ ‭causes‬ ‭that‬ ‭could‬ ‭have‬ ‭led‬ ‭to‬ ‭occurrence‬‭of‬‭this‬‭non-conformity‬‭may‬‭be‬‭attributed‬‭(but‬‭is‬‭not‬‭limited)‬‭to‬‭...................‬ ‭The‬ ‭quality‬ ‭assurance‬‭system‬‭of‬‭your‬‭firm‬‭requires‬‭review‬‭&‬‭improvement‬‭to‬‭ensure‬ ‭that‬ ‭the‬ ‭actions‬ ‭taken‬ ‭are‬ ‭appropriate‬ ‭and‬ ‭relevant‬ ‭to‬ ‭prevent‬ ‭recurrence‬ ‭of‬ ‭non-conformities observed.‬
+
+‭5)‬ ‭ indly‬ ‭note‬ ‭that‬ ‭in‬ ‭case,‬ ‭complete/satisfactory‬ ‭reply‬ ‭is‬ ‭not‬ ‭received‬ ‭within‬ ‭the‬ K ‭stipulated‬ ‭period‬ ‭or‬ ‭performance‬ ‭during‬ ‭next‬ ‭surveillance‬ ‭visit‬ ‭is‬ ‭also‬ ‭found‬ ‭unsatisfactory,‬ ‭suspension‬ ‭may‬ ‭be‬ ‭imposed‬ ‭in‬ ‭accordance‬ ‭with‬ ‭clause‬ ‭(a)‬ ‭of‬ ‭sub-paragraph‬ ‭(5)‬ ‭of‬ ‭Paragraph‬ ‭11‬ ‭of‬ ‭Scheme‬ ‭-‬ ‭IV‬ ‭of‬ ‭Schedule‬ ‭-‬ ‭II‬ ‭under‬ ‭the‬ ‭BIS‬ ‭(Certification) Regulations, 2018.‬
+
+‭6)‬ ‭Kindly acknowledge the receipt and ensure compliance.‬
+
+‭Thanking you‬ ‭Signature of designated authority‬ ‭(Name of designated authority)‬ ‭Encl: As above‬
+
+ ‭10‬"
+coc_surveillance_guidelines_bis_website_p11,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,11,"‭Annexure - IV‬
+
+ ‭Our Ref: ....... BO/CoC No.‬ ‭Date:‬
+
+ ‭Subject: Notice for suspension of CoC .......……… for………. (Product Name)‬
+
+ ‭M/s‬
+
+ ‭Kind Attn: (Name of the CEO/MD)‬
+
+ ‭Dear Madam/Sir,‬
+
+‭1)‬ ‭ his‬ ‭has‬ ‭reference‬ ‭to‬ ‭the‬ ‭certificate‬ ‭of‬‭conformity‬‭No.‬‭.................................‬‭granted‬‭to‬‭you‬ T ‭by‬ ‭BIS‬ ‭under‬ ‭its‬ ‭conformity‬ ‭assessment‬ ‭Scheme-IV‬ ‭for‬ ‭...........................‬ ‭(Product‬ ‭name)‬ ‭which is valid up to ……………….‬
+
+‭2)‬ ‭ urther,‬‭reference‬‭is‬‭invited‬‭to‬‭discrepancies‬‭observed‬‭during‬‭surveillance‬‭inspections‬‭dated‬ F ‭........................ and our earlier letter dated .......................... (copies enclosed)‬
+
+‭3)‬ ‭ ue‬ ‭to‬ ‭the‬ ‭................................................‬ ‭(BO‬ ‭to‬ ‭mention‬ ‭reasons‬ ‭with‬ ‭details)‬ ‭and‬ ‭in‬ D ‭accordance‬ ‭with‬ ‭the‬ ‭provisions‬ ‭of‬ ‭clause‬ ‭(a)‬ ‭of‬ ‭sub-paragraph‬ ‭5‬ ‭of‬ ‭paragraph‬ ‭11‬ ‭of‬ ‭Scheme-IV‬ ‭of‬ ‭Schedule-II‬ ‭of‬ ‭the‬ ‭BIS‬ ‭(Conformity‬ ‭Assessment)‬ ‭Regulations,‬ ‭2018,‬ ‭it‬ ‭is‬ ‭proposed to suspend the certificate of conformity No. ....................‬
+
+‭4)‬ I‭ n‬ ‭case‬ ‭you‬ ‭have‬ ‭anything‬ ‭to‬ ‭say‬ ‭in‬ ‭this‬ ‭matter,‬ ‭you‬ ‭may‬ ‭submit‬ ‭your‬ ‭explanation‬ ‭to‬ ‭the‬ ‭Bureau‬‭within‬‭10‬‭days‬‭from‬‭the‬‭date‬‭of‬‭issuance‬‭of‬‭this‬‭notice.‬‭In‬‭case‬‭no‬‭reply‬‭is‬‭received‬ ‭or‬‭reply‬‭received‬‭is‬‭incomplete‬‭or‬‭you‬‭fail‬‭to‬‭undertake‬‭corrective‬‭actions,‬‭your‬‭certificate‬‭of‬ ‭conformity will be put under suspension without any further reference to you.‬
+
+‭5)‬ ‭ his‬‭notice‬‭is‬‭being‬‭issued‬‭without‬‭any‬‭prejudice‬‭to‬‭the‬‭right‬‭of‬‭this‬‭Bureau‬‭to‬‭take‬‭any‬‭legal‬ T ‭action under the BIS Act, 2016.‬
+
+‭6)‬ ‭Kindly acknowledge the receipt and ensure compliance.‬
+
+ ‭Thanking You,‬ ‭Signature of designated authority‬ ‭(Name of designated authority)‬ ‭Encl.: As above‬
+
+ ‭11‬"
+coc_surveillance_guidelines_bis_website_p12,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,12,"‭Annexure - V‬
+
+‭Our Ref: ....... BO/Coc No.‬ ‭Date:‬
+
+‭Subject: Suspension of CoC ………………. for …………… (Product name)‬
+
+‭M/s‬
+
+ ‭Kind Attn: (Name of the CEO/MD)‬ ‭Dear Madam/Sir,‬
+
+‭1)‬ ‭ his‬ ‭has‬ ‭reference‬ ‭to‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭No.‬ ‭.......................‬‭granted‬‭by‬‭BIS‬ T ‭under‬ ‭its‬ ‭conformity‬ ‭assessment‬ ‭Scheme-IV‬ ‭for‬ ‭…………………………‬ ‭(Product‬ ‭name) which is valid up to ……………….‬
+
+‭2)‬ ‭ urther,‬ ‭reference‬ ‭is‬ ‭invited‬ ‭to‬ ‭our‬ ‭earlier‬ ‭letter‬ ‭dated‬ ‭..............‬ ‭and‬ ‭discrepancies‬ F ‭observed during surveillance inspection visits dated .......... and .......... (copies enclosed)‬
+
+‭3)‬ ‭ ue‬ ‭to‬ ‭the‬ ‭..................................................‬ ‭(BO‬ ‭to‬ ‭mention‬ ‭reasons‬ ‭and‬ ‭details‬ ‭of‬ D ‭non-conformities)‬‭and‬‭in‬‭accordance‬‭with‬‭the‬‭provisions‬‭of‬‭clause‬‭(a)‬‭of‬‭sub-paragraph‬ ‭5‬ ‭of‬ ‭paragraph‬ ‭11‬ ‭of‬ ‭Scheme-IV‬ ‭of‬ ‭Schedule-II‬ ‭of‬ ‭the‬ ‭BIS‬‭(Conformity‬‭Assessment)‬ ‭Regulations,‬ ‭2018,‬ ‭it‬ ‭has‬ ‭been‬ ‭decided‬ ‭to‬ ‭put‬ ‭the‬ ‭certificate‬ ‭of‬‭conformity‬‭granted‬‭to‬ ‭you under suspension with immediate effect.‬
+
+‭4)‬ ‭ ou‬ ‭are‬ ‭not‬ ‭permitted‬ ‭to‬ ‭use‬ ‭the‬ ‭above‬ ‭mentioned‬ ‭product‬ ‭with‬ ‭certificate‬ ‭of‬ Y ‭conformity‬ ‭including‬ ‭dispatch‬ ‭of‬ ‭any‬ ‭stock‬ ‭in‬ ‭hand.‬ ‭You‬ ‭are,‬ ‭therefore,‬ ‭advised‬ ‭to‬ ‭ensure‬ ‭stoppage‬ ‭of‬ ‭use‬ ‭of‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭for‬ ‭the‬ ‭product‬ ‭with‬ ‭immediate‬ ‭effect‬‭&‬‭confirm‬‭the‬‭same‬‭immediately‬‭by‬‭suitable‬‭means‬‭like‬‭speed‬‭post/e-mail/online‬ ‭portal.‬‭You‬‭are‬‭also‬‭advised‬‭to‬‭submit‬‭us‬‭the‬‭following‬‭details‬‭as‬‭on‬‭the‬‭date‬‭of‬‭receipt‬ ‭of communication:‬ ‭i) Quantity of material held in stock:‬ ‭ii) (a) Batch/Control Unit (C.U.)/Lot No(s). and date(s) of manufacture;‬ ‭(b) Brand;‬ ‭(c) Size/type/grade/variety;‬ ‭iii) Packing details; and‬ ‭iv) Pending Orders for material, if any with purchasers' names and addresses‬
+
+‭5)‬ ‭You are further required to inform BIS within 15 days of the issuance of this letter‬ ‭i) the details of corrective actions taken along with applicable supporting evidence‬ ‭ii)‬ ‭the‬ ‭quantity‬ ‭available‬ ‭in‬ ‭your‬‭stock‬‭pertaining‬‭to‬‭non-conforming‬‭Batch/C.U./Lot‬ ‭No.‬ ‭, failing which it will be presumed that you do not have such material in stock.‬
+
+ ‭12‬"
+coc_surveillance_guidelines_bis_website_p13,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,13,"‭6)‬ K ‭ indly‬‭note‬‭that,‬‭according‬‭to‬‭Paragraph‬‭5‬‭of‬‭Scheme-IV‬‭of‬‭Schedule-II‬‭under‬‭the‬‭BIS‬ ‭(Conformity‬ ‭Assessment)‬ ‭Regulations,‬ ‭2018,‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭fee‬ ‭is‬ ‭payable‬ ‭by‬ ‭you‬ ‭even‬ ‭during‬ ‭the‬ ‭period‬ ‭when‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭is‬ ‭not‬ ‭in‬ ‭operation due to suspension.‬
+
+ ‭7)‬ T ‭ he‬ ‭reply‬ ‭with‬ ‭information‬ ‭sought‬ ‭should‬ ‭be‬ ‭sent‬ ‭immediately‬ ‭by‬ ‭return‬ ‭speed‬ ‭post/e-mail‬‭but‬‭not‬‭later‬‭than‬‭15‬‭days‬‭from‬‭the‬‭issuance‬‭of‬‭this‬‭letter‬‭failing‬‭which‬‭your‬ ‭certificate‬‭of‬‭conformity‬‭will‬‭be‬‭considered‬‭for‬‭cancellation‬‭as‬‭per‬‭Regulation‬‭19‬‭of‬‭the‬ ‭BIS (Conformity Assessment) Regulations, 2018.‬
+
+ ‭8)‬ ‭Kindly acknowledge the receipt and ensure compliance.‬
+
+‭Encl. As above‬ ‭Signature of designated authority‬ ‭(Name of designated authority)‬ ‭Copy to: Quality Control In-charge‬ ‭(Manufacturer Name & Address)‬
+
+ ‭13‬"
+coc_surveillance_guidelines_bis_website_p14,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,14,"‭Annexure - VI‬
+
+ ‭Our Ref: ....... BO/Coc No.‬ ‭Date:‬
+
+ ‭Subject: Notice for cancellation of CoC ……… for ……….(Product Name)‬
+
+ ‭M/s‬
+
+ ‭Kind Attn: (Name of the CEO/MD)‬
+
+ ‭Dear Madam/Sir,‬
+
+ ‭1)‬ T ‭ his‬‭has‬‭reference‬‭to‬‭the‬‭certificate‬‭of‬‭conformity‬‭No.‬‭………..‬‭granted‬‭by‬‭BIS‬‭under‬‭its‬ ‭conformity‬‭assessment‬‭Scheme-IV‬‭for‬‭…………………………‬‭(Product‬‭name)‬‭which‬‭is‬ ‭valid up to ……………….‬
+
+ ‭2)‬ T ‭ he‬ ‭following‬ ‭product‬ ‭non-compliances‬ ‭were‬ ‭observed‬ ‭with‬ ‭regard‬ ‭to‬ ‭the‬ ‭operation‬‭of‬ ‭the‬ ‭above‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭which‬ ‭is‬ ‭in‬‭violation‬‭of‬‭the‬‭provision‬‭of‬‭Regulation‬ ‭........ of the BIS (Conformity Assessment) Regulations, 2018.‬
+
+ ‭(RO/BO to give the reasons for proposed cancellation in this space)‬
+
+‭3)‬ I‭ n‬ ‭view‬ ‭of‬ ‭the‬ ‭above,‬ ‭it‬ ‭is‬ ‭proposed‬ ‭to‬ ‭cancel‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭No.‬ ‭......................‬‭held‬‭by‬‭you‬‭in‬‭accordance‬‭with‬‭the‬‭provisions‬‭under‬‭Section‬‭13‬‭of‬‭the‬‭BIS‬ ‭Act,‬ ‭2016‬ ‭read‬ ‭in‬ ‭conjunction‬ ‭with‬ ‭the‬ ‭provisions‬ ‭of‬ ‭Regulation‬ ‭19‬ ‭of‬ ‭the‬ ‭BIS‬ ‭(Conformity Assessment) Regulations, 2018.‬
+
+‭4)‬ ‭ our‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭is‬ ‭already‬ ‭under‬ ‭suspension‬ ‭w.e.f.‬ ‭............................‬ ‭as‬ Y ‭communicated‬ ‭vide‬ ‭our‬ ‭letter‬ ‭dated‬ ‭.........................‬ ‭It‬ ‭is‬ ‭to‬ ‭reiterate‬ ‭that‬ ‭during‬ ‭the‬ ‭suspension,‬‭you‬‭are‬‭not‬‭permitted‬‭to‬‭use‬‭the‬‭certificate‬‭of‬‭conformity‬‭including‬‭dispatch‬ ‭of‬ ‭any‬ ‭stock‬ ‭in‬ ‭hand.‬‭You‬‭are‬‭advised‬‭to‬‭re-confirm‬‭that‬‭you‬‭have‬‭stopped‬‭usage‬‭of‬‭the‬ ‭certificate‬ ‭of‬‭conformity‬‭by‬‭suitable‬‭means‬‭like‬‭speed‬‭post/e-mail/online‬‭portal.‬‭You‬‭are‬ ‭also‬ ‭advised‬ ‭to‬ ‭submit‬ ‭us‬ ‭the‬ ‭following‬ ‭details‬ ‭as‬ ‭on‬ ‭the‬ ‭date‬ ‭of‬ ‭receipt‬ ‭of‬ ‭communication:‬
+
+ i‭) Quantity of material held in stock‬ ‭ii) (a) Batch No(s) and date(s) of manufacture;‬ ‭(b) Brand;‬ ‭(c) size/type/grade/variety‬ ‭iii) Packing details; and‬ ‭iv) Pending orders, if any with purchasers' name and address‬
+
+ ‭14‬"
+coc_surveillance_guidelines_bis_website_p15,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,15,"‭5)‬ I‭ n‬‭case‬‭you‬‭have‬‭anything‬‭to‬‭say‬‭in‬‭this‬‭matter,‬‭you‬‭may‬‭submit‬‭your‬‭explanation‬‭to‬ ‭the‬‭Bureau‬‭within‬‭21‬‭days‬‭from‬‭the‬‭date‬‭of‬‭issue‬‭of‬‭this‬‭notice,‬‭failing‬‭which,‬‭it‬‭will‬ ‭be‬ ‭presumed‬ ‭that‬ ‭you‬ ‭are‬ ‭no‬ ‭longer‬ ‭interested‬ ‭in‬ ‭continuing‬ ‭the‬ ‭said‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭and‬ ‭as‬ ‭such‬ ‭the‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭will‬ ‭be‬ ‭processed‬ ‭for‬ ‭cancellation without any further reference to you.‬ ‭This‬ ‭notice‬ ‭is‬ ‭being‬ ‭issued‬ ‭without‬ ‭any‬‭prejudice‬‭to‬‭the‬‭right‬‭of‬‭this‬‭Bureau‬‭to‬‭take‬ ‭any legal action under section 29 of the BIS Act, 2016.‬
+
+‭6)‬ I‭ f‬‭you‬‭desire‬‭to‬‭be‬‭heard‬‭in‬‭person‬‭or‬‭through‬‭a‬‭representative‬‭authorised‬‭by‬‭you‬‭on‬ ‭your‬‭behalf,‬‭you‬‭may‬‭seek‬‭an‬‭appointment‬‭for‬‭such‬‭a‬‭hearing‬‭with‬‭the‬‭undersigned,‬ ‭after submitting your written explanation.‬
+
+‭7)‬ ‭Kindly acknowledge the receipt and ensure compliance.‬
+
+ ‭Thanking You,‬
+
+ ‭Signature of designated authority‬ ‭(Name of designated authority)‬ ‭Encl.: As above‬
+
+ ‭15‬"
+coc_surveillance_guidelines_bis_website_p16,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,16,"‭Annexure - VII‬
+
+‭Our Ref: ....... BO/Coc No.‬ ‭Date:‬
+
+‭Subject: Cancellation of CoC ……… for ……….(Product Name)‬
+
+‭M/s‬
+
+ ‭Kind Attn: (Name of the CEO/MD)‬
+
+‭Dear Madam/Sir,‬
+
+‭1)‬ ‭ his‬ ‭has‬ ‭reference‬ ‭to‬ ‭the‬‭certificate‬‭of‬‭conformity‬‭No.‬‭………..‬‭granted‬‭by‬‭BIS‬‭under‬ T ‭its‬ ‭conformity‬ ‭assessment‬ ‭Scheme-IV‬ ‭for‬ ‭…………………………‬ ‭(Product‬ ‭name)‬ ‭which was valid up to ……………….‬
+
+‭2)‬ ‭ urther,‬ ‭reference‬ ‭is‬ ‭invited‬ ‭to‬ ‭cancellation‬ ‭notice‬ ‭dated‬ ‭...........,‬ ‭your‬ ‭reply‬ ‭dated‬ F ‭............ and personal hearing held on .........................‬
+
+‭3)‬ I‭ t‬ ‭has‬ ‭been‬ ‭decided‬ ‭to‬ ‭cancel‬ ‭your‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭after‬ ‭………‬ ‭as‬ ‭per‬ ‭the‬ ‭provision‬ ‭of‬ ‭Regulation‬ ‭........‬ ‭of‬ ‭the‬ ‭BIS‬‭(Conformity‬‭Assessment)‬‭Regulations,‬‭2018‬ ‭due to the following reasons:‬ ‭(BO to mention the reasons)‬
+
+‭4)‬ ‭ our‬ ‭above‬ ‭mentioned‬ ‭certificate‬ ‭of‬ ‭conformity,‬ ‭therefore,‬ ‭stands‬ ‭cancelled‬ ‭w.e.f.‬ Y ‭……....‬ ‭As‬ ‭already‬ ‭informed‬ ‭earlier‬ ‭as‬ ‭well,‬ ‭you‬ ‭are‬ ‭neither‬ ‭entitled‬ ‭to‬ ‭use‬ ‭this‬ ‭certificate‬‭of‬‭conformity‬‭after‬‭………‬‭or‬‭to‬‭claim‬‭in‬‭your‬‭advertisements‬‭or‬‭in‬‭any‬‭other‬ ‭publicity‬ ‭material‬ ‭that‬ ‭you‬ ‭are‬ ‭a‬ ‭holding‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭granted‬ ‭by‬ ‭BIS‬‭on‬ ‭your product after ……….‬
+
+‭5)‬ ‭ ny‬‭publicity‬‭material‬‭such‬‭as‬‭handbills,‬‭pamphlets,‬‭letterheads,‬‭etc.‬‭claiming‬‭that‬‭you‬ A ‭hold‬ ‭BIS‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭for‬ ‭your‬ ‭above‬ ‭mentioned‬ ‭product‬ ‭should‬ ‭be‬ ‭destroyed‬‭or‬‭such‬‭markings‬‭obliterated/defaced‬‭immediately.‬‭This‬‭should‬‭be‬‭confirmed‬ ‭by you at the earliest, positively within 15 days.‬
+
+‭6)‬ ‭Further, you are advised to furnish a statement of your product as follows:‬ ‭i) Quality of material held in stock:‬ ‭a) Type or Grade‬ ‭b) Variety‬ ‭c) Brand, if any‬ ‭ii) Batch/Control Unit (C.U.)/Lot No.‬ ‭iii) Packing‬ ‭iv) Pending orders, if any and purchaser’s name and address‬
+
+ ‭16‬"
+coc_surveillance_guidelines_bis_website_p17,coc_surveillance_guidelines_bis_website,CoC-Surveillance-Guidelines-BIS-Website.pdf,17,"‭7)‬ ‭ lease‬‭note‬‭that‬‭any‬‭material‬‭found‬‭with‬‭BIS‬‭certificate‬‭of‬‭conformity‬‭after‬‭……..,‬‭will‬ P ‭be‬ ‭deemed‬ ‭to‬ ‭be‬ ‭the‬ ‭violation‬ ‭of‬ ‭the‬ ‭provisions‬ ‭of‬ ‭the‬ ‭BIS‬ ‭Act‬ ‭2016,‬ ‭and‬ ‭Rules‬‭and‬ ‭Regulations‬ ‭framed‬ ‭thereunder‬ ‭and‬ ‭action‬ ‭will‬ ‭be‬‭taken‬‭as‬‭per‬‭the‬‭BIS‬‭Act‬‭2016,‬‭and‬ ‭Rules and Regulations framed thereunder.‬
+
+‭8)‬ ‭ ou‬ ‭are‬ ‭advised‬ ‭to‬ ‭surrender‬ ‭the‬ ‭original‬ ‭certificate‬ ‭of‬ ‭conformity‬ ‭along‬ ‭with‬ ‭all‬ ‭the‬ Y ‭attachments/endorsements‬ ‭sheets,‬ ‭etc.‬ ‭and‬ ‭also‬ ‭submit‬ ‭an‬ ‭undertaking‬ ‭to‬ ‭the‬ ‭fact‬‭that‬ ‭you‬ ‭have‬ ‭not‬ ‭retained‬ ‭photocopy‬ ‭of‬ ‭the‬ ‭said‬ ‭documents‬ ‭and‬ ‭shall‬ ‭not‬ ‭produce‬ ‭it‬ ‭anywhere under any circumstances subject to prior permission from BIS in this regard.‬
+
+‭9)‬ I‭ f‬ ‭you‬ ‭are‬ ‭aggrieved‬ ‭by‬ ‭the‬ ‭above‬ ‭order,‬ ‭you‬ ‭may‬ ‭prefer‬ ‭an‬ ‭appeal‬ ‭to‬ ‭the‬ ‭Director‬ ‭General,‬‭Bureau‬‭of‬‭Indian‬‭Standards‬‭within‬‭ninety‬‭days‬‭from‬‭the‬‭date‬‭of‬‭the‬‭order‬‭with‬ ‭a‬‭fee‬‭of‬‭two‬‭thousand‬‭rupees‬‭as‬‭per‬‭provisions‬‭of‬‭section‬‭34‬‭of‬‭the‬‭BIS‬‭Act‬‭2016‬‭read‬ ‭along with Rule 37 of the BIS Rules 2018.‬
+
+‭10)‬ ‭Please acknowledge the receipt and ensure compliance.‬
+
+ ‭Signature of designated authority‬ ‭(Name of designated authority)‬
+
+ ‭17‬"

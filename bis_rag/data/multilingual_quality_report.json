@@ -1,0 +1,879 @@
+{
+  "created_at": "2026-08-30T01:58:23.362703+00:00",
+  "file_count": 57,
+  "document_count": 1793,
+  "files": [
+    {
+      "file": "datasets\\AMENDMENT IV.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 1,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\amendment_iv.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 1,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\BIS-Hallmarking-Regulations-2018-Incorp.-Amdt-1.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 92,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\bis_all_documents.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 439,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\bis_all_products_unified.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 882,
+      "columns": [
+        "product_id",
+        "scheme",
+        "serial_number",
+        "category",
+        "product_or_material",
+        "indian_standard_number",
+        "iso_reference_code",
+        "indian_standard_title",
+        "amendment_qco_notification",
+        "certificate_or_mark",
+        "product_level_certification_process",
+        "consumer_level_guidance",
+        "consumer_verification_method",
+        "status_or_scope_note",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 1524
+    },
+    {
+      "file": "datasets\\bis_extra_consumer_industry.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 33,
+      "columns": [
+        "record_id",
+        "audience",
+        "domain",
+        "question_or_intent",
+        "answer",
+        "keywords",
+        "source_title",
+        "source_url",
+        "source_last_updated",
+        "accessed_on",
+        "provenance_note"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\bis_hallmarking_regulations_2018_incorp_amdt_1.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 92,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\BIS_Large_Product_Category_Dataset_v1.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 3,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\BIS_Product_Material_Category_Starter_Dataset.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 3,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\bis_scheme_i_ii_register.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 844,
+      "columns": [
+        "scheme",
+        "serial_number",
+        "category",
+        "indian_standard",
+        "product_or_material",
+        "notification_or_qco",
+        "marking_or_conformity_route",
+        "source_title",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 643
+    },
+    {
+      "file": "datasets\\BIS_Trusted_Official_Source_Dataset.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 3,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\bis_website_chunks.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 249,
+      "columns": [
+        "chunk_id",
+        "page_id",
+        "section",
+        "title",
+        "answer_text",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 22
+    },
+    {
+      "file": "datasets\\bis_website_faq.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 0,
+      "columns": [
+        "faq_id",
+        "page_id",
+        "section",
+        "question",
+        "answer",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\bis_website_links.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 8584,
+      "columns": [
+        "from_url",
+        "to_url",
+        "anchor"
+      ],
+      "duplicate_rows": 1603,
+      "empty_cells": 265
+    },
+    {
+      "file": "datasets\\bis_website_pages.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 300,
+      "columns": [
+        "page_id",
+        "section",
+        "title",
+        "headings",
+        "text",
+        "source_url",
+        "http_status",
+        "content_hash",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 264
+    },
+    {
+      "file": "datasets\\bis_website_tables.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 19110,
+      "columns": [
+        "table_id",
+        "page_id",
+        "section",
+        "title",
+        "row_number",
+        "cells_json",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 1659
+    },
+    {
+      "file": "datasets\\certification_process_detailed.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 34,
+      "columns": [
+        "process_id",
+        "scheme_or_route",
+        "step_no",
+        "step_title",
+        "detailed_action",
+        "responsible_party",
+        "required_evidence_or_output",
+        "mark_or_certificate",
+        "official_source_title",
+        "official_source_url",
+        "freshness_note"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\CoC-Surveillance-Guidelines-BIS-Website.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 17,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\coc_surveillance_guidelines_bis_website.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 17,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\consumer_focused.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 15,
+      "columns": [
+        "record_id",
+        "audience",
+        "domain",
+        "question_or_intent",
+        "answer",
+        "keywords",
+        "source_title",
+        "source_url",
+        "source_last_updated",
+        "accessed_on",
+        "provenance_note"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\conversion_summary.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 16,
+      "columns": [
+        "document_id",
+        "source_file",
+        "pages",
+        "nonempty_page_records",
+        "status"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Gazette-Notification-dt-02-March-2026-Mandatory-Hallmarking-amendment-order-1-1.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 17,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\gazette_notification_dt_02_march_2026_mandatory_hallmarking_amendment_order_1_1.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 17,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\GoL-Guidelines-WebsiteHosting.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 55,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\gol_guidelines_websitehosting.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 55,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Grant-of-licence-guidelines.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 58,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\grant_of_licence_guidelines.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 58,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Guidelines-for-Enforcement-Activity.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 58,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\Guidelines-SUS-RoS.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 19,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\guidelines_for_enforcement_activity.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 58,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\guidelines_for_refinery_or_mint_08102018.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 9,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Guidelines_for_Refinery_or_Mint_08102018.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 9,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\guidelines_sus_ros.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 19,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Hallmarking-of-gold-jewellery-and-gold-artefacts-order-2026-second-amendments-385-districts-1.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 20,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\hallmarking_of_gold_jewellery_and_gold_artefacts_order_2026_second_amendments_385_districts_1.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 20,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\industry_focused.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 18,
+      "columns": [
+        "record_id",
+        "audience",
+        "domain",
+        "question_or_intent",
+        "answer",
+        "keywords",
+        "source_title",
+        "source_url",
+        "source_last_updated",
+        "accessed_on",
+        "provenance_note"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\List-of-additional-07-districts-covered-under-the-mandatory-hallmarking-in-the-sixth-phase.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 1,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\list_of_additional_07_districts_covered_under_the_mandatory_hallmarking_in_the_sixth_phase.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 1,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\lrs_23062020.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 33,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\LRS_23062020.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 33,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\official_sources.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 8,
+      "columns": [
+        "source_title",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\OTR-Guidelines-Grant-of-Certification-SafetyOfMachinery.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 14,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\otr_guidelines_grant_of_certification_safetyofmachinery.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 14,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Refineries-latest-list.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 4,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\refineries_latest_list.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 4,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Revised-Guidelines-AHC-October-2024.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 38,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\revised_guidelines_ahc_october_2024.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 38,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\Scheme-1-Concession-Extension-31May2029.pdf",
+      "type": "pdf",
+      "status": "ok",
+      "pages": 3,
+      "pages_without_extractable_text": 0
+    },
+    {
+      "file": "datasets\\scheme_1_concession_extension_31may2029.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 3,
+      "columns": [
+        "chunk_id",
+        "document_id",
+        "source_file",
+        "page_number",
+        "text"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\scheme_i_register.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 772,
+      "columns": [
+        "scheme",
+        "serial_number",
+        "category",
+        "indian_standard",
+        "product_or_material",
+        "notification_or_qco",
+        "marking_or_conformity_route",
+        "source_title",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 584
+    },
+    {
+      "file": "datasets\\scheme_ii_register.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 72,
+      "columns": [
+        "scheme",
+        "serial_number",
+        "category",
+        "indian_standard",
+        "product_or_material",
+        "notification_or_qco",
+        "marking_or_conformity_route",
+        "source_title",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 59
+    },
+    {
+      "file": "datasets\\scheme_iv_register.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 2,
+      "columns": [
+        "scheme",
+        "serial_number",
+        "category",
+        "indian_standard",
+        "product_or_material",
+        "specific_requirement",
+        "notification_or_qco",
+        "marking_or_conformity_route",
+        "source_title",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    },
+    {
+      "file": "datasets\\scheme_x_register.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 34,
+      "columns": [
+        "scheme",
+        "serial_number",
+        "indian_standard",
+        "title_of_standard",
+        "product_or_material",
+        "specific_requirement",
+        "notification_or_qco",
+        "marking_or_conformity_route",
+        "source_title",
+        "source_url",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 2
+    },
+    {
+      "file": "datasets\\SIH26107_BIS_RAG_Knowledge_Base (1).xlsx",
+      "type": "excel",
+      "status": "ok",
+      "sheets": [
+        {
+          "sheet": "Scheme-I Compulsory IS List",
+          "rows": 109,
+          "columns": [
+            "BIS Scheme-I (ISI Mark Scheme) — Compulsory Certification Product List",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5",
+            "Unnamed: 6"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 109
+        },
+        {
+          "sheet": "Product Certification FAQ",
+          "rows": 29,
+          "columns": [
+            "BIS Product Certification — Official FAQ (28 Q&A)",
+            "Unnamed: 1",
+            "Unnamed: 2"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 2
+        },
+        {
+          "sheet": "BIS Knowledge Source Directory",
+          "rows": 45,
+          "columns": [
+            "BIS Knowledge Base — Source Directory for RAG Ingestion",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 5
+        },
+        {
+          "sheet": "Source & Coverage Notes",
+          "rows": 11,
+          "columns": [
+            "Source & Coverage Notes",
+            "Unnamed: 1"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 0
+        }
+      ]
+    },
+    {
+      "file": "datasets\\SIH26107_BIS_RAG_Knowledge_Base.xlsx",
+      "type": "excel",
+      "status": "ok",
+      "sheets": [
+        {
+          "sheet": "Scheme-I Compulsory IS List",
+          "rows": 109,
+          "columns": [
+            "BIS Scheme-I (ISI Mark Scheme) — Compulsory Certification Product List",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5",
+            "Unnamed: 6"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 109
+        },
+        {
+          "sheet": "Product Certification FAQ",
+          "rows": 29,
+          "columns": [
+            "BIS Product Certification — Official FAQ (28 Q&A)",
+            "Unnamed: 1",
+            "Unnamed: 2"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 2
+        },
+        {
+          "sheet": "BIS Knowledge Source Directory",
+          "rows": 45,
+          "columns": [
+            "BIS Knowledge Base — Source Directory for RAG Ingestion",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 5
+        },
+        {
+          "sheet": "Source & Coverage Notes",
+          "rows": 11,
+          "columns": [
+            "Source & Coverage Notes",
+            "Unnamed: 1"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 0
+        }
+      ]
+    },
+    {
+      "file": "datasets\\SIH26107_Scheme-I_IS_Numbers.xlsx",
+      "type": "excel",
+      "status": "ok",
+      "sheets": [
+        {
+          "sheet": "Scheme-I Compulsory IS List",
+          "rows": 83,
+          "columns": [
+            "Sr No.",
+            "Category",
+            "IS Number",
+            "Product / Title",
+            "Status",
+            "Governing QC Order / Notification",
+            "Notes"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 81
+        },
+        {
+          "sheet": "Source & caveats",
+          "rows": 7,
+          "columns": [
+            "Field",
+            "Detail"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 0
+        }
+      ]
+    },
+    {
+      "file": "datasets\\source_registry.csv",
+      "type": "csv",
+      "status": "ok",
+      "rows": 9,
+      "columns": [
+        "source_title",
+        "source_url",
+        "source_last_updated",
+        "accessed_on"
+      ],
+      "duplicate_rows": 0,
+      "empty_cells": 0
+    }
+  ]
+}

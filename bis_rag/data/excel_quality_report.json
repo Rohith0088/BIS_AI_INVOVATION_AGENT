@@ -1,0 +1,163 @@
+{
+  "created_at": "2026-08-29T23:10:53.390021Z",
+  "file_count": 3,
+  "document_count": 40,
+  "files": [
+    {
+      "file": "datasets\\SIH26107_BIS_RAG_Knowledge_Base (1).xlsx",
+      "status": "ok",
+      "file_hash": "7550cac9dc90cd2c474d4119647aa2a860da1d422455417fe251427d77197a4b",
+      "sheets": [
+        {
+          "sheet": "Scheme-I Compulsory IS List",
+          "rows": 109,
+          "columns": [
+            "BIS Scheme-I (ISI Mark Scheme) — Compulsory Certification Product List",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5",
+            "Unnamed: 6"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 109,
+          "status": "ok"
+        },
+        {
+          "sheet": "Product Certification FAQ",
+          "rows": 29,
+          "columns": [
+            "BIS Product Certification — Official FAQ (28 Q&A)",
+            "Unnamed: 1",
+            "Unnamed: 2"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 2,
+          "status": "ok"
+        },
+        {
+          "sheet": "BIS Knowledge Source Directory",
+          "rows": 45,
+          "columns": [
+            "BIS Knowledge Base — Source Directory for RAG Ingestion",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 5,
+          "status": "ok"
+        },
+        {
+          "sheet": "Source & Coverage Notes",
+          "rows": 11,
+          "columns": [
+            "Source & Coverage Notes",
+            "Unnamed: 1"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 0,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "file": "datasets\\SIH26107_BIS_RAG_Knowledge_Base.xlsx",
+      "status": "ok",
+      "file_hash": "7550cac9dc90cd2c474d4119647aa2a860da1d422455417fe251427d77197a4b",
+      "sheets": [
+        {
+          "sheet": "Scheme-I Compulsory IS List",
+          "rows": 109,
+          "columns": [
+            "BIS Scheme-I (ISI Mark Scheme) — Compulsory Certification Product List",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5",
+            "Unnamed: 6"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 109,
+          "status": "ok"
+        },
+        {
+          "sheet": "Product Certification FAQ",
+          "rows": 29,
+          "columns": [
+            "BIS Product Certification — Official FAQ (28 Q&A)",
+            "Unnamed: 1",
+            "Unnamed: 2"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 2,
+          "status": "ok"
+        },
+        {
+          "sheet": "BIS Knowledge Source Directory",
+          "rows": 45,
+          "columns": [
+            "BIS Knowledge Base — Source Directory for RAG Ingestion",
+            "Unnamed: 1",
+            "Unnamed: 2",
+            "Unnamed: 3",
+            "Unnamed: 4",
+            "Unnamed: 5"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 5,
+          "status": "ok"
+        },
+        {
+          "sheet": "Source & Coverage Notes",
+          "rows": 11,
+          "columns": [
+            "Source & Coverage Notes",
+            "Unnamed: 1"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 0,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "file": "datasets\\SIH26107_Scheme-I_IS_Numbers.xlsx",
+      "status": "ok",
+      "file_hash": "fd6d4572b87c9ea2f84de49c40f5b382a46baf96bd2e5ca51ef27fb4497c725e",
+      "sheets": [
+        {
+          "sheet": "Scheme-I Compulsory IS List",
+          "rows": 83,
+          "columns": [
+            "Sr No.",
+            "Category",
+            "IS Number",
+            "Product / Title",
+            "Status",
+            "Governing QC Order / Notification",
+            "Notes"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 81,
+          "status": "ok"
+        },
+        {
+          "sheet": "Source & caveats",
+          "rows": 7,
+          "columns": [
+            "Field",
+            "Detail"
+          ],
+          "duplicate_rows": 0,
+          "empty_cells": 0,
+          "status": "ok"
+        }
+      ]
+    }
+  ]
+}

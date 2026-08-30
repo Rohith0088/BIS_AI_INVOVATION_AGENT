@@ -1,0 +1,33 @@
+{
+  "pages": 300,
+  "links": 8584,
+  "starts": [
+    "https://www.bis.gov.in/?lang=en",
+    "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en",
+    "https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en",
+    "https://www.bis.gov.in/hallmarking-overview/?lang=en",
+    "https://www.bis.gov.in/hallmarking-overview/hallmarking-faqs/hallmarking-faq/?lang=en",
+    "https://www.bis.gov.in/consumer-overview/?lang=en",
+    "https://www.bis.gov.in/consumer-overview/for-consumers-faq/?lang=en",
+    "https://www.bis.gov.in/laboratorys/laboratory-services-overview/?lang=en",
+    "https://www.bis.gov.in/laboratorys/laboratory-services-overview/laboratory-faq/?lang=en",
+    "https://www.bis.gov.in/training-2/training-programmes/?lang=en",
+    "https://www.bis.gov.in/the-bureau/bis-act-rules-and-regulations/?lang=en",
+    "https://www.bis.gov.in/scheme-x-certification/faq-scheme-x-certification/?lang=en",
+    "https://www.bis.gov.in/scheme-x-certification/product-specific-information/?lang=en",
+    "https://www.bis.gov.in/consumer-overview/online-complaint-registration/?lang=en",
+    "https://www.bis.gov.in/consumer-overview/citizen-charter/?lang=en",
+    "https://www.bis.gov.in/enforcement-activities/?lang=en"
+  ],
+  "allowed_hosts": [
+    "bis.gov.in",
+    "crsbis.in",
+    "lims.bis.gov.in",
+    "manakonline.in",
+    "services.bis.gov.in",
+    "standards.bis.gov.in",
+    "www.bis.gov.in",
+    "www.crsbis.in",
+    "www.manakonline.in"
+  ]
+}
