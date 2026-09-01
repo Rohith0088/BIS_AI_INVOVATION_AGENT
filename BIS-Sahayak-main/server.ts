@@ -12,7 +12,7 @@ import { BIS_STANDARDS } from "./src/data/bisDatabase";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT || 3000);
 const DB_NAME = process.env.DB_NAME || "bis_sahayak";
 
 const dbPool = mysql.createPool({
