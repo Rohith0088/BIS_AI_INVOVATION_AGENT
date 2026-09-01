@@ -46,6 +46,27 @@ app.add_middleware(
  )
 
 
+@app.get("/")
+def root():
+    return {
+        "service": "BIS Grounded RAG API",
+        "status": "ok",
+        "message": "Use /health or /answer to query the BIS evidence engine.",
+        "endpoints": ["/health", "/api/health", "/answer", "/api/answer"],
+    }
+
+
+@app.get("/api/health")
+def api_health():
+    return {
+        "ok": True,
+        "status": "ok",
+        "chunks": len(records),
+        "model": MODEL,
+        "min_score": MIN_SCORE,
+    }
+
+
 def load_index():
     if not INDEX_PATH.exists():
         raise RuntimeError(
@@ -265,5 +286,11 @@ def health():
 
 @app.post("/answer")
 def answer(request: AskRequest):
+    evidence = retrieve(request.question)
+    return answer_with_evidence(request, evidence)
+
+
+@app.post("/api/answer")
+def api_answer(request: AskRequest):
     evidence = retrieve(request.question)
     return answer_with_evidence(request, evidence)
