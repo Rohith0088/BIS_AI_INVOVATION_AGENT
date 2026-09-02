@@ -181,7 +181,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ mode, onLogin, onSignup, o
             {mode === 'login' ? 'Need an account?' : 'Already have an account?'}{' '}
             <button
               type="button"
-              onClick={() => (mode === 'login' ? onSignup?.() : onLogin?.({ email: '', password: '' }))}
+              onClick={() => (
+                mode === 'login'
+                  ? onSignup?.({ email: '', password: '', name: '', organisation: '', role: '', region: '' })
+                  : onLogin?.({ email: '', password: '' })
+              )}
               className="font-semibold text-[#1a4f9c] hover:text-[#173d7d]"
             >
               {mode === 'login' ? 'Request access' : 'Sign in'}
