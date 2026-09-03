@@ -2,6 +2,8 @@
 
 BIS Sahayak is an evidence-oriented assistant for Bureau of Indian Standards (BIS) information. It combines a React and Express application with a Python retrieval-augmented generation (RAG) pipeline for BIS datasets, IS-number discovery, certification guidance, and user chat history.
 
+https://bis-sahayak-frontend.onrender.com/
+
 ## Project Overview
 
 - React 19 and Vite frontend in `BIS-Sahayak-main/`
