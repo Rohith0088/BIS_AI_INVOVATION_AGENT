@@ -105,6 +105,7 @@ async function initializeDatabase() {
     console.log("Supabase PostgreSQL database initialized");
   } catch (error) {
     console.error("Supabase PostgreSQL initialization failed:", error);
+    throw error;
   }
 }
 
