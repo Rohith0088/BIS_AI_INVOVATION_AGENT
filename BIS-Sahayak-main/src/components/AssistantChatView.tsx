@@ -92,7 +92,13 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
   onOpenFeedback,
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const conversationIdRef = useRef(crypto.randomUUID());
+  const conversationIdRef = useRef((() => {
+    const storageKey = userId ? `bis_active_conversation_${userId}` : 'bis_active_conversation_guest';
+    const storedConversationId = sessionStorage.getItem(storageKey);
+    const conversationId = storedConversationId || crypto.randomUUID();
+    sessionStorage.setItem(storageKey, conversationId);
+    return conversationId;
+  })());
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'initial-user-msg',
@@ -152,6 +158,43 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
     scrollToBottom();
   }, [messages, loading]);
 
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+
+    let cancelled = false;
+    void fetch(`/api/chat/messages/${conversationIdRef.current}?userId=${encodeURIComponent(userId)}`)
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`Chat history fetch failed with HTTP ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (cancelled || !Array.isArray(data.messages) || data.messages.length === 0) {
+          return;
+        }
+
+        setMessages(data.messages.map((message: any) => ({
+          id: String(message.id),
+          sender: message.sender,
+          text: message.message_text,
+          timestamp: new Date(message.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          mode: message.mode,
+          confidence: message.confidence || undefined,
+          citedClauses: message.cited_clauses || undefined,
+          sourceCard: message.source_card || undefined,
+          suggestedActions: message.suggested_actions || undefined,
+        })));
+      })
+      .catch((error) => console.warn('Unable to load chat history:', error));
+
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+
   // Handle initial prompt passed from Dashboard
   useEffect(() => {
     if (initialPrompt && initialPrompt.trim().length > 0) {
@@ -200,6 +243,19 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
 
       setAnswer(result.answer);
       setCitations(result.citations || []);
+      const assistantMessage: ChatMessage = {
+        id: `assistant-${Date.now()}`,
+        sender: 'assistant',
+        text: result.answer,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        confidence: result.confidence && result.confidence >= 0.8 ? 'high' : 'medium',
+        citedClauses: result.citations?.map((citation) => ({
+          clause: citation.clause_ref || 'Source',
+          description: citation.title || citation.text || citation.url || 'Retrieved BIS source',
+        })),
+        mode: appMode,
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
       if (userId) {
         void saveChatMessage({
           conversationId: conversationIdRef.current,

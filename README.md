@@ -29,7 +29,7 @@ bis_rag/data/       Generated indexes and local retrieval data
 
 - Node.js 20 or newer
 - Python 3.10 or newer
-- MySQL 8 or compatible MySQL server
+- A Supabase PostgreSQL project
 - OpenRouter API key for live AI responses
 
 ## Configuration
@@ -39,11 +39,8 @@ Create local environment files from the variable names below. Never commit real 
 `BIS-Sahayak-main/.env`:
 
 ```dotenv
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=your_database_password
-DB_NAME=bis_sahayak
+DATABASE_URL=postgresql://postgres:your_url_encoded_password@db.your-project-ref.supabase.co:5432/postgres
+DATABASE_SSL=true
 OPENROUTER_API_KEY=your_openrouter_key
 OPENROUTER_API_BASE=https://openrouter.ai/api/v1
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
@@ -79,7 +76,7 @@ npm run dev
 
 Open `http://127.0.0.1:3000/`.
 
-The server initializes the `bis_sahayak` database tables for users, standards, and chat messages. Ensure MySQL is running and the database credentials are valid.
+Run the SQL in `BIS-Sahayak-main/supabase/schema.sql` in the Supabase SQL Editor. Then set `DATABASE_URL` to the Supabase direct PostgreSQL connection string. The server also creates or updates the tables on startup for convenience. The publishable key is not required by this server because authentication remains in the Express API with bcrypt; never expose the direct connection string in browser code.
 
 ## Deploy on Render
 
