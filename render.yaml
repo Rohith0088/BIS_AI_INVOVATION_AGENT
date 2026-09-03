@@ -19,3 +19,24 @@ services:
         value: https://openrouter.ai/api/v1
       - key: OPENROUTER_MODEL
         value: openai/gpt-4o-mini
+
+  - type: web
+    name: bis-sahayak-rag-agent
+    runtime: python
+    rootDir: bis_rag
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_API_BASE
+        value: https://openrouter.ai/api/v1
+      - key: BIS_LLM_MODEL
+        value: openai/gpt-4o-mini
+      - key: BIS_MIN_SCORE
+        value: "0.16"
+      - key: BIS_TOP_K
+        value: "6"
+      - key: BIS_INDEX
+        value: data/index.json
