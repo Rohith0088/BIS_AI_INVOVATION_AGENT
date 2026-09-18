@@ -168,7 +168,7 @@ export const BISLogo: React.FC<BISLogoProps> = ({
               y="38"
               fill="#10233F"
               fontFamily="Inter, Arial, sans-serif"
-              fontSize="20"
+              fontSize="25"
               fontWeight="700"
               letterSpacing="-0.5"
             >
