@@ -18,7 +18,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   const recentStandards = BIS_STANDARDS.slice(0, 4);
 
   return (
-    <main className="flex-grow px-4 md:px-8 lg:px-10 pt-8 pb-24 md:pb-12 space-y-8 max-w-[1280px] mx-auto w-full animate-fadeIn">
+    <main className="flex-grow px-4 md:px-8 lg:px-10 pt-8 pb-24 md:pb-12 space-y-8 max-w-[1280px] mx-auto w-full animate-fadeIn stitch-page stitch-dashboard">
       {/* Welcome Header */}
       <section className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 flag-accent pl-4">
         <div className="space-y-2">
@@ -44,7 +44,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       {/* AI Assistant Entry Point (Exact match for the highlighted hero card) */}
       <section
         onClick={() => onNavigate('assistant')}
-        className="bg-[#17253a] rounded-xl p-5 md:p-7 border border-[#72de5c]/25 ai-glow relative overflow-hidden group cursor-pointer transition-all hover:border-[#72de5c]/60 hover:bg-[#1b2d43]"
+        className="bg-[#17253a] rounded-xl p-5 md:p-7 border border-[#72de5c]/25 ai-glow relative overflow-hidden group cursor-pointer transition-all hover:border-[#72de5c]/60 hover:bg-[#1b2d43] hero-panel"
       >
         {/* Ambient Glow */}
         <div className="absolute -right-10 -top-10 w-36 h-36 bg-[#72de5c]/10 rounded-full blur-2xl group-hover:bg-[#72de5c]/25 transition-all"></div>

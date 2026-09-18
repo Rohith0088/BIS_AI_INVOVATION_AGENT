@@ -19,6 +19,51 @@ export type RagResponse = {
   confidence?: number;
 };
 
+const AnimatedResponseText: React.FC<{ text: string }> = ({ text }) => {
+  const paragraphs = text.split('\n').filter((paragraph) => paragraph.trim().length > 0);
+  let revealIndex = 0;
+
+  const renderAnimatedParagraph = (paragraph: string, paragraphIndex: number) => {
+    const parts = paragraph.split(/(\*\*.*?\*\*)/g);
+
+    return (
+      <p key={`${paragraph}-${paragraphIndex}`} className="magic-reveal-line">
+        {parts.map((part, partIndex) => {
+          const isHighlight = part.startsWith('**') && part.endsWith('**');
+          const content = isHighlight ? part.slice(2, -2) : part;
+          const words = content.split(/(\s+)/);
+
+          return words.map((word, wordIndex) => {
+            if (!word) return null;
+            const currentIndex = revealIndex;
+            revealIndex += 1;
+
+            return (
+              <span
+                key={`${partIndex}-${wordIndex}-${currentIndex}`}
+                className={isHighlight ? 'magic-response-highlight magic-response-token' : 'magic-response-token'}
+                style={{ animationDelay: `${currentIndex * 18 + paragraphIndex * 70}ms` }}
+              >
+                {word}
+              </span>
+            );
+          });
+        })}
+      </p>
+    );
+  };
+
+  return (
+    <div className="magic-response-text">
+      {paragraphs.length === 0 ? (
+        <p className="magic-reveal-line">{text}</p>
+      ) : (
+        paragraphs.map(renderAnimatedParagraph)
+      )}
+    </div>
+  );
+};
+
 export async function askBISRag(
   question: string,
   mode: 'consumer' | 'industry' = 'consumer',
@@ -99,47 +144,7 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
     sessionStorage.setItem(storageKey, conversationId);
     return conversationId;
   })());
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: 'initial-user-msg',
-      sender: 'user',
-      text: 'What are the standard requirements for packaged drinking water in India?',
-      timestamp: '10:42 AM',
-    },
-    {
-      id: 'initial-ai-msg',
-      sender: 'assistant',
-      text: `In India, packaged drinking water (other than natural mineral water) is strictly regulated by the Bureau of Indian Standards (BIS) under **IS 14543**. It is a mandatory certification product under Quality Control Orders (QCOs).\n\nThe standard specifies rigorous requirements for physical, chemical, and microbiological parameters to ensure human safety. Key requirements include mandatory multi-stage treatment (reverse osmosis, ozonation, UV treatment), zero tolerance for coliform bacteria and pathogens, and strict limits on pesticide residues (max 0.0001 mg/L individual, max 0.0005 mg/L total).`,
-      timestamp: '10:42 AM',
-      confidence: 'high',
-      intent: 'Standards guidance',
-      warnings: ['Informational explanation only. Confirm current requirements in the applicable BIS notification before making a compliance decision.'],
-      nextActions: ['Review the cited clauses', 'Confirm the applicable product scope', 'Use the official BIS route for certification decisions'],
-      citedClauses: [
-        {
-          clause: 'Clause 4.1',
-          description: 'Treatment requirements (filtration, reverse osmosis, ozonation, and UV disinfection).',
-        },
-        {
-          clause: 'Table 2 & 3',
-          description: 'Chemical requirements (toxic substances, bromate limits, and pesticide residues).',
-        },
-        {
-          clause: 'Table 4',
-          description: 'Microbiological parameters (zero E. coli, Coliform, Pseudomonas aeruginosa).',
-        },
-      ],
-      sourceCard: {
-        isCode: 'IS 14543:2016',
-        title: 'Packaged Drinking Water (Other than Natural Mineral Water) — Specification',
-        category: 'Food & Agriculture / Mandatory QCO',
-      },
-      suggestedActions: [
-        { label: 'Download Excerpt', actionType: 'download', payload: 'IS 14543:2016' },
-        { label: 'Compare with ISO', actionType: 'compare', payload: 'IS 14543:2016' },
-      ],
-    },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
@@ -296,7 +301,57 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-[calc(100vh-4rem)] relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#152031]/50 via-[#081425] to-[#081425]">
+    <div className="assistant-workspace relative">
+      <div className="assistant-topbar">
+        <div className="assistant-branding">
+          <div className="assistant-avatar">
+            <span className="material-symbols-outlined">auto_awesome</span>
+          </div>
+          <div className="assistant-meta">
+            <div className="assistant-title-row">
+              <span className="assistant-title">AI Assistant</span>
+              <span className="assistant-badge">Online</span>
+            </div>
+            <span className="assistant-subtitle">BIS guidance engine</span>
+          </div>
+        </div>
+
+        <div className="assistant-header-actions">
+          <button type="button" onClick={() => setQuestion('')} className="assistant-header-button">
+            <span className="material-symbols-outlined">add</span>
+            New conversation
+          </button>
+          <button type="button" className="assistant-header-icon" aria-label="Search conversation">
+            <span className="material-symbols-outlined">search</span>
+          </button>
+          <button type="button" className="assistant-header-icon" aria-label="Assistant settings">
+            <span className="material-symbols-outlined">settings</span>
+          </button>
+        </div>
+      </div>
+
+      <aside className="assistant-session-rail hidden lg:flex">
+        <button className="assistant-new-chat" type="button" onClick={() => setQuestion('')}>
+          <span className="material-symbols-outlined text-[18px]">add</span>
+          New Chat
+        </button>
+        <div className="assistant-session-search">
+          <span className="material-symbols-outlined text-[16px]">search</span>
+          <input aria-label="Search sessions" placeholder="Search sessions..." />
+        </div>
+        <span className="assistant-session-label">Recent conversations</span>
+        {['Certification for electric fans', 'Standards for food packaging', 'ISI mark requirements', 'Testing labs in Telangana', 'CRS certification'].map((session, index) => (
+          <button className={`assistant-session-item ${index === 0 ? 'is-active' : ''}`} key={session} type="button">
+            <span className="material-symbols-outlined text-[16px]">{index === 0 ? 'chat_bubble' : 'chat_bubble_outline'}</span>
+            <span>{session}</span>
+            <small>{index === 0 ? 'Today' : index === 1 ? 'Yesterday' : `Sep ${14 - index}`}</small>
+          </button>
+        ))}
+        <div className="assistant-sync-card">
+          <span className="material-symbols-outlined text-[18px]">verified_user</span>
+          <div><strong>Live BIS Sync</strong><small>Synced with Gazette v2024.3</small></div>
+        </div>
+      </aside>
       {/* Scanning Progress Bar Animation (when searching/analyzing) */}
       {loading && (
         <div className="absolute top-0 left-0 w-full h-[2.5px] bg-white/5 z-20 overflow-hidden">
@@ -304,14 +359,34 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
         </div>
       )}
 
-      {/* Chat Messages Canvas */}
-      <div className="flex-1 overflow-y-auto chat-scroll p-4 md:p-8 pb-40 flex justify-center" style={{ maxHeight: 'calc(100vh - 280px)', overflowY: 'auto' }}>
-        <div className="w-full max-w-[800px] flex flex-col gap-6 pb-6" ref={messagesEndRef}>
-          {/* Welcome / System Status Message */}
-          <div className="text-center text-[#7b8394] font-mono-code text-xs opacity-80 my-2 py-1.5 px-4 bg-[#111c2d]/80 rounded-full border border-white/5 mx-auto flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#72de5c] animate-pulse"></span>
+      <div className="assistant-chat-panel flex-1 overflow-y-auto chat-scroll p-4 md:p-8 pb-40" style={{ maxHeight: 'calc(100vh - 280px)', overflowY: 'auto' }}>
+        <div className="w-full max-w-[850px] mx-auto flex flex-col gap-6 pb-6" ref={messagesEndRef}>
+          <div className="assistant-status-pill">
+            <span className="assistant-status-dot"></span>
             <span>Session initialized. BIS Standards Database connected.</span>
           </div>
+
+          {messages.length === 0 && !loading && (
+            <div className="assistant-empty-state">
+              <div className="assistant-empty-mark"><span className="material-symbols-outlined">auto_awesome</span></div>
+              <h2>How can I help you today?</h2>
+              <p>Ask for standards, certification steps, testing labs, or product compliance guidance.</p>
+              <div className="assistant-faq-grid">
+                {[
+                  'Which standard applies to electric fans?',
+                  'How do I get ISI certification?',
+                  'What is BIS certification?',
+                  'What is the difference between IS and ISO?',
+                  'How can I find a BIS testing laboratory?',
+                  'Is BIS certification mandatory for my product?',
+                ].map((prompt) => (
+                  <button key={prompt} type="button" onClick={() => void handleSendMessage(prompt)}>
+                    <span>{prompt}</span><span aria-hidden="true">&#8594;</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Messages Loop */}
           {messages.map((msg) => {
@@ -356,36 +431,15 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
                 )}
 
                 {/* Main AI Bubble */}
-                <div className="bg-[#121a28] text-[#d8e3fb] px-5 md:px-6 py-5 rounded-2xl rounded-tl-sm border border-white/10 max-w-[95%] md:max-w-[92%] shadow-md w-full relative group">
+                <div className="assistant-message-bubble bg-[#111a29] text-[#d8e3fb] px-5 md:px-6 py-5 rounded-2xl rounded-tl-sm border border-white/10 max-w-[95%] md:max-w-[92%] shadow-md w-full relative group">
                   <div className="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-white/10 flag-accent pl-3">
                     <span className="eyebrow">Verified response brief</span>
                     {msg.intent && <span className="px-2 py-1 rounded bg-[#1f2a3c] border border-white/10 text-[10px] font-mono-code text-[#bfc6da]">{msg.intent}</span>}
                     {msg.clarificationNeeded && <span className="px-2 py-1 rounded bg-[#d7790d]/15 border border-[#d7790d]/30 text-[10px] font-mono-code text-[#ffb77a]">Clarification needed</span>}
                   </div>
                   <div className="eyebrow mb-2">Summary</div>
-                  {/* Explanation Text formatted with line breaks */}
-                  <div className="font-hanken text-sm md:text-base text-[#d8e3fb] mb-4 leading-relaxed whitespace-pre-line">
-                    {msg.text.split('\n').map((paragraph, pIdx) => {
-                      if (!paragraph.trim()) return <div key={pIdx} className="h-2" />;
-                      
-                      // Highlight bold words like **IS 14543**
-                      const parts = paragraph.split(/(\*\*.*?\*\*)/g);
-                      return (
-                        <p key={pIdx} className="mb-2 last:mb-0">
-                          {parts.map((part, partIdx) => {
-                            if (part.startsWith('**') && part.endsWith('**')) {
-                              const clean = part.slice(2, -2);
-                              return (
-                                <strong key={partIdx} className="font-bold text-[#ffb77a] font-space">
-                                  {clean}
-                                </strong>
-                              );
-                            }
-                            return part;
-                          })}
-                        </p>
-                      );
-                    })}
+                  <div className="assistant-message-content font-hanken text-sm md:text-base text-[#d8e3fb] mb-4 leading-relaxed">
+                    <AnimatedResponseText text={msg.text} />
                   </div>
 
                   {(msg.warnings && msg.warnings.length > 0) && (
@@ -523,7 +577,7 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
                 <span className="material-symbols-outlined text-sm animate-spin">sync</span>
                 <span>Searching BIS repository & Gazette QCO databases...</span>
               </div>
-              <div className="bg-[#121a28] text-[#c6c6cc] px-5 py-4 rounded-2xl rounded-tl-sm border border-white/10 max-w-[80%] flex items-center gap-3">
+              <div className="assistant-loading-bubble bg-[#121a28] text-[#c6c6cc] px-5 py-4 rounded-2xl rounded-tl-sm border border-white/10 max-w-[80%] flex items-center gap-3">
                 <div className="flex gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-[#72de5c] animate-bounce" style={{ animationDelay: '0ms' }}></div>
                   <div className="w-2 h-2 rounded-full bg-[#72de5c] animate-bounce" style={{ animationDelay: '150ms' }}></div>
@@ -539,41 +593,39 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
       </div>
 
       {/* Input Area Anchored to Bottom */}
-      <div className="absolute bottom-0 left-0 w-full bg-transparent pt-6 pb-4 md:pb-6 px-4 md:px-8 z-20">
-        <div className="max-w-[800px] mx-auto w-full flex flex-col gap-2.5">
-          {/* Floating Next Actions Chips */}
+      <div className="assistant-composer-wrap absolute bottom-0 left-0 w-full bg-transparent pt-6 pb-4 md:pb-6 px-4 md:px-8 z-20">
+        <div className="max-w-[850px] mx-auto w-full flex flex-col gap-2.5">
           <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar -mx-2 px-2">
             <button
               onClick={() => handleSendMessage('What are the mandatory testing standards for toys under IS 9873?')}
-              className="whitespace-nowrap px-3.5 py-1.5 rounded-full border border-white/20 text-[#c6c6cc] font-space text-xs font-bold hover:border-[#ffb77a] hover:text-[#ffb77a] transition-all bg-[#1f2a3c]/80 backdrop-blur-md flex-shrink-0 flex items-center gap-1"
+              className="assistant-suggestion-pill"
             >
               <span className="material-symbols-outlined text-[14px]">toys</span>
               Find Standard for Toys
             </button>
             <button
               onClick={onOpenLicenceVerifier}
-              className="whitespace-nowrap px-3.5 py-1.5 rounded-full border border-white/20 text-[#c6c6cc] font-space text-xs font-bold hover:border-[#ffb77a] hover:text-[#ffb77a] transition-all bg-[#1f2a3c]/80 backdrop-blur-md flex-shrink-0 flex items-center gap-1"
+              className="assistant-suggestion-pill"
             >
               <span className="material-symbols-outlined text-[14px]">verified</span>
               Verify Licence Number
             </button>
             <button
               onClick={onOpenFeedback}
-              className="whitespace-nowrap px-3.5 py-1.5 rounded-full border border-white/20 text-[#c6c6cc] font-space text-xs font-bold hover:border-[#ffb77a] hover:text-[#ffb77a] transition-all bg-[#1f2a3c]/80 backdrop-blur-md flex-shrink-0 flex items-center gap-1"
+              className="assistant-suggestion-pill"
             >
               <span className="material-symbols-outlined text-[14px]">gavel</span>
               File Complaint
             </button>
             <button
               onClick={() => handleSendMessage('Explain concrete grade classification and durability criteria under IS 456:2000')}
-              className="whitespace-nowrap px-3.5 py-1.5 rounded-full border border-white/20 text-[#c6c6cc] font-space text-xs font-bold hover:border-[#ffb77a] hover:text-[#ffb77a] transition-all bg-[#1f2a3c]/80 backdrop-blur-md flex-shrink-0 flex items-center gap-1"
+              className="assistant-suggestion-pill"
             >
               <span className="material-symbols-outlined text-[14px]">foundation</span>
               IS 456 Concrete Code
             </button>
           </div>
 
-          {/* Active Attachment Chip */}
           {activeAttachment && (
             <div className="flex items-center gap-2 p-2 bg-[#1f2a3c] rounded-lg border border-[#72de5c]/40 text-xs font-mono-code text-[#72de5c]">
               <span className="material-symbols-outlined text-sm">attach_file</span>
@@ -587,7 +639,6 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
             </div>
           )}
 
-          {/* Hidden File Input */}
           <input
             type="file"
             ref={fileInputRef}
@@ -596,8 +647,7 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
             accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.txt"
           />
 
-          {/* Chat Input Field */}
-          <div className="relative flex items-end w-full bg-[#152031] rounded-2xl md:rounded-3xl border border-white/10 shadow-lg focus-within:border-[#72de5c] focus-within:shadow-[0_0_15px_rgba(114,222,92,0.2)] transition-all overflow-hidden group">
+          <div className="assistant-composer relative flex items-end w-full bg-[#152031] rounded-2xl md:rounded-3xl border border-white/10 shadow-lg focus-within:border-[#72de5c] focus-within:shadow-[0_0_15px_rgba(114,222,92,0.2)] transition-all overflow-hidden group">
             <button
               onClick={() => fileInputRef.current?.click()}
               className="p-3.5 md:p-4 text-[#c6c6cc] hover:text-[#ffb77a] transition-colors flex-shrink-0 self-end"
@@ -622,14 +672,14 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
                 }
               }}
               rows={1}
-              className="flex-1 bg-transparent border-none focus:outline-none focus:ring-0 text-[#d8e3fb] font-hanken text-sm md:text-base py-3.5 px-2 resize-none max-h-32 min-h-[50px] w-full"
+              className="assistant-textarea flex-1 bg-transparent border-none focus:outline-none focus:ring-0 text-[#d8e3fb] font-hanken text-sm md:text-base py-3.5 px-2 resize-none max-h-32 min-h-[50px] w-full"
             />
 
             <div className="p-2 self-end">
               <button
                 onClick={() => void handleSendMessage()}
                 disabled={loading || (!question.trim() && !activeAttachment)}
-                className={`p-2.5 md:p-3 rounded-full transition-all shadow-md flex items-center justify-center transform active:scale-95 ${
+                className={`assistant-send-button p-2.5 md:p-3 rounded-full transition-all shadow-md flex items-center justify-center transform active:scale-95 ${
                   question.trim() || activeAttachment
                     ? 'bg-[#d7790d] text-[#141c2a] hover:bg-[#ffb77a]'
                     : 'bg-[#2a3548] text-[#7b8394] cursor-not-allowed'

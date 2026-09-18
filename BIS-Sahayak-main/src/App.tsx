@@ -18,8 +18,10 @@ import { LicenceVerifierModal } from './components/LicenceVerifierModal';
 import { CompareIsoModal } from './components/CompareIsoModal';
 import { ExcerptViewerModal } from './components/ExcerptViewerModal';
 import { FeedbackSupportModal } from './components/FeedbackSupportModal';
+import StitchApp from './StitchApp';
+import { supabase } from './lib/supabase';
 
-export default function App() {
+function LegacyApp() {
   const [currentTab, setCurrentTab] = useState<NavigationTab>('home');
   const [appMode, setAppMode] = useState<AppMode>('consumer');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -59,6 +61,7 @@ export default function App() {
       role: '',
       region: '',
       accessType: 'Enterprise portal',
+      profileImage: '',
     };
   });
 
@@ -113,6 +116,51 @@ export default function App() {
     }
   }, [isAuthenticated, screen]);
 
+  useEffect(() => {
+    if (!supabase) {
+      return;
+    }
+
+    const syncOAuthUser = async (oauthUser: { email?: string; user_metadata?: Record<string, unknown> }) => {
+      if (!oauthUser.email) {
+        return;
+      }
+
+      const response = await fetch('/api/auth/oauth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: oauthUser.email,
+          name: oauthUser.user_metadata?.full_name || oauthUser.user_metadata?.name || '',
+          avatarUrl: oauthUser.user_metadata?.avatar_url || oauthUser.user_metadata?.picture || '',
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data?.message || 'Unable to connect the Google account.');
+      }
+
+      setUserProfile((current) => ({ ...current, ...data.user }));
+      setIsAuthenticated(true);
+      setScreen('app');
+      setCurrentTab('home');
+    };
+
+    void supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.user) {
+        void syncOAuthUser(data.session.user).catch((error) => setAuthError(error instanceof Error ? error.message : 'Unable to connect the Google account.'));
+      }
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        void syncOAuthUser(session.user).catch((error) => setAuthError(error instanceof Error ? error.message : 'Unable to connect the Google account.'));
+      }
+    });
+
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
   const handleToggleSave = (standard: StandardItem) => {
     setSavedStandards((prev) => {
       const exists = prev.some((s) => s.id === standard.id);
@@ -131,8 +179,21 @@ export default function App() {
     setCurrentTab('assistant');
   };
 
-  const handleProfileUpdate = (updatedProfile: UserProfile) => {
-    setUserProfile(updatedProfile);
+  const handleProfileUpdate = async (updatedProfile: UserProfile) => {
+    if (!updatedProfile.id) {
+      throw new Error('Your account is not ready to save profile details.');
+    }
+
+    const response = await fetch(`/api/users/${updatedProfile.id}/profile`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedProfile),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data?.message || 'Unable to save profile.');
+    }
+    setUserProfile(data.user);
   };
 
   const handleLogout = () => {
@@ -183,6 +244,7 @@ export default function App() {
         role: data.user?.role || userProfile.role,
         region: data.user?.region || userProfile.region,
         accessType: data.user?.accessType || userProfile.accessType,
+        profileImage: userProfile.profileImage || '',
       };
 
       setUserProfile(nextProfile);
@@ -265,6 +327,14 @@ export default function App() {
         onBackToLanding={() => setScreen('landing')}
         error={authError}
         isSubmitting={isSubmittingAuth}
+        onGoogleLogin={async () => {
+          if (!supabase) {
+            setAuthError('Google sign-in is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.');
+            return;
+          }
+          const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: import.meta.env.VITE_APP_URL || window.location.origin } });
+          if (error) setAuthError(error.message);
+        }}
       />
     );
   }
@@ -281,6 +351,14 @@ export default function App() {
         onBackToLanding={() => setScreen('landing')}
         error={authError}
         isSubmitting={isSubmittingAuth}
+        onGoogleLogin={async () => {
+          if (!supabase) {
+            setAuthError('Google sign-in is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.');
+            return;
+          }
+          const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: import.meta.env.VITE_APP_URL || window.location.origin } });
+          if (error) setAuthError(error.message);
+        }}
       />
     );
   }
@@ -299,7 +377,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#081425]/95 text-[#d8e3fb] flex flex-col font-hanken">
+    <div className="min-h-screen app-shell bg-[#081425]/95 text-[#d8e3fb] flex flex-col font-hanken">
       {/* Top Application Bar */}
       <TopAppBar
         currentTab={currentTab}
@@ -336,7 +414,8 @@ export default function App() {
         />
 
         {/* Content View Router */}
-        <div className="flex-1 md:pl-72 flex flex-col min-h-[calc(100vh-4rem)]">
+        <div className="flex-1 md:pl-[230px] flex flex-col min-h-[calc(100vh-4rem)] page-stage">
+          <div key={currentTab} className="page-transition flex-1">
           {currentTab === 'profile' && (
             <ProfilePage
               user={userProfile}
@@ -443,6 +522,7 @@ export default function App() {
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
 
@@ -493,3 +573,5 @@ export default function App() {
     </div>
   );
 }
+
+export default StitchApp;

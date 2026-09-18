@@ -22,20 +22,59 @@ export interface UserProfile {
   role: string;
   region: string;
   accessType: string;
+  profileImage?: string;
 }
 
 interface ProfilePageProps {
   user: UserProfile;
   onBackToDashboard: () => void;
-  onUpdateProfile: (updatedProfile: UserProfile) => void;
+  onUpdateProfile: (updatedProfile: UserProfile) => Promise<void> | void;
 }
 
 export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBackToDashboard, onUpdateProfile }) => {
   const [profile, setProfile] = React.useState<UserProfile>(user);
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+  const [isSaving, setIsSaving] = React.useState(false);
+  const [saveMessage, setSaveMessage] = React.useState('');
+  const [saveError, setSaveError] = React.useState('');
 
   React.useEffect(() => {
     setProfile(user);
   }, [user]);
+
+  const handleProfileImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const imageData = typeof reader.result === 'string' ? reader.result : '';
+      if (!imageData) {
+        return;
+      }
+
+      const nextProfile = { ...profile, profileImage: imageData };
+      setProfile(nextProfile);
+      void saveProfile(nextProfile);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const saveProfile = async (nextProfile = profile) => {
+    setIsSaving(true);
+    setSaveMessage('');
+    setSaveError('');
+    try {
+      await onUpdateProfile(nextProfile);
+      setSaveMessage('Profile saved to your account.');
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : 'Unable to save profile.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const recentActivities = [
     'Verified product safety requirement for packaged drinking water.',
@@ -46,7 +85,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBackToDashboar
   const preferences = ['Consumer mode', 'Hindi support', 'Email alerts', 'Compliance updates'];
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] px-4 py-8 text-[#172033] md:px-8">
+    <div className="min-h-screen bg-[#f6f8fb] px-4 py-8 text-[#172033] md:px-8 stitch-page stitch-profile">
       <div className="mx-auto max-w-7xl">
         <div className="flex items-center justify-between gap-4">
           <div>
@@ -66,9 +105,22 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBackToDashboar
           <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.04)]">
             <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div className="flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f4bf7d] via-[#f8e1bb] to-[#dfeafc] text-xl font-semibold text-[#1a4f9c] shadow-inner ring-1 ring-slate-200">
-                  {profile.name.split(' ').map((part) => part[0]).slice(0, 2).join('').toUpperCase() || 'AA'}
-                </div>
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="group relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#f4bf7d] via-[#f8e1bb] to-[#dfeafc] text-xl font-semibold text-[#1a4f9c] shadow-inner ring-1 ring-slate-200 transition hover:scale-[1.02]"
+                  aria-label="Upload profile image"
+                >
+                  {profile.profileImage ? (
+                    <img src={profile.profileImage} alt={profile.name || 'Profile'} className="h-full w-full object-cover" />
+                  ) : (
+                    <span>{profile.name.split(' ').map((part) => part[0]).slice(0, 2).join('').toUpperCase() || 'AA'}</span>
+                  )}
+                  <span className="absolute inset-0 flex items-center justify-center bg-slate-900/30 text-[10px] font-semibold uppercase tracking-[0.2em] text-white opacity-0 transition group-hover:opacity-100">
+                    Edit
+                  </span>
+                </button>
+                <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleProfileImageChange} />
                 <div>
                   <div className="text-2xl font-semibold tracking-[-0.04em] text-slate-900">{profile.name || 'Your name'}</div>
                   <div className="mt-1 flex items-center gap-2 text-sm text-slate-600">
@@ -136,12 +188,16 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBackToDashboar
                 <div className="text-[11px] font-mono-code uppercase tracking-[0.18em] text-slate-500">Edit profile</div>
                 <button
                   type="button"
-                  onClick={() => onUpdateProfile(profile)}
+                  onClick={() => void saveProfile()}
+                  disabled={isSaving}
                   className="rounded-full bg-[#1a4f9c] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#173d7d]"
                 >
-                  Save changes
+                  {isSaving ? 'Saving...' : 'Save changes'}
                 </button>
               </div>
+
+              {saveMessage && <div className="mt-3 rounded-xl bg-[#edfdf4] px-3 py-2 text-sm text-[#238b57]">{saveMessage}</div>}
+              {saveError && <div className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">{saveError}</div>}
 
               <div className="mt-5 grid gap-4 md:grid-cols-2">
                 <label className="block text-sm text-slate-600">

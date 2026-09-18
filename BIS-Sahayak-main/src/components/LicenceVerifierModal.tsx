@@ -58,7 +58,7 @@ export const LicenceVerifierModal: React.FC<LicenceVerifierModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-[#152031] border border-white/10 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl animate-fadeIn">
+      <div className="bg-[#152031] border border-white/10 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl animate-fadeIn stitch-modal">
         {/* Header */}
         <div className="flex justify-between items-start pb-3 border-b border-white/10">
           <div className="flex items-center gap-2.5">

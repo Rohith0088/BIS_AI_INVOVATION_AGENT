@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, ShieldCheck, BookOpenText, Building2 } from 'lucide-react';
+import { BISLogo } from './BISLogo';
 
 interface LandingPageProps {
   onOpenLogin: () => void;
@@ -32,18 +33,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenLogin, onOpenSig
   ];
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] text-[#172033]">
+    <div className="min-h-screen bg-[#f6f8fb] text-[#172033] stitch-landing">
       <div className="mx-auto max-w-7xl px-5 pb-16 pt-7 md:px-8">
-        <header className="flex items-center justify-between rounded-full border border-slate-200 bg-white/90 px-4 py-3 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur">
+        <header className="flex items-center justify-between rounded-xl border border-slate-200 bg-white/90 px-4 py-3 shadow-[0_1px_3px_rgba(15,23,42,0.05)] backdrop-blur">
           <div className="flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-[#e88a05] shadow-[0_10px_20px_rgba(232,138,5,0.24)]">
-              <div className="absolute inset-x-0 bottom-0 h-3 bg-[#238b57]" />
-              <div className="absolute left-2 top-2 h-6 w-6 rounded-[4px] bg-white flex items-center justify-center text-[10px] font-bold text-[#b45309]">IS</div>
-            </div>
-            <div>
-              <div className="text-[10px] font-mono-code uppercase tracking-[0.22em] text-[#b45309]">Bureau of Indian Standards</div>
-              <div className="text-lg font-semibold tracking-tight text-slate-900">BIS Sahayak</div>
-            </div>
+            <BISLogo />
           </div>
 
           <div className="flex items-center gap-3">

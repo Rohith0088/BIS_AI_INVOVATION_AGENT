@@ -46,7 +46,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
 
       {/* Drawer Container (Desktop Sidebar + Mobile Drawer) */}
       <aside
-        className={`fixed top-16 left-0 bottom-0 w-72 bg-[#0d192b] border-r border-white/10 shadow-2xl flex flex-col p-4 z-50 md:z-40 transition-transform duration-300 ease-in-out flag-accent ${
+        className={`fixed top-16 left-0 bottom-0 w-[230px] bg-[#0d192b] border-r border-white/10 shadow-sm flex flex-col p-3 z-50 md:z-40 transition-transform duration-300 ease-in-out flag-accent ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >

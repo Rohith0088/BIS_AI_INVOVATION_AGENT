@@ -30,14 +30,19 @@ async function initializeDatabase() {
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
         password_hash VARCHAR(255) NOT NULL,
+        phone VARCHAR(50) DEFAULT NULL,
         organisation VARCHAR(255) DEFAULT NULL,
         role VARCHAR(255) DEFAULT NULL,
         region VARCHAR(255) DEFAULT NULL,
         access_type VARCHAR(255) DEFAULT 'Enterprise portal',
+        profile_image TEXT DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       );
     `);
+
+    await dbPool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(50) DEFAULT NULL;`);
+    await dbPool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_image TEXT DEFAULT NULL;`);
 
     await dbPool.query(`
       CREATE TABLE IF NOT EXISTS standards (
@@ -268,10 +273,10 @@ app.post("/api/auth/signup", async (req, res) => {
     const passwordHash = await bcrypt.hash(String(password), 10);
 
      const { rows: insertedUsers } = await dbPool.query(
-      `INSERT INTO users (name, email, password_hash, organisation, role, region, access_type)
-       VALUES ($1, $2, $3, $4, $5, $6, 'Enterprise portal')
+      `INSERT INTO users (name, email, password_hash, phone, organisation, role, region, access_type)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, 'Enterprise portal')
        RETURNING id`,
-      [safeName, safeEmail, passwordHash, safeOrganisation, safeRole, safeRegion]
+      [safeName, safeEmail, passwordHash, '', safeOrganisation, safeRole, safeRegion]
     );
 
     return res.status(201).json({
@@ -326,15 +331,109 @@ app.post("/api/auth/login", async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        phone: user.phone || '',
         organisation: user.organisation,
         role: user.role,
         region: user.region,
         accessType: user.access_type,
+        profileImage: user.profile_image || '',
       },
     });
   } catch (error) {
     console.error("Login error:", error);
     return res.status(500).json({ message: "Internal server error during login." });
+  }
+});
+
+app.post("/api/auth/oauth", async (req, res) => {
+  try {
+    const { email, name, avatarUrl } = req.body ?? {};
+    const safeEmail = String(email ?? '').trim().toLowerCase();
+    if (!safeEmail) {
+      return res.status(400).json({ message: "OAuth account email is required." });
+    }
+
+    const { rows } = await dbPool.query(
+      `INSERT INTO users (name, email, password_hash, phone, profile_image)
+       VALUES ($1, $2, $3, $4, $5)
+       ON CONFLICT (email) DO UPDATE SET
+         name = COALESCE(NULLIF(EXCLUDED.name, ''), users.name),
+         profile_image = COALESCE(NULLIF(EXCLUDED.profile_image, ''), users.profile_image),
+         updated_at = CURRENT_TIMESTAMP
+       RETURNING id, name, email, organisation, role, region, access_type, profile_image`,
+      [String(name ?? '').trim() || safeEmail.split('@')[0], safeEmail, 'supabase-oauth-account', '', String(avatarUrl ?? '').trim() || null]
+    );
+
+    const user = rows[0];
+    return res.json({
+      message: "OAuth login successful.",
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone || '',
+        organisation: user.organisation,
+        role: user.role,
+        region: user.region,
+        accessType: user.access_type,
+        profileImage: user.profile_image || '',
+      },
+    });
+  } catch (error) {
+    console.error("OAuth login error:", error);
+    return res.status(500).json({ message: "Unable to create the OAuth profile." });
+  }
+});
+
+app.put("/api/users/:id/profile", async (req, res) => {
+  try {
+    const userId = Number(req.params.id);
+    const { name, email, phone, organisation, role, region, accessType, profileImage } = req.body ?? {};
+    if (!Number.isInteger(userId) || !String(name ?? '').trim() || !String(email ?? '').trim()) {
+      return res.status(400).json({ message: "A valid user id, name and email are required." });
+    }
+
+    const { rows } = await dbPool.query(
+      `UPDATE users SET
+         name = $1,
+         email = $2,
+         phone = $3,
+         organisation = $4,
+         role = $5,
+         region = $6,
+         access_type = $7,
+         profile_image = $8,
+         updated_at = CURRENT_TIMESTAMP
+       WHERE id = $9
+       RETURNING id, name, email, organisation, role, region, access_type, profile_image`,
+      [String(name).trim(), String(email).trim().toLowerCase(), String(phone ?? '').trim() || null, String(organisation ?? '').trim() || null, String(role ?? '').trim() || null, String(region ?? '').trim() || null, String(accessType ?? 'Enterprise portal'), String(profileImage ?? '').trim() || null, userId]
+    );
+
+    if (!rows.length) {
+      return res.status(404).json({ message: "User profile was not found." });
+    }
+
+    const user = rows[0];
+    return res.json({
+      message: "Profile saved successfully.",
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: String(phone ?? ''),
+        organisation: user.organisation || '',
+        role: user.role || '',
+        region: user.region || '',
+        accessType: user.access_type || 'Enterprise portal',
+        profileImage: user.profile_image || '',
+      },
+    });
+  } catch (error: any) {
+    console.error("Profile save error:", error);
+    if (error?.code === "23505") {
+      return res.status(409).json({ message: "That email is already in use." });
+    }
+    return res.status(500).json({ message: "Unable to save profile." });
   }
 });
 

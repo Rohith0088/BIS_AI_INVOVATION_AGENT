@@ -18,7 +18,7 @@ export const ServiceGuideView: React.FC<ServiceGuideViewProps> = ({
   const [selectedScheme, setSelectedScheme] = useState<CertificationScheme>(BIS_SCHEMES[0]);
 
   return (
-    <div className="flex-grow px-4 md:px-8 lg:px-10 pt-8 pb-24 md:pb-12 max-w-[1280px] mx-auto w-full space-y-7 animate-fadeIn">
+    <div className="flex-grow px-4 md:px-8 lg:px-10 pt-8 pb-24 md:pb-12 max-w-[1280px] mx-auto w-full space-y-7 animate-fadeIn stitch-page stitch-service">
       {/* Header */}
       <div className="space-y-1">
         <div className="flex items-center gap-2">

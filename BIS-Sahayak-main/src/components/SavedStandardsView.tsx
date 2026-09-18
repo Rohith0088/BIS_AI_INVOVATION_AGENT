@@ -15,7 +15,7 @@ export const SavedStandardsView: React.FC<SavedStandardsViewProps> = ({
   onNavigate,
 }) => {
   return (
-    <div className="flex-grow px-4 md:px-8 pt-6 pb-24 md:pb-12 max-w-4xl mx-auto w-full space-y-6 animate-fadeIn">
+    <div className="flex-grow px-4 md:px-8 pt-6 pb-24 md:pb-12 max-w-4xl mx-auto w-full space-y-6 animate-fadeIn stitch-page stitch-saved">
       {/* Header */}
       <div className="space-y-1">
         <div className="flex items-center gap-2">

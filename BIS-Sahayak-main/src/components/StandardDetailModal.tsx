@@ -24,7 +24,7 @@ export const StandardDetailModal: React.FC<StandardDetailModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-[#152031] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl animate-fadeIn overflow-hidden">
+      <div className="bg-[#152031] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl animate-fadeIn overflow-hidden stitch-modal">
         {/* Modal Header */}
         <div className="p-5 md:p-6 border-b border-white/10 bg-[#111c2d] flex justify-between items-start">
           <div className="space-y-1">

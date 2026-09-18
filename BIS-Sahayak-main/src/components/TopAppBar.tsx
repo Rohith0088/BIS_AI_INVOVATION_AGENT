@@ -1,6 +1,6 @@
-import React from 'react';
-import { FileCheck2 } from 'lucide-react';
+import React, { useState } from 'react';
 import { AppMode, NavigationTab } from '../types';
+import { BISLogo } from './BISLogo';
 
 interface TopAppBarProps {
   currentTab: NavigationTab;
@@ -19,8 +19,10 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
   onOpenMenu,
   onLogout,
 }) => {
+  const [globalSearch, setGlobalSearch] = useState('');
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-8 h-16 bg-[#081425] border-b border-white/10 shadow-sm backdrop-blur-md flag-accent">
+    <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-8 h-16 bg-[#081425] border-b border-white/10 shadow-sm backdrop-blur-md flag-accent top-bar">
       {/* Left side: Menu Trigger + Brand Logo */}
       <div className="flex items-center gap-3">
         <button
@@ -32,28 +34,31 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
           <span className="material-symbols-outlined text-[24px]">menu</span>
         </button>
 
-        <div 
+        <div
           onClick={() => setCurrentTab('home')}
-          className="flex items-center gap-2 cursor-pointer group"
+          className="flex items-center cursor-pointer group"
         >
-          <div className="relative w-9 h-9 rounded-lg bg-[#e88a05] flex items-center justify-center shadow-[0_4px_10px_rgba(217,119,6,0.25)] overflow-hidden">
-            <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-md border-2 border-white/35 rotate-6" />
-            <div className="relative w-6 h-7 rounded-[3px] bg-white flex flex-col items-center justify-center shadow-sm">
-              <span className="font-mono-code text-[9px] leading-none font-bold text-[#b45309]">IS</span>
-              <span className="w-3 h-px bg-[#b45309] mt-1" />
-              <FileCheck2 className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#238b57] text-white p-[2px] stroke-[3]" />
-            </div>
-          </div>
-          <div>
-            <h1 className="font-space text-lg md:text-xl font-bold text-[#bfc6da] tracking-tight group-hover:text-white transition-colors">
-              BIS Sahayak
-            </h1>
-            <span className="hidden sm:inline-block text-[10px] font-mono-code text-[#ffb77a] tracking-widest uppercase">
-              Bureau of Indian Standards
-            </span>
-          </div>
+          <BISLogo />
         </div>
       </div>
+
+      <form
+        className="global-search hidden lg:flex"
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (globalSearch.trim()) setCurrentTab('finder');
+        }}
+      >
+        <span className="material-symbols-outlined text-[19px]">search</span>
+        <input
+          aria-label="Search standards and services"
+          value={globalSearch}
+          onChange={(event) => setGlobalSearch(event.target.value)}
+          placeholder="Search standards, IS codes, services..."
+        />
+        <span className="global-search-scope">Civil &amp; Electro</span>
+        <kbd>⌘K</kbd>
+      </form>
 
       {/* Center Desktop Navigation */}
       <nav className="hidden md:flex gap-6 items-center h-full">
@@ -116,6 +121,10 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
 
       {/* Right side: Mode Toggle (Consumer / Industry) */}
       <div className="flex items-center gap-2">
+        <div className="language-switcher hidden sm:flex" aria-label="Language selector">
+          <button type="button" className="is-active">EN</button>
+          <button type="button">हिन्दी</button>
+        </div>
         <button
           onClick={() => setCurrentTab('profile')}
           className={`hidden md:inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] transition-all ${

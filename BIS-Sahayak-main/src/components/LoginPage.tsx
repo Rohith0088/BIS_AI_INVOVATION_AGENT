@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { ArrowRight, LockKeyhole, Mail, ShieldCheck, UserRound } from 'lucide-react';
+import { BISLogo } from './BISLogo';
 
 interface LoginPageProps {
   mode: 'login' | 'signup';
   onLogin?: (loginData: { email: string; password: string }) => Promise<void> | void;
   onSignup?: (signupData: { email: string; password: string; name: string; organisation: string; role: string; region: string }) => Promise<void> | void;
   onBackToLanding: () => void;
+  onGoogleLogin?: () => Promise<void> | void;
   error?: string;
   isSubmitting?: boolean;
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ mode, onLogin, onSignup, onBackToLanding, error, isSubmitting }) => {
+export const LoginPage: React.FC<LoginPageProps> = ({ mode, onLogin, onSignup, onBackToLanding, onGoogleLogin, error, isSubmitting }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -19,7 +21,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ mode, onLogin, onSignup, o
   const [region, setRegion] = useState('');
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] px-4 py-8 text-[#172033] md:px-8">
+    <div className="min-h-screen bg-[#f6f8fb] px-4 py-8 text-[#172033] md:px-8 stitch-auth">
       <div className="mx-auto flex max-w-6xl flex-col overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.05)] lg:flex-row">
         <div className="relative flex-1 bg-[#f8fafc] p-6 md:p-10 lg:p-12">
           <button
@@ -31,16 +33,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ mode, onLogin, onSignup, o
             Back to overview
           </button>
 
-          <div className="mt-8 flex items-center gap-3">
-            <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-[#e88a05] shadow-[0_10px_20px_rgba(232,138,5,0.22)]">
-              <div className="absolute inset-x-0 bottom-0 h-3 bg-[#238b57]" />
-              <div className="absolute left-2 top-2 h-7 w-7 rounded-[4px] bg-white flex items-center justify-center text-[11px] font-bold text-[#b45309]">IS</div>
-            </div>
-            <div>
-              <div className="text-[10px] font-mono-code uppercase tracking-[0.2em] text-[#b45309]">Bureau of Indian Standards</div>
-              <div className="text-xl font-semibold text-slate-900">Secure access portal</div>
-            </div>
-          </div>
+          <div className="mt-8"><BISLogo /></div>
 
           <div className="mt-10 rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-slate-500">
@@ -176,6 +169,16 @@ export const LoginPage: React.FC<LoginPageProps> = ({ mode, onLogin, onSignup, o
               <ArrowRight className="h-4 w-4" />
             </button>
           </form>
+
+          <button
+            type="button"
+            onClick={() => void onGoogleLogin?.()}
+            disabled={isSubmitting}
+            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3.5 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            <span className="text-base font-bold text-[#c50525]">G</span>
+            Continue with Google
+          </button>
 
           <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-sm text-slate-600">
             {mode === 'login' ? 'Need an account?' : 'Already have an account?'}{' '}
