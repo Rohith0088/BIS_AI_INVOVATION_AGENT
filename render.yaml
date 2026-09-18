@@ -19,12 +19,12 @@ services:
         value: https://openrouter.ai/api/v1
       - key: OPENROUTER_MODEL
         value: openai/gpt-4o-mini
-        - key: VITE_SUPABASE_URL
-          sync: false
-        - key: VITE_SUPABASE_ANON_KEY
-          sync: false
-        - key: VITE_APP_URL
-          value: https://bis-sahayak-frontend.onrender.com
+      - key: VITE_SUPABASE_URL
+        value: https://lnahzrubasuojnxwtoja.supabase.co
+      - key: VITE_SUPABASE_ANON_KEY
+        value: sb_publishable_pJICLsXN9KsoqZ5lWWyVeg_eC7F_YSk
+      - key: VITE_APP_URL
+        value: https://bis-sahayak-frontend.onrender.com
 
   - type: web
     name: bis-sahayak-rag-agent
