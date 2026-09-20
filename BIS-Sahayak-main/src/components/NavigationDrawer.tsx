@@ -6,7 +6,6 @@ interface NavigationDrawerProps {
   setCurrentTab: (tab: NavigationTab) => void;
   isOpen: boolean;
   onClose: () => void;
-  onOpenLicenceVerifier: () => void;
   savedCount: number;
 }
 
@@ -15,7 +14,6 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   setCurrentTab,
   isOpen,
   onClose,
-  onOpenLicenceVerifier,
   savedCount,
 }) => {
   const menuItems: {
@@ -28,7 +26,6 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
     { id: 'assistant', label: 'BIS Bot', icon: 'smart_toy' },
     { id: 'finder', label: 'Standard Finder', icon: 'search' },
     { id: 'services', label: 'Service & Schemes Guide', icon: 'description' },
-    { id: 'labs', label: 'Lab Locator', icon: 'biotech' },
     { id: 'saved', label: 'My Saved Standards', icon: 'bookmark', badge: savedCount > 0 ? savedCount : undefined },
     { id: 'profile', label: 'Profile & Access', icon: 'person' },
     { id: 'history', label: 'History & Logs', icon: 'history' },
@@ -109,21 +106,6 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
             );
           })}
 
-          {/* Quick Utility Tool: Licence Verifier Button */}
-          <div className="my-2 pt-2 border-t border-white/5">
-            <button
-              onClick={() => {
-                onOpenLicenceVerifier();
-                onClose();
-              }}
-              className="w-full flex items-center gap-3 p-3 rounded-lg bg-[#1f2a3c] hover:bg-[#2a3548] text-[#ffb77a] border border-[#d7790d]/30 font-space text-xs font-bold transition-all shadow-sm group"
-            >
-              <span className="material-symbols-outlined text-[20px] text-[#72de5c] group-hover:rotate-12 transition-transform">
-                verified_user
-              </span>
-              <span>Verify CM/L or R-Number</span>
-            </button>
-          </div>
         </div>
 
         {/* Footer Support Buttons */}

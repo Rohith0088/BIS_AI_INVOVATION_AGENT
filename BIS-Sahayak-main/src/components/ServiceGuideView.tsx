@@ -5,14 +5,12 @@ import { CertificationScheme } from '../types';
 interface ServiceGuideViewProps {
   userProfile: { name: string; email: string; organisation: string; role: string; region: string };
   isProfileComplete: boolean;
-  onOpenLicenceVerifier: () => void;
   onOpenFeedback: () => void;
 }
 
 export const ServiceGuideView: React.FC<ServiceGuideViewProps> = ({
   userProfile,
   isProfileComplete,
-  onOpenLicenceVerifier,
   onOpenFeedback,
 }) => {
   const [selectedScheme, setSelectedScheme] = useState<CertificationScheme>(BIS_SCHEMES[0]);
@@ -73,7 +71,6 @@ export const ServiceGuideView: React.FC<ServiceGuideViewProps> = ({
         })}
       </div>
 
-      {/* Scheme Detail Card */}
       <div className="enterprise-panel rounded-xl p-6 space-y-6 relative overflow-hidden">
         {/* Top Title Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-white/10">
@@ -96,13 +93,6 @@ export const ServiceGuideView: React.FC<ServiceGuideViewProps> = ({
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
-            <button
-              onClick={onOpenLicenceVerifier}
-              className="px-3.5 py-2 rounded-lg bg-[#2f3a4c] hover:bg-[#3f4757] text-[#d8e3fb] font-space text-xs font-bold transition-all flex items-center gap-1.5"
-            >
-              <span className="material-symbols-outlined text-[16px] text-[#72de5c]">verified</span>
-              <span>Verify Licence</span>
-            </button>
             <button
               type="button"
               disabled={!isProfileComplete}

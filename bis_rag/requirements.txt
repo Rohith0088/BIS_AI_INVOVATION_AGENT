@@ -19,3 +19,4 @@ odfpy>=1.4
 nltk>=3.9
 langdetect>=1.0.9
 python-dotenv>=1.0
+selenium>=4.24.0

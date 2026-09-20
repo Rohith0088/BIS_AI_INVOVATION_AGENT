@@ -8,13 +8,11 @@ import { DashboardView } from './components/DashboardView';
 import { AssistantChatView } from './components/AssistantChatView';
 import { StandardFinderView } from './components/StandardFinderView';
 import { ServiceGuideView } from './components/ServiceGuideView';
-import { LabLocatorView } from './components/LabLocatorView';
 import { SavedStandardsView } from './components/SavedStandardsView';
 import { LandingPage } from './components/LandingPage';
 import { LoginPage } from './components/LoginPage';
 import { ProfilePage, UserProfile } from './components/ProfilePage';
 import { StandardDetailModal } from './components/StandardDetailModal';
-import { LicenceVerifierModal } from './components/LicenceVerifierModal';
 import { CompareIsoModal } from './components/CompareIsoModal';
 import { ExcerptViewerModal } from './components/ExcerptViewerModal';
 import { FeedbackSupportModal } from './components/FeedbackSupportModal';
@@ -69,7 +67,6 @@ function LegacyApp() {
   const [selectedStandard, setSelectedStandard] = useState<StandardItem | null>(null);
   const [compareISCode, setCompareISCode] = useState<string | null>(null);
   const [excerptISCode, setExcerptISCode] = useState<string | null>(null);
-  const [isLicenceVerifierOpen, setIsLicenceVerifierOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [assistantPrompt, setAssistantPrompt] = useState<string>('');
 
@@ -197,6 +194,7 @@ function LegacyApp() {
   };
 
   const handleLogout = () => {
+    void fetch('/api/auth/logout', { method: 'POST' });
     setIsAuthenticated(false);
     setScreen('landing');
     setCurrentTab('home');
@@ -409,7 +407,6 @@ function LegacyApp() {
           }}
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
-          onOpenLicenceVerifier={() => setIsLicenceVerifierOpen(true)}
           savedCount={savedStandards.length}
         />
 
@@ -444,7 +441,6 @@ function LegacyApp() {
               onOpenStandardModal={(std) => setSelectedStandard(std)}
               onOpenCompareModal={(isCode) => setCompareISCode(isCode)}
               onOpenExcerptModal={(isCode) => setExcerptISCode(isCode)}
-              onOpenLicenceVerifier={() => setIsLicenceVerifierOpen(true)}
               onOpenFeedback={() => setIsFeedbackOpen(true)}
             />
           )}
@@ -463,16 +459,10 @@ function LegacyApp() {
             <ServiceGuideView
               userProfile={userProfile}
               isProfileComplete={isProfileComplete}
-              onOpenLicenceVerifier={() => setIsLicenceVerifierOpen(true)}
               onOpenFeedback={() => setIsFeedbackOpen(true)}
             />
           )}
 
-          {currentTab === 'labs' && (
-            <LabLocatorView
-              onOpenFeedback={() => setIsFeedbackOpen(true)}
-            />
-          )}
 
           {currentTab === 'saved' && (
             <SavedStandardsView
@@ -507,10 +497,9 @@ function LegacyApp() {
 
                 <div className="flex flex-wrap gap-2 pt-2">
                   <button
-                    onClick={() => setIsLicenceVerifierOpen(true)}
                     className="px-4 py-2 rounded-lg bg-[#d7790d] hover:bg-[#ffb77a] text-[#141c2a] font-space text-xs font-bold transition-all shadow-md"
                   >
-                    Open Licence Verifier
+                    Open BIS CARE
                   </button>
                   <button
                     onClick={() => setIsFeedbackOpen(true)}
@@ -542,12 +531,6 @@ function LegacyApp() {
         />
       )}
 
-      {isLicenceVerifierOpen && (
-        <LicenceVerifierModal
-          isOpen={isLicenceVerifierOpen}
-          onClose={() => setIsLicenceVerifierOpen(false)}
-        />
-      )}
 
       {compareISCode && (
         <CompareIsoModal

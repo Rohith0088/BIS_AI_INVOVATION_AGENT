@@ -23,7 +23,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenLogin, onOpenSig
   const processSteps = [
     'Create your profile and register your organisation',
     'Search standards or enter the ISI/ISO code to inspect details',
-    'Verify licence status and apply for certification after profile completion',
+    'Apply for BIS certification after profile completion',
   ];
 
   const faqItems = [

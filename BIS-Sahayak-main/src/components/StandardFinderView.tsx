@@ -11,6 +11,28 @@ interface StandardFinderViewProps {
   isSaved: (id: string) => boolean;
 }
 
+function toStandardItem(item: any): StandardItem {
+  return {
+    id: item.id || `iso-${item.code}`,
+    isCode: item.isCode || item.code,
+    year: item.year || 'Not specified',
+    title: item.title || `${item.code} - BIS standard record`,
+    category: item.category || 'Standards / Dataset',
+    department: item.department || 'BIS',
+    isMandatoryQCO: Boolean(item.isMandatoryQCO),
+    qcoNotificationNumber: item.qcoNotificationNumber,
+    summary: item.summary || `IS number found in the BIS dataset. Source: ${item.source || 'BIS Database'}`,
+    scope: item.scope || 'The detailed scope is not available in the indexed record.',
+    keyClauses: item.keyClauses || [],
+    isoEquivalence: item.isoEquivalence || '',
+    isoComparisonNotes: item.isoComparisonNotes || '',
+    sampleTestParameters: item.sampleTestParameters || [],
+    pdfExcerptSnippet: item.pdfExcerptSnippet,
+    viewsCount: item.viewsCount || 0,
+    lastUpdated: item.lastUpdated || 'Dataset',
+  };
+}
+
 export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
   onSelectStandard,
   onOpenCompare,
@@ -32,24 +54,7 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
         const response = await fetch('/api/is-codes');
         const data = await response.json();
         if (data.codes) {
-          const converted: StandardItem[] = data.codes.map((item: any, idx: number) => ({
-            id: `iso-${item.code}`,
-            isCode: item.code,
-            year: item.year || new Date().getFullYear().toString(),
-            title: `${item.code} - Standard from BIS Dataset`,
-            category: item.category || 'Standards / Dataset',
-            department: item.department || 'BIS',
-            isMandatoryQCO: false,
-            summary: `Standard code extracted from BIS official datasets. Source: ${item.source || 'BIS Database'}`,
-            scope: 'Dataset reference record',
-            keyClauses: [],
-            isoEquivalence: '',
-            isoComparisonNotes: '',
-            sampleTestParameters: [],
-            pdfExcerptSnippet: `Source file: ${item.source}`,
-            viewsCount: 0,
-            lastUpdated: 'Dataset',
-          }));
+          const converted: StandardItem[] = data.codes.map(toStandardItem);
           setApiIsoCodes(converted);
         }
       } catch (err) {
@@ -76,24 +81,7 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
         if (!response.ok) return;
 
         const data = await response.json();
-        const converted: StandardItem[] = (data.codes || []).map((item: any) => ({
-          id: `iso-${item.code}`,
-          isCode: item.code,
-          year: item.year || 'Not specified',
-          title: `${item.code} - BIS standard record`,
-          category: item.category || 'Standards / Dataset',
-          department: item.department || 'BIS',
-          isMandatoryQCO: Boolean(item.isMandatoryQCO),
-          summary: `IS number found in the BIS dataset. Source: ${item.source || 'BIS Database'}`,
-          scope: 'Dataset reference record',
-          keyClauses: [],
-          isoEquivalence: '',
-          isoComparisonNotes: '',
-          sampleTestParameters: [],
-          pdfExcerptSnippet: item.source ? `Source file: ${item.source}` : undefined,
-          viewsCount: 0,
-          lastUpdated: 'Dataset',
-        }));
+        const converted: StandardItem[] = (data.codes || []).map(toStandardItem);
         setRemoteSearchStandards(converted);
       } catch (error) {
         if ((error as Error).name !== 'AbortError') {
@@ -256,7 +244,7 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
       {/* Results Count */}
       <div className="flex flex-wrap justify-between gap-2 items-center px-1 text-xs font-mono-code text-[#7b8394]">
         <span>Showing {filteredStandards.length} indexed records</span>
-        <span>Local prototype register / BIS evidence review required</span>
+        <span>Official BIS Selenium index / verify critical details on BIS.gov.in</span>
       </div>
 
       {/* Standards List */}

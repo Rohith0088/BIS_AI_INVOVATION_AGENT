@@ -19,6 +19,17 @@ export type RagResponse = {
   confidence?: number;
 };
 
+type ChatConversation = {
+  id: string;
+  title: string;
+  mode: AppMode;
+  user_name: string;
+  user_email: string;
+  created_at: string;
+  updated_at: string;
+  message_count: number;
+};
+
 const AnimatedResponseText: React.FC<{ text: string }> = ({ text }) => {
   const paragraphs = text.split('\n').filter((paragraph) => paragraph.trim().length > 0);
   let revealIndex = 0;
@@ -122,7 +133,6 @@ interface AssistantChatViewProps {
   onOpenStandardModal: (standard: StandardItem) => void;
   onOpenCompareModal: (isCode: string) => void;
   onOpenExcerptModal: (isCode: string) => void;
-  onOpenLicenceVerifier: () => void;
   onOpenFeedback: () => void;
 }
 
@@ -133,7 +143,6 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
   onOpenStandardModal,
   onOpenCompareModal,
   onOpenExcerptModal,
-  onOpenLicenceVerifier,
   onOpenFeedback,
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -145,6 +154,8 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
     return conversationId;
   })());
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [conversations, setConversations] = useState<ChatConversation[]>([]);
+  const [sessionSearch, setSessionSearch] = useState('');
 
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
@@ -163,42 +174,76 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
     scrollToBottom();
   }, [messages, loading]);
 
-  useEffect(() => {
-    if (!userId) {
-      return;
+  const loadConversation = async (conversationId: string) => {
+    if (!userId) return;
+
+    const response = await fetch(`/api/chat/messages/${conversationId}?userId=${encodeURIComponent(userId)}`);
+    if (!response.ok) {
+      throw new Error(`Chat history fetch failed with HTTP ${response.status}`);
     }
 
-    let cancelled = false;
-    void fetch(`/api/chat/messages/${conversationIdRef.current}?userId=${encodeURIComponent(userId)}`)
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`Chat history fetch failed with HTTP ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (cancelled || !Array.isArray(data.messages) || data.messages.length === 0) {
-          return;
-        }
+    const data = await response.json();
+    setMessages((data.messages || []).map((message: any) => ({
+      id: String(message.id),
+      sender: message.sender,
+      text: message.message_text,
+      timestamp: new Date(message.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      mode: message.mode,
+      confidence: message.confidence || undefined,
+      citedClauses: message.cited_clauses || undefined,
+      sourceCard: message.source_card || undefined,
+      suggestedActions: message.suggested_actions || undefined,
+    })));
+  };
 
-        setMessages(data.messages.map((message: any) => ({
-          id: String(message.id),
-          sender: message.sender,
-          text: message.message_text,
-          timestamp: new Date(message.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          mode: message.mode,
-          confidence: message.confidence || undefined,
-          citedClauses: message.cited_clauses || undefined,
-          sourceCard: message.source_card || undefined,
-          suggestedActions: message.suggested_actions || undefined,
-        })));
-      })
+  const loadConversations = async () => {
+    if (!userId) return;
+
+    const response = await fetch(`/api/chat/conversations?userId=${encodeURIComponent(userId)}`);
+    if (!response.ok) {
+      throw new Error(`Conversation list fetch failed with HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    const nextConversations = Array.isArray(data.conversations) ? data.conversations : [];
+    setConversations(nextConversations);
+    const activeConversation = nextConversations.find((conversation: ChatConversation) => conversation.id === conversationIdRef.current);
+    if (activeConversation) {
+      await loadConversation(activeConversation.id);
+    }
+  };
+
+  useEffect(() => {
+    if (!userId) return;
+
+    let cancelled = false;
+    void loadConversations()
       .catch((error) => console.warn('Unable to load chat history:', error));
 
     return () => {
       cancelled = true;
     };
   }, [userId]);
+
+  const startNewConversation = () => {
+    const nextConversationId = crypto.randomUUID();
+    conversationIdRef.current = nextConversationId;
+    if (userId) {
+      sessionStorage.setItem(`bis_active_conversation_${userId}`, nextConversationId);
+    }
+    setMessages([]);
+    setQuestion('');
+    setAnswer('');
+    setCitations([]);
+  };
+
+  const selectConversation = (conversationId: string) => {
+    conversationIdRef.current = conversationId;
+    if (userId) {
+      sessionStorage.setItem(`bis_active_conversation_${userId}`, conversationId);
+    }
+    void loadConversation(conversationId).catch((error) => console.warn('Unable to load selected conversation:', error));
+  };
 
   // Handle initial prompt passed from Dashboard
   useEffect(() => {
@@ -236,7 +281,7 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
         sender: 'user',
         messageText: userMsg.text,
         mode: appMode,
-      }).catch((error) => console.warn('Unable to save user chat message:', error));
+      }).then(() => loadConversations()).catch((error) => console.warn('Unable to save user chat message:', error));
     }
     setActiveAttachment(null);
     if (textareaRef.current) {
@@ -317,7 +362,7 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
         </div>
 
         <div className="assistant-header-actions">
-          <button type="button" onClick={() => setQuestion('')} className="assistant-header-button">
+          <button type="button" onClick={startNewConversation} className="assistant-header-button">
             <span className="material-symbols-outlined">add</span>
             New conversation
           </button>
@@ -331,26 +376,38 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
       </div>
 
       <aside className="assistant-session-rail hidden lg:flex">
-        <button className="assistant-new-chat" type="button" onClick={() => setQuestion('')}>
+        <button className="assistant-new-chat" type="button" onClick={startNewConversation}>
           <span className="material-symbols-outlined text-[18px]">add</span>
           New Chat
         </button>
         <div className="assistant-session-search">
           <span className="material-symbols-outlined text-[16px]">search</span>
-          <input aria-label="Search sessions" placeholder="Search sessions..." />
+          <input
+            aria-label="Search sessions"
+            placeholder="Search sessions..."
+            value={sessionSearch}
+            onChange={(event) => setSessionSearch(event.target.value)}
+          />
         </div>
-        <span className="assistant-session-label">Recent conversations</span>
-        {['Certification for electric fans', 'Standards for food packaging', 'ISI mark requirements', 'Testing labs in Telangana', 'CRS certification'].map((session, index) => (
-          <button className={`assistant-session-item ${index === 0 ? 'is-active' : ''}`} key={session} type="button">
-            <span className="material-symbols-outlined text-[16px]">{index === 0 ? 'chat_bubble' : 'chat_bubble_outline'}</span>
-            <span>{session}</span>
-            <small>{index === 0 ? 'Today' : index === 1 ? 'Yesterday' : `Sep ${14 - index}`}</small>
+        <span className="assistant-session-label">
+          {conversations[0]?.user_name
+            ? `${conversations[0].user_name}'s recent conversations`
+            : 'Recent conversations'}
+        </span>
+        {conversations
+          .filter((conversation) => conversation.title.toLowerCase().includes(sessionSearch.trim().toLowerCase()))
+          .map((conversation) => (
+          <button
+            className={`assistant-session-item ${conversation.id === conversationIdRef.current ? 'is-active' : ''}`}
+            key={conversation.id}
+            type="button"
+            onClick={() => selectConversation(conversation.id)}
+          >
+            <span className="material-symbols-outlined text-[16px]">{conversation.id === conversationIdRef.current ? 'chat_bubble' : 'chat_bubble_outline'}</span>
+            <span>{conversation.title}</span>
+            <small>{new Date(conversation.updated_at).toLocaleDateString([], { month: 'short', day: 'numeric' })}</small>
           </button>
         ))}
-        <div className="assistant-sync-card">
-          <span className="material-symbols-outlined text-[18px]">verified_user</span>
-          <div><strong>Live BIS Sync</strong><small>Synced with Gazette v2024.3</small></div>
-        </div>
       </aside>
       {/* Scanning Progress Bar Animation (when searching/analyzing) */}
       {loading && (
@@ -602,13 +659,6 @@ export const AssistantChatView: React.FC<AssistantChatViewProps> = ({
             >
               <span className="material-symbols-outlined text-[14px]">toys</span>
               Find Standard for Toys
-            </button>
-            <button
-              onClick={onOpenLicenceVerifier}
-              className="assistant-suggestion-pill"
-            >
-              <span className="material-symbols-outlined text-[14px]">verified</span>
-              Verify Licence Number
             </button>
             <button
               onClick={onOpenFeedback}

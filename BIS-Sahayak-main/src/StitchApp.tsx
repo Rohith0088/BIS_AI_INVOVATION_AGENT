@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   Bell,
@@ -27,6 +27,12 @@ type ChatMessage = {
   text: string;
   sources?: string[];
 };
+type ChatConversation = {
+  id: string;
+  title: string;
+  updated_at: string;
+  user_name?: string;
+};
 
 const faq = [
   "Which standard applies to electric fans?",
@@ -44,6 +50,7 @@ export default function StitchApp() {
   const [view, setView] = useState<View>("dashboard");
   const [menuOpen, setMenuOpen] = useState(false);
   const [profile, setProfile] = useState({
+    id: undefined as number | undefined,
     name: "",
     email: "",
     phone: "",
@@ -206,6 +213,7 @@ export default function StitchApp() {
       menuOpen={menuOpen}
       setMenuOpen={setMenuOpen}
       onLogout={() => {
+        void fetch("/api/auth/logout", { method: "POST" });
         localStorage.removeItem("bis_auth");
         localStorage.removeItem("bis_user_profile");
         sessionStorage.removeItem("bis_google_oauth_pending");
@@ -223,7 +231,7 @@ export default function StitchApp() {
         />
       )}
       {view === "assistant" && (
-        <Assistant prompt={prompt} setPrompt={setPrompt} />
+        <Assistant prompt={prompt} setPrompt={setPrompt} userId={profile.id} />
       )}
       {view === "finder" && <Finder />}
       {view === "profile" && (
@@ -685,10 +693,6 @@ function AppShell({
           <button>
             <Settings size={15} /> Settings & Feedback
           </button>
-          <div className="sync-status">
-            <span className="live-dot" /> <b>Database v2.4 · Live</b>
-            <small>Updated today at 06:00 IST</small>
-          </div>
           <button className="logout-button" onClick={onLogout}>
             <LogOut size={14} /> Logout
           </button>
@@ -769,24 +773,7 @@ function Dashboard({
           </div>
         </div>
         <div className="activity-list">
-          <div>
-            <MessageSquare size={16} />
-            <span>
-              BIS certification for electric fans<small>AI Chat · Today</small>
-            </span>
-          </div>
-          <div>
-            <FileText size={16} />
-            <span>
-              IS 14543:2016<small>Viewed · Yesterday</small>
-            </span>
-          </div>
-          <div>
-            <Search size={16} />
-            <span>
-              Food packaging standards<small>AI Chat · 2 days ago</small>
-            </span>
-          </div>
+          <div className="activity-empty">No recent activity yet.</div>
         </div>
       </section>
     </div>
@@ -796,17 +783,96 @@ function Dashboard({
 function Assistant({
   prompt,
   setPrompt,
+  userId,
 }: {
   prompt: string;
   setPrompt: (value: string) => void;
+  userId?: number;
 }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [conversations, setConversations] = useState<ChatConversation[]>([]);
+  const [sessionSearch, setSessionSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const conversationIdRef = useRef("");
+
+  const loadConversation = async (conversationId: string) => {
+    if (!userId) return;
+    const response = await fetch(`/api/chat/messages/${conversationId}?userId=${encodeURIComponent(userId)}`);
+    if (!response.ok) throw new Error("Unable to load conversation.");
+    const data = await response.json();
+    setMessages((data.messages || []).map((message: { sender: "user" | "assistant"; message_text: string; cited_clauses?: { clause: string }[] }) => ({
+      role: message.sender,
+      text: message.message_text,
+      sources: message.cited_clauses?.map((item) => item.clause),
+    })));
+  };
+
+  const loadConversations = async () => {
+    if (!userId) return;
+    const response = await fetch(`/api/chat/conversations?userId=${encodeURIComponent(userId)}`);
+    if (!response.ok) throw new Error("Unable to load recent conversations.");
+    const data = await response.json();
+    const nextConversations = Array.isArray(data.conversations) ? data.conversations : [];
+    setConversations(nextConversations);
+    const storedId = sessionStorage.getItem(`bis_active_conversation_${userId}`);
+    const activeId = nextConversations.some((conversation: ChatConversation) => conversation.id === storedId)
+      ? storedId
+      : nextConversations[0]?.id;
+    if (activeId) {
+      conversationIdRef.current = activeId;
+      sessionStorage.setItem(`bis_active_conversation_${userId}`, activeId);
+      await loadConversation(activeId);
+    }
+  };
+
+  useEffect(() => {
+    if (!userId) return;
+    void loadConversations().catch((error) => console.warn("Unable to load saved conversations:", error));
+  }, [userId]);
+
+  const startNewConversation = () => {
+    const nextId = crypto.randomUUID();
+    conversationIdRef.current = nextId;
+    if (userId) sessionStorage.setItem(`bis_active_conversation_${userId}`, nextId);
+    setMessages([]);
+    setPrompt("");
+  };
+
+  const selectConversation = (conversationId: string) => {
+    conversationIdRef.current = conversationId;
+    if (userId) sessionStorage.setItem(`bis_active_conversation_${userId}`, conversationId);
+    void loadConversation(conversationId).catch((error) => console.warn("Unable to load selected conversation:", error));
+  };
+
+  const saveMessage = async (sender: "user" | "assistant", text: string, citedClauses?: unknown) => {
+    if (!userId) return;
+    const response = await fetch("/api/chat/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        conversationId: conversationIdRef.current,
+        userId,
+        sender,
+        messageText: text,
+        mode: "consumer",
+        citedClauses,
+      }),
+    });
+    if (!response.ok) throw new Error("Unable to save chat message.");
+  };
+
   const send = async (text = prompt) => {
     const value = text.trim();
     if (!value || loading) return;
+    if (!conversationIdRef.current) {
+      conversationIdRef.current = crypto.randomUUID();
+      if (userId) sessionStorage.setItem(`bis_active_conversation_${userId}`, conversationIdRef.current);
+    }
     setPrompt("");
     setMessages((items) => [...items, { role: "user", text: value }]);
+    void saveMessage("user", value)
+      .then(() => loadConversations())
+      .catch((error) => console.warn("Unable to save user message:", error));
     setLoading(true);
     try {
       const response = await fetch("/api/gemini/chat", {
@@ -819,16 +885,19 @@ function Assistant({
         }),
       });
       const data = await response.json();
+      const answer = data.text || data.answer || "No response received.";
       setMessages((items) => [
         ...items,
         {
           role: "assistant",
-          text: data.text || data.answer || "No response received.",
+          text: answer,
           sources: data.citedClauses?.map(
             (item: { clause: string }) => item.clause,
           ),
         },
       ]);
+      await saveMessage("assistant", answer, data.citedClauses);
+      await loadConversations();
     } catch {
       setMessages((items) => [
         ...items,
@@ -844,32 +913,34 @@ function Assistant({
   return (
     <div className="assistant-page">
       <aside className="conversation-rail">
-        <button className="button-primary" onClick={() => setMessages([])}>
-          ＋ New Chat
+        <button className="button-primary" onClick={startNewConversation}>
+          + New Chat
         </button>
         <div className="session-search">
           <Search size={14} />
-          <input placeholder="Search sessions..." />
+          <input
+            placeholder="Search sessions..."
+            value={sessionSearch}
+            onChange={(event) => setSessionSearch(event.target.value)}
+          />
         </div>
         <span className="eyebrow">Recent conversations</span>
-        {[
-          "Certification for electric fans",
-          "Standards for food packaging",
-          "ISI mark requirements",
-          "Testing labs in Telangana",
-          "CRS certification",
-        ].map((item) => (
-          <button className="conversation-item" key={item}>
-            <MessageSquare size={14} />
-            {item}
-            <small>Today</small>
-          </button>
-        ))}
-        <div className="sync-status">
-          <span className="live-dot" />
-          <b>Live BIS Sync</b>
-          <small>Synced with Gazette v2024.3</small>
-        </div>
+        {conversations
+          .filter((conversation) => conversation.title.toLowerCase().includes(sessionSearch.trim().toLowerCase()))
+          .map((conversation) => (
+            <button
+              className="conversation-item"
+              key={conversation.id}
+              onClick={() => selectConversation(conversation.id)}
+            >
+              <MessageSquare size={14} />
+              {conversation.title}
+              <small>{new Date(conversation.updated_at).toLocaleDateString()}</small>
+            </button>
+          ))}
+        {conversations.length === 0 && (
+          <div className="activity-empty">Your saved conversations will appear here.</div>
+        )}
       </aside>
       <section className="chat-panel">
         <header>
@@ -880,7 +951,7 @@ function Assistant({
               BIS services.
             </p>
           </div>
-          <button onClick={() => setMessages([])}>
+          <button onClick={startNewConversation}>
             <X size={17} />
           </button>
         </header>
@@ -1223,7 +1294,7 @@ function Action({
 function Metric({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <b dangerouslySetInnerHTML={{ __html: value }} />
+      <b>{value}</b>
       <small>{label}</small>
     </div>
   );

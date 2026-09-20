@@ -106,17 +106,6 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
           <span className="material-symbols-outlined text-[18px]">grid_view</span>
           Services
         </button>
-        <button
-          onClick={() => setCurrentTab('labs')}
-          className={`px-3 py-1.5 rounded-lg font-space text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all border-b-2 ${
-            currentTab === 'labs'
-              ? 'text-[#ffb77a] border-[#d7790d] bg-[#2f3a4c]/20'
-              : 'text-[#c6c6cc] border-transparent hover:text-white hover:bg-white/5'
-          }`}
-        >
-          <span className="material-symbols-outlined text-[18px]">biotech</span>
-          Labs
-        </button>
       </nav>
 
       {/* Right side: Mode Toggle (Consumer / Industry) */}

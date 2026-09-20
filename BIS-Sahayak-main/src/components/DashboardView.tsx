@@ -120,28 +120,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
         </div>
 
-        {/* Lab Finder (Full Width on Mobile) */}
-        <div
-          onClick={() => onNavigate('labs')}
-          className="sm:col-span-2 lg:col-span-1 bg-[#111c2d] rounded-lg p-4 md:p-5 border border-white/10 hover:border-[#ffb77a]/50 transition-all cursor-pointer group flex flex-row items-center justify-between hover:bg-[#17253a]"
-        >
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-[#2f3a4c] rounded-md shadow-inner">
-              <span className="material-symbols-outlined text-[#ffb77a]">biotech</span>
-            </div>
-            <div>
-              <h4 className="font-space text-sm md:text-base font-semibold text-[#d8e3fb] group-hover:text-[#ffb77a] transition-colors">
-                Lab Finder
-              </h4>
-              <p className="text-xs text-[#c6c6cc] font-hanken">
-                Find recognized testing facilities by capability and location
-              </p>
-            </div>
-          </div>
-          <span className="material-symbols-outlined text-[#c6c6cc] group-hover:text-[#ffb77a] group-hover:translate-x-1 transition-all">
-            chevron_right
-          </span>
-        </div>
       </section>
 
       {/* Knowledge Base Stats Banner */}
