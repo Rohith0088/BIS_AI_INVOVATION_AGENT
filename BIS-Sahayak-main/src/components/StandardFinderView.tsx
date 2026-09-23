@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { StandardItem } from '../types';
 import { BIS_STANDARDS } from '../data/bisDatabase';
 import { parseStandardsCsv, STANDARDS_CSV } from '../data/standardsCsv';
+import { supabase } from '../lib/supabase';
 
 interface StandardFinderViewProps {
   onSelectStandard: (standard: StandardItem) => void;
@@ -12,18 +13,27 @@ interface StandardFinderViewProps {
 }
 
 function toStandardItem(item: any): StandardItem {
+  const keyClauses = Array.isArray(item.keyClauses)
+    ? item.keyClauses.map((clause: any, index: number) =>
+        typeof clause === 'string'
+          ? { clauseNumber: `Clause ${index + 1}`, title: clause, summary: clause }
+          : clause,
+      )
+    : [];
+
   return {
-    id: item.id || `iso-${item.code}`,
+    id: item.id || `iso-${String(item.isCode || item.code).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
     isCode: item.isCode || item.code,
     year: item.year || 'Not specified',
     title: item.title || `${item.code} - BIS standard record`,
+    productName: item.productName || item.product_name || '',
     category: item.category || 'Standards / Dataset',
     department: item.department || 'BIS',
     isMandatoryQCO: Boolean(item.isMandatoryQCO),
     qcoNotificationNumber: item.qcoNotificationNumber,
     summary: item.summary || `IS number found in the BIS dataset. Source: ${item.source || 'BIS Database'}`,
     scope: item.scope || 'The detailed scope is not available in the indexed record.',
-    keyClauses: item.keyClauses || [],
+    keyClauses,
     isoEquivalence: item.isoEquivalence || '',
     isoComparisonNotes: item.isoComparisonNotes || '',
     sampleTestParameters: item.sampleTestParameters || [],
@@ -45,13 +55,68 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [mandatoryOnly, setMandatoryOnly] = useState(false);
   const [apiIsoCodes, setApiIsoCodes] = useState<StandardItem[]>([]);
-  const [remoteSearchStandards, setRemoteSearchStandards] = useState<StandardItem[]>([]);
 
-  // Fetch IS codes from API (extracted from datasets)
   useEffect(() => {
-    const fetchIsoCodes = async () => {
+    const fetchFinderIndex = async () => {
+      let indexedRecords: any[] | null = null;
+
+      if (supabase) {
+        const rows: any[] = [];
+        const pageSize = 1000;
+        let indexError: unknown = null;
+
+        for (let start = 0; ; start += pageSize) {
+          const { data, error } = await supabase
+            .from('standard_finder_index')
+            .select('*')
+            .order('is_code', { ascending: true })
+            .range(start, start + pageSize - 1);
+
+          if (error) {
+            indexError = error;
+            break;
+          }
+
+          rows.push(...(data || []));
+          if (!data || data.length < pageSize) break;
+        }
+
+        if (indexError) {
+          console.warn('Failed to fetch Standard Finder index from Supabase:', indexError);
+        } else {
+          indexedRecords = rows;
+        }
+      }
+
+      if (indexedRecords) {
+        const converted = indexedRecords.map((row) => {
+          const payload = row.record_payload && typeof row.record_payload === 'object'
+            ? row.record_payload
+            : {};
+
+          return toStandardItem({
+            ...payload,
+            id: `finder-${row.id}`,
+            code: row.is_code,
+            isCode: row.is_code,
+            title: row.title || payload.title,
+            category: row.category || payload.category,
+            department: row.department || payload.department,
+            year: row.year || payload.year,
+            summary: row.summary || payload.summary,
+            scope: row.scope || payload.scope,
+            isMandatoryQCO: row.is_mandatory_qco,
+            source: row.source || payload.source,
+            lastUpdated: row.updated_at || payload.lastUpdated,
+          });
+        });
+        setApiIsoCodes(converted);
+        return;
+      }
+
       try {
         const response = await fetch('/api/is-codes');
+        if (!response.ok) throw new Error(`IS codes request failed with ${response.status}`);
         const data = await response.json();
         if (data.codes) {
           const converted: StandardItem[] = data.codes.map(toStandardItem);
@@ -62,43 +127,21 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
       }
     };
 
-    fetchIsoCodes();
+    void fetchFinderIndex();
   }, []);
-
-  useEffect(() => {
-    const query = searchQuery.trim();
-    if (query.length < 2) {
-      setRemoteSearchStandards([]);
-      return;
-    }
-
-    const controller = new AbortController();
-    const searchIsoCodes = async () => {
-      try {
-        const response = await fetch(`/api/is-codes/search?q=${encodeURIComponent(query)}`, {
-          signal: controller.signal,
-        });
-        if (!response.ok) return;
-
-        const data = await response.json();
-        const converted: StandardItem[] = (data.codes || []).map(toStandardItem);
-        setRemoteSearchStandards(converted);
-      } catch (error) {
-        if ((error as Error).name !== 'AbortError') {
-          console.warn('Failed to search IS codes from API:', error);
-        }
-      }
-    };
-
-    void searchIsoCodes();
-    return () => controller.abort();
-  }, [searchQuery]);
 
   const csvStandards = useMemo(() => parseStandardsCsv(STANDARDS_CSV) as StandardItem[], []);
   const sourceStandards = useMemo(() => {
-    const combined = [...BIS_STANDARDS, ...apiIsoCodes];
-    return combined.length > 0 ? combined : csvStandards;
-  }, [apiIsoCodes]);
+    const combined = [...apiIsoCodes, ...BIS_STANDARDS, ...csvStandards.map(toStandardItem)];
+    const unique = new Map<string, StandardItem>();
+
+    combined.forEach((standard) => {
+      const key = standard.isCode.toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (!unique.has(key)) unique.set(key, standard);
+    });
+
+    return Array.from(unique.values());
+  }, [apiIsoCodes, csvStandards]);
 
   const categories = useMemo(() => {
     const set = new Set<string>();
@@ -109,11 +152,7 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
   }, [sourceStandards]);
 
   const filteredStandards = useMemo(() => {
-    const standardsToFilter = searchQuery.trim().length >= 2 && remoteSearchStandards.length > 0
-      ? remoteSearchStandards
-      : sourceStandards;
-
-    return standardsToFilter.filter((s) => {
+    return sourceStandards.filter((s) => {
       const matchSearch =
         searchQuery.trim() === '' ||
         s.isCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -129,7 +168,7 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
 
       return matchSearch && matchCategory && matchMandatory;
     });
-  }, [searchQuery, selectedCategory, mandatoryOnly, sourceStandards, remoteSearchStandards]);
+  }, [searchQuery, selectedCategory, mandatoryOnly, sourceStandards]);
 
   const selectedByCode = useMemo(() => {
     const normalized = codeInput.trim().toLowerCase();
@@ -151,7 +190,7 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
           Standard Finder
         </h2>
         <p className="text-[#c6c6cc] font-hanken text-sm">
-          Search the prototype index by IS code, product, technical keyword, or responsible division. Open a record to review scope and cited clauses.
+          Search the BIS index by IS code, product, technical keyword, or responsible division.
         </p>
       </div>
 
@@ -290,7 +329,18 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
                     {std.summary}
                   </p>
 
+                  {std.productName && (
+                    <p className="font-hanken text-xs text-[#ffb77a] leading-relaxed line-clamp-2">
+                      <strong className="text-[#bfc6da]">Product:</strong> {std.productName}
+                    </p>
+                  )}
+
+                  <p className="font-hanken text-xs text-[#9fa9bc] leading-relaxed line-clamp-2">
+                    <strong className="text-[#bfc6da]">Details:</strong> {std.scope}
+                  </p>
+
                   <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1 text-[11px] font-mono-code text-[#8f9bad]">
+                    <span><strong className="text-[#bfc6da]">Year:</strong> {std.year}</span>
                     <span><strong className="text-[#bfc6da]">Scope:</strong> {std.category.split('/')[0].trim()}</span>
                     <span><strong className="text-[#bfc6da]">Updated:</strong> {std.lastUpdated || 'Not recorded'}</span>
                   </div>
@@ -310,14 +360,6 @@ export const StandardFinderView: React.FC<StandardFinderViewProps> = ({
 
                 {/* Right Action Buttons */}
                 <div className="flex md:flex-col items-center gap-2 flex-shrink-0 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-white/5 justify-end">
-                  <button
-                    onClick={() => onSelectStandard(std)}
-                    className="flex-1 md:flex-none px-3.5 py-1.5 rounded-lg bg-[#2f3a4c] hover:bg-[#3f4757] text-[#d8e3fb] text-xs font-space font-bold transition-all flex items-center justify-center gap-1.5"
-                  >
-                    <span className="material-symbols-outlined text-[16px]">visibility</span>
-                    <span>View Clauses</span>
-                  </button>
-
                   <button
                     onClick={() => onOpenCompare(std.isCode)}
                     className="px-3 py-1.5 rounded-lg border border-white/10 hover:border-[#ffb77a] text-[#ffb77a] hover:bg-[#ffb77a]/10 text-xs font-space font-semibold transition-all flex items-center justify-center gap-1"

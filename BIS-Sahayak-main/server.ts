@@ -233,14 +233,13 @@ async function initializeDatabase() {
     }
 
     const finderRecords = indexedStandardRecords();
-    const { rows: finderCountRows } = await dbPool.query('SELECT COUNT(*)::int AS count FROM standard_finder_index');
-    if (finderCountRows[0].count !== finderRecords.length) {
+    if (finderRecords.length > 0) {
       const columns = '(is_code, title, category, department, year, summary, scope, is_mandatory_qco, source, search_text, record_payload, updated_at)';
       for (let start = 0; start < finderRecords.length; start += 100) {
         const chunk = finderRecords.slice(start, start + 100);
         const values: unknown[] = [];
         const placeholders = chunk.map((record, index) => {
-          const searchText = [record.isCode, record.title, record.category, record.department, record.year, record.summary, record.scope, record.source]
+          const searchText = [record.isCode, record.productName, record.title, record.category, record.department, record.year, record.summary, record.scope, record.source]
             .filter(Boolean).join(' ');
           values.push(
             record.isCode,
@@ -687,6 +686,61 @@ app.get("/api/chat/conversations", async (req, res) => {
 // Load IS codes from local dataset and official BIS website index
 let isCodesIndex: Record<string, any> = {};
 let officialIsCodesIndex: Record<string, any> = {};
+const productNamesByCode = new Map<string, string[]>();
+
+function parseCsvLine(line: string): string[] {
+  const values: string[] = [];
+  let value = '';
+  let quoted = false;
+
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+    if (character === '"' && line[index + 1] === '"' && quoted) {
+      value += '"';
+      index += 1;
+    } else if (character === '"') {
+      quoted = !quoted;
+    } else if (character === ',' && !quoted) {
+      values.push(value.trim());
+      value = '';
+    } else {
+      value += character;
+    }
+  }
+
+  values.push(value.trim());
+  return values;
+}
+
+function loadProductNames(serverDirectory: string) {
+  const candidates = [
+    path.resolve(serverDirectory, '..', 'bis_rag', 'datasets', 'bis_all_products_unified.csv'),
+    path.resolve(process.cwd(), 'bis_rag', 'datasets', 'bis_all_products_unified.csv'),
+    path.resolve(process.cwd(), '..', 'bis_rag', 'datasets', 'bis_all_products_unified.csv'),
+  ];
+  const catalogPath = candidates.find((candidate) => fs.existsSync(candidate));
+  if (!catalogPath) return;
+
+  const lines = fs.readFileSync(catalogPath, 'utf-8').split(/\r?\n/).filter(Boolean);
+  if (lines.length < 2) return;
+  const headers = parseCsvLine(lines[0]);
+  const codeIndex = headers.indexOf('indian_standard_number');
+  const productIndex = headers.indexOf('product_or_material');
+  if (codeIndex < 0 || productIndex < 0) return;
+
+  lines.slice(1).forEach((line) => {
+    const values = parseCsvLine(line);
+    const code = values[codeIndex];
+    const product = values[productIndex];
+    if (!code || !product) return;
+
+    const key = normalizeStandardCode(code);
+    const products = productNamesByCode.get(key) || [];
+    if (!products.includes(product)) products.push(product);
+    productNamesByCode.set(key, products);
+  });
+  console.log(`Loaded product names for ${productNamesByCode.size} IS codes from BIS catalog`);
+}
 try {
   const serverDirectory = typeof __dirname === 'string'
     ? __dirname
@@ -717,6 +771,8 @@ try {
   } else {
     console.warn(`Official BIS Selenium index not found. Checked: ${officialIndexCandidates.join(', ')}`);
   }
+
+  loadProductNames(serverDirectory);
 } catch (err) {
   console.warn('Unable to load IS codes index, will use database only:', err);
 }
@@ -861,6 +917,7 @@ function normalizeStandardCode(code: string) {
 }
 
 function toStandardRecord(code: string, metadata: Record<string, any> = {}) {
+  const productNames = productNamesByCode.get(normalizeStandardCode(code)) || [];
   const catalogRecord = BIS_STANDARDS.find(
     (standard) => normalizeStandardCode(standard.isCode) === normalizeStandardCode(code),
   );
@@ -871,6 +928,7 @@ function toStandardRecord(code: string, metadata: Record<string, any> = {}) {
       ...catalogRecord,
       source: metadata.source || 'BIS standards catalog',
       year: metadata.year || catalogRecord.year,
+      productName: metadata.productName || productNames.join('; '),
     };
   }
 
@@ -880,6 +938,7 @@ function toStandardRecord(code: string, metadata: Record<string, any> = {}) {
     isCode: code,
     year: metadata.year || 'Not specified',
     title: `${code} - BIS standard record`,
+    productName: metadata.productName || productNames.join('; '),
     category: metadata.category || 'Standards / Dataset',
     department: metadata.department || 'BIS',
     isMandatoryQCO: Boolean(metadata.isMandatoryQCO),
@@ -903,7 +962,10 @@ function indexedStandardRecords() {
     .map((code) => toStandardRecord(code, mergedIndex[code]));
 
   const catalogCodes = BIS_STANDARDS.map((standard) => toStandardRecord(standard.isCode));
-  const records = [...indexedCodes, ...catalogCodes];
+  const records = [...indexedCodes, ...catalogCodes].map((record) => ({
+    ...record,
+    productName: record.productName || productNamesByCode.get(normalizeStandardCode(record.isCode))?.join('; ') || '',
+  }));
   const unique = new Map<string, any>();
 
   records.forEach((record) => unique.set(normalizeStandardCode(record.isCode), record));

@@ -24,6 +24,7 @@ export interface StandardItem {
   isCode: string;
   year: string;
   title: string;
+  productName?: string;
   category: string;
   department: string;
   isMandatoryQCO: boolean;

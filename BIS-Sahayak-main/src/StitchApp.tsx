@@ -45,23 +45,43 @@ const faq = [
 
 export default function StitchApp() {
   const [screen, setScreen] = useState<Screen>(() => {
-    return "landing";
+    const isAuthenticated = localStorage.getItem("bis_auth") === "true";
+    const hasProfile = Boolean(localStorage.getItem("bis_user_profile"));
+    return isAuthenticated && hasProfile ? "app" : "landing";
   });
-  const [view, setView] = useState<View>("dashboard");
+  const [view, setView] = useState<View>(() => {
+    const savedView = localStorage.getItem("bis_active_view");
+    return savedView === "finder" || savedView === "assistant" || savedView === "profile"
+      ? savedView
+      : "dashboard";
+  });
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profile, setProfile] = useState({
-    id: undefined as number | undefined,
-    name: "",
-    email: "",
-    phone: "",
-    organisation: "",
-    role: "",
-    region: "",
-    profileImage: "",
+  const [profile, setProfile] = useState(() => {
+    try {
+      const savedProfile = localStorage.getItem("bis_user_profile");
+      if (savedProfile) return JSON.parse(savedProfile);
+    } catch (error) {
+      console.warn("Unable to restore saved profile:", error);
+    }
+
+    return {
+      id: undefined as number | undefined,
+      name: "",
+      email: "",
+      phone: "",
+      organisation: "",
+      role: "",
+      region: "",
+      profileImage: "",
+    };
   });
   const [prompt, setPrompt] = useState("");
   const [authError, setAuthError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("bis_active_view", view);
+  }, [view]);
 
   useEffect(() => {
     if (!supabase) return;
@@ -1019,45 +1039,104 @@ function Assistant({
   );
 }
 
+function finderRecordToStandard(row: any): StandardItem {
+  const payload = row.record_payload && typeof row.record_payload === "object"
+    ? row.record_payload
+    : {};
+  const keyClauses = Array.isArray(payload.keyClauses)
+    ? payload.keyClauses.map((clause: any, index: number) =>
+        typeof clause === "string"
+          ? { clauseNumber: `Clause ${index + 1}`, title: clause, summary: clause }
+          : clause,
+      )
+    : [];
+
+  return {
+    id: `finder-${row.id || row.is_code}`,
+    isCode: row.is_code,
+    year: row.year || payload.year || "Not specified",
+    title: row.title || payload.title || `${row.is_code} - BIS standard record`,
+    productName: row.product_name || payload.productName || payload.product_name || "",
+    category: row.category || payload.category || "BIS Standards",
+    department: row.department || payload.department || "BIS",
+    isMandatoryQCO: Boolean(row.is_mandatory_qco ?? payload.isMandatoryQCO),
+    summary: row.summary || payload.summary || "Standard information available.",
+    scope: row.scope || payload.scope || "Scope details are not available in the indexed record.",
+    keyClauses,
+    isoEquivalence: payload.isoEquivalence || "",
+    isoComparisonNotes: payload.isoComparisonNotes || "",
+    sampleTestParameters: payload.sampleTestParameters || [],
+    pdfExcerptSnippet: payload.pdfExcerptSnippet,
+    viewsCount: payload.viewsCount || 0,
+    lastUpdated: row.updated_at || payload.lastUpdated || "Dataset",
+  };
+}
+
 function Finder() {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<StandardItem[]>(BIS_STANDARDS);
-  const search = async (value: string) => {
-    setQuery(value);
-    if (value.trim().length < 2) {
-      setResults(BIS_STANDARDS);
-      return;
-    }
-    try {
-      const response = await fetch(
-        `/api/is-codes/search?q=${encodeURIComponent(value)}`,
-      );
-      const data = await response.json();
-      const remote = (data.codes || []).map(
-        (item: {
-          code: string;
-          year?: string;
-          category?: string;
-          department?: string;
-          source?: string;
-        }) => ({
-          id: `remote-${item.code}`,
-          isCode: item.code,
-          year: item.year || "Current",
-          title: `${item.code} · BIS standard record`,
-          category: item.category || "BIS Standards",
-          department: item.department || "BIS",
-          isMandatoryQCO: false,
-          summary: `Standard code found in BIS official datasets. Source: ${item.source || "BIS database"}`,
-          scope: "Dataset reference record",
-          keyClauses: [],
-        }),
-      );
-      setResults(remote.length ? remote : []);
-    } catch {
-      setResults([]);
-    }
-  };
+  const [standards, setStandards] = useState<StandardItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadFinderIndex = async () => {
+      try {
+        if (!supabase) {
+          throw new Error("Supabase is not configured.");
+        }
+
+        const rows: any[] = [];
+        const pageSize = 1000;
+        for (let start = 0; ; start += pageSize) {
+          const { data, error } = await supabase
+            .from("standard_finder_index")
+            .select("*")
+            .order("is_code", { ascending: true })
+            .range(start, start + pageSize - 1);
+
+          if (error) throw error;
+          rows.push(...(data || []));
+          if (!data || data.length < pageSize) break;
+        }
+
+        if (!cancelled) {
+          setStandards(rows.map(finderRecordToStandard));
+          setLoadError("");
+        }
+      } catch (error) {
+        console.warn("Failed to load the Supabase Standard Finder index:", error);
+        if (!cancelled) {
+          setStandards(BIS_STANDARDS);
+          setLoadError("Showing the local catalog because the Supabase index could not be loaded.");
+        }
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    };
+
+    void loadFinderIndex();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const results = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+    if (!normalizedQuery) return standards;
+
+    return standards.filter((standard) => [
+      standard.isCode,
+      standard.productName || "",
+      standard.title,
+      standard.category,
+      standard.department,
+      standard.summary,
+      standard.scope,
+    ].some((value) => value.toLowerCase().includes(normalizedQuery)));
+  }, [query, standards]);
+
   return (
     <div className="page-content">
       <div className="page-title">
@@ -1077,7 +1156,7 @@ function Finder() {
           <Search size={18} />
           <input
             value={query}
-            onChange={(event) => void search(event.target.value)}
+            onChange={(event) => setQuery(event.target.value)}
             placeholder="Search standards, products, IS codes..."
           />
           <kbd>⌘K</kbd>
@@ -1094,7 +1173,10 @@ function Finder() {
           <option>Active</option>
         </select>
       </div>
-      <div className="result-count">Showing {results.length} records</div>
+      <div className="result-count">
+        {isLoading ? "Loading indexed records..." : `Showing ${results.length} of ${standards.length} indexed records`}
+      </div>
+      {loadError && <p className="result-count">{loadError}</p>}
       <div className="standard-list">
         {results.map((standard) => (
           <article key={standard.id}>
@@ -1102,13 +1184,12 @@ function Finder() {
               <span className="code-chip">{standard.isCode}</span>
               <span className="meta-chip">{standard.department}</span>
               <h2>{standard.title}</h2>
+              {standard.productName && <p className="standard-product">Product: {standard.productName}</p>}
               <p>{standard.summary}</p>
+              <p>{standard.scope}</p>
               <small>
                 {standard.category} · {standard.year || "Current"} · Active
               </small>
-            </div>
-            <div className="result-actions">
-              <button className="button-secondary">Open</button>
             </div>
           </article>
         ))}
